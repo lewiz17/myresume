@@ -185,15 +185,15 @@
                                             {{tab.label}}
                                         </a>
                                         
-                                        <img :src="getTabIcon(tab.name)" :alt="tabicon">
+                                        <img :src="getIconSrc(tab.name)">
                                     </div>
                                 </div>
                             </div>
                             <!-- portfolio section -->
 
                             <!-- New position the subtabs -->
-                            <div id="nav-taps-resume" style="padding-top:2px">                                    
-                                <v-tabs v-model="tabber" background-color="transparent" centered align="center">
+                            <div id="nav-taps-resume">                                    
+                                <v-tabs v-model="tabber" background-color="transparent" centered>
                                     <v-tab :href="'#languagesTab' + freelancer.id">
                                         Programing Languages
                                     </v-tab>
@@ -211,7 +211,7 @@
                                     <v-tab-item :value="'languagesTab' + freelancer.id">
                                         <div class="row">
                                             <div class="col-md-12  text-center">
-                                                <div class="d-flex items-skills" style="padding-top: 15px;">
+                                                <div class="d-flex items-skills">
                                                     <div v-for="(skill,index) in skills" :key="index"
                                                         v-show="skill.type === 'programming'"
                                                         class="skills">
@@ -219,8 +219,8 @@
                                                         <div class="skill text-left">
                                                             <!-- title -->
                                                             <div class="skill-title">
-                                                                <img style="width: 17px;padding-bottom: 3px;"
-                                                                    :src="getSkillIconSrc(skill.skill_title)"
+                                                                <img style="padding-bottom: 3px;"
+                                                                    src="../assets/icons/icon-illustrator.png"
                                                                     alt="skill" :id="'skillImage_' + skill.id">
                                                 
                                                             </div>
@@ -235,7 +235,7 @@
                                     <v-tab-item :value="'databases' + freelancer.id">
                                         <div class="row">
                                             <div class="col-md-12  text-center">
-                                                <div class="d-flex items-skills" style="padding-top: 15px;">
+                                                <div class="d-flex items-skills">
                                                     <div v-for="(skill,index) in skills" :key="index"
                                                         v-show="skill.type === 'frameworks'"
                                                         class="skills">
@@ -243,8 +243,8 @@
                                                         <div class="skill text-left">
                                                             <!-- title -->
                                                             <div class="skill-title">
-                                                                <img style="width: 17px;padding-bottom: 3px;"
-                                                                    :src="getSkillIconSrc(skill.skill_title)"
+                                                                <img style="padding-bottom: 3px;"
+                                                                    src="../assets/icons/icon-premier.png"
                                                                     alt="skill" :id="'skillImage_' + skill.id">
                                                 
                                                             </div>
@@ -259,7 +259,7 @@
                                     <v-tab-item :value="'skillsTab' + freelancer.id">
                                         <div class="row">
                                             <div class="col-md-12  text-center">
-                                                <div class="d-flex items-skills" style="padding-top: 15px;">
+                                                <div class="d-flex items-skills">
                                                     <div v-for="(skill,index) in skills" :key="index"
                                                         v-show="skill.type === 'design'"
                                                         class="skills">
@@ -268,8 +268,8 @@
                                                             <!-- title -->
                                                             <div class="skill-title">
                                                                
-                                                                <img style="width: 17px;padding-bottom: 3px;"
-                                                                    :src="getSkillIconSrc(skill.skill_title)"
+                                                                <img style="padding-bottom: 3px;"
+                                                                    src="../assets/icons/icon-experience.png"
                                                                     alt="skill" :id="'skillImage_' + skill.id">
                                                                
                                                 
@@ -285,7 +285,7 @@
                                     <v-tab-item :value="'software' + freelancer.id">
                                         <div class="row">
                                             <div class="col-md-12  text-center">
-                                                <div class="d-flex items-skills" style="padding-top: 15px;">
+                                                <div class="d-flex items-skills">
                                                     <div v-for="(skill,index) in skills" :key="index"
                                                         v-show="skill.type === 'software'"
                                                         class="skills">
@@ -293,8 +293,8 @@
                                                         <div class="skill text-left">
                                                             <!-- title -->
                                                             <div class="skill-title">
-                                                                <img style="width: 17px;padding-bottom: 3px;"
-                                                                    :src="getSkillIconSrc(skill.skill_title)"
+                                                                <img style="padding-bottom: 3px;"
+                                                                    src="../assets/icons/icon-aftereffects.png"
                                                                     alt="skill" :id="'skillImage_' + skill.id">
                                                 
                                                             </div>
@@ -308,18 +308,88 @@
                                     </v-tab-item>
                                 </v-tabs-items>
                             </div>
-                            <h3 class="name-section">{{currentTab.name}}</h3>
+                            
+                            <div v-show="currentTab.name === 'portfolio'" class="portfolio-section">   
+                                <v-row align="center" class="titleTabSection">
+                                    <v-col lg="10">
+                                        <h3 class="name-section">{{currentTab.name}}
+                                            <img :src="getIconSrc(currentTab.name+'2')">
+                                        </h3>
+                                    </v-col>
+                                </v-row>                            
+                                <div>
+                                    <!-- portfolio section -->
+                                    <slick class="projectsSection" :id="'portfolio_section_' + freelancer.id" ref="slick" :options="slickOptions">
+                                        <div  v-for="(project,index) in projects" :key="index + 'A'" >
+                                            <!-- class="d-flex justify-content-center" style="height: 250px !important; padding: 0 2px 0 2px; overflow: hidden;" -->
+
+                                            <div class="workCard" style="margin:10px; margin-bottom: 0px;">
+                                                <div class="workImg">
+                                                    <a href="javascript:void(0)"
+                                                    style="outline: none;"
+                                                    data-toggle="modal" :data-target="'#project_modal_'+project.id" @click="loadHDImage(project.id)">
+
+                                                        <vue-load-image class="d-flex justify-content-center align-items-center">
+                                                            <img :src="getImageSrc(project.mainImage)" alt="" width="260" slot="image">
+                                                            <img  alt="" slot="preloader" src="/images/spinner-load.gif" style="width: 100px; height: 100px;" />
+                                                        </vue-load-image>
+                                                    </a>
+                                                </div>
+                                                <div class="workTitle">
+                                                    <div class="row">
+                                                        <div class="col-md-10 col-9">
+                                                            {{project.projectName}}
+                                                        </div>
+                                                        <a class="col-md-1 col-1" href="javascript:void(0)"
+                                                        data-toggle="modal" :data-target="'#project_modal_'+project.id"
+                                                        style="outline: none; margin-left: 16px;">
+                                                            <img src="/images/newResume/link.png"
+                                                                alt="view work">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </slick>
+
+                                    <div class="row carouselControls" style="width: 100%;">
+                                        <div class=" col-12 text-center NoDecor">
+                                            <a href="javascript:void(0)" class="cardLabel_interviews noScroll" @click="slidePrev"
+                                            style="color:#697786;">
+                                                <img src="/images/left_arrow.png"
+                                                    alt="prev" width="15px">
+                                            </a>
+
+                                            <span class="jobTitle" style="padding: 0 5px 0 5px"> <span>{{slideNumber}}</span> / <span> {{numberOfSlides}} </span></span>
+
+                                            <a href="javascript:void(0)" role="button" data-slide="next" class="cardLabel_interviews noScroll" @click="slideNext"
+                                            style="color:#697786;">
+                                                <img src="/images/right_arrow.png"
+                                                    alt="next" width="15px">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- end of portfolio section -->
+                                </div>
+                            </div>
+                            
                         
-                        
-                            <div v-show="currentTab.name === 'work'">
+                            <div v-show="currentTab.name === 'work'" class="work-section">
                                 <!-- work section -->
-                                <div class="row" style="padding-top: 10px;">
-                                    <div class="col-12 educationSection">
+                                <v-row align="center" class="titleTabSection">
+                                    <v-col lg="10">
+                                        <h3 class="name-section">{{currentTab.name}}
+                                            <img :src="getIconSrc(currentTab.name+'2')">
+                                        </h3>
+                                    </v-col>
+                                </v-row>
+
+                                <div class="row wrap-section">
+                                    <div class="col-10 educationSection">
                                         <div class="aboutText">
                                             <div class="row" v-for="(work, index) in worksHistory" :key="index + 'V'">
                                                 <div class="col-md-12 aboutSubText">
                                                     <div class="job-title d-flex align-items-center">
-                                                        <img :src="currentTab.default_icon_src" alt="tab icon" class="mr-2 tab-icon">
                                                         <div>
                                                             {{work.job_title}}
                                                         </div>
@@ -424,17 +494,22 @@
                             </div>
                         
                         
-                            <div v-show="currentTab.name === 'education'">
+                            <div v-show="currentTab.name === 'education'" class="education-section">
                                 <!-- education section -->
-
-                                <div class="row" style="padding-top: 10px;">
-                                    <div class="col-12 educationSection">
+                                <v-row align="center" class="titleTabSection">
+                                    <v-col lg="10">
+                                        <h3 class="name-section">{{currentTab.name}}
+                                            <img :src="getIconSrc(currentTab.name+'2')">
+                                        </h3>
+                                    </v-col>
+                                </v-row>
+                                <div class="row wrap-section">
+                                    <div class="col-10 educationSection">
                                         <div class="aboutText">
                                             <div class="row" v-for="(education, index) in educationsHistory"
                                                 :key="index + 'E'">
                                                 <div class="col-md-12 aboutSubText">
                                                     <div class="title work d-flex">
-                                                        <img :src="currentTab.default_icon_src" alt="tab icon" class="mr-2 tab-icon">
                                                         <span class="seduHeader">
                                                             {{education.school_title}}
                                                         </span>
@@ -457,6 +532,13 @@
                         
                             <div v-show="currentTab.name === 'references'">
                                 <!-- education section -->
+                                <v-row align="center" class="titleTabSection">
+                                    <v-col lg="10">
+                                        <h3 class="name-section">{{currentTab.name}}
+                                            <img :src="getIconSrc(currentTab.name+'2')">
+                                        </h3>
+                                    </v-col>
+                                </v-row>
                                 <div class="row" style="padding-top: 10px;">
                                     <div class="col-12 educationSection">
                                         <div class="aboutText">
@@ -493,6 +575,13 @@
                         
                             <div v-show="currentTab.name === 'recordings'">
                                 <!-- education section -->
+                                <v-row align="center" class="titleTabSection">
+                                    <v-col lg="10">
+                                        <h3 class="name-section">{{currentTab.name}}
+                                            <img :src="getIconSrc(currentTab.name+'2')">
+                                        </h3>
+                                    </v-col>
+                                </v-row>
                                 <div class="row" style="padding-top: 10px;">
                                     <div class="col-12 educationSection">
                                         <div class="aboutText">
@@ -533,63 +622,6 @@
                                 </div>
                             </div>
                         
-                            
-                            <div v-show="currentTab.name === 'portfolio'">
-                                <div>
-                                    <!-- portfolio section -->
-                                    <slick class="projectsSection" :id="'portfolio_section_' + freelancer.id" ref="slick" :options="slickOptions">
-                                        <div  v-for="(project,index) in projects" :key="index + 'A'" >
-                                            <!-- class="d-flex justify-content-center" style="height: 250px !important; padding: 0 2px 0 2px; overflow: hidden;" -->
-
-                                            <div class="workCard" style="margin:10px; margin-bottom: 0px;">
-                                                <div class="workImg">
-                                                    <a href="javascript:void(0)"
-                                                    style="outline: none;"
-                                                    data-toggle="modal" :data-target="'#project_modal_'+project.id" @click="loadHDImage(project.id)">
-
-                                                        <vue-load-image class="d-flex justify-content-center align-items-center">
-                                                            <img :src="getImageSrc(project.mainImage)" alt="" width="260" slot="image">
-                                                            <img  alt="" slot="preloader" src="/images/spinner-load.gif" style="width: 100px; height: 100px;" />
-                                                        </vue-load-image>
-                                                    </a>
-                                                </div>
-                                                <div class="workTitle">
-                                                    <div class="row">
-                                                        <div class="col-md-10 col-9">
-                                                            {{project.projectName}}
-                                                        </div>
-                                                        <a class="col-md-1 col-1" href="javascript:void(0)"
-                                                        data-toggle="modal" :data-target="'#project_modal_'+project.id"
-                                                        style="outline: none; margin-left: 16px;">
-                                                            <img src="/images/newResume/link.png"
-                                                                alt="view work">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </slick>
-
-                                    <div class="row carouselControls" style="width: 100%;">
-                                        <div class=" col-12 text-center NoDecor">
-                                            <a href="javascript:void(0)" class="cardLabel_interviews noScroll" @click="slidePrev"
-                                            style="color:#697786;">
-                                                <img src="/images/left_arrow.png"
-                                                    alt="prev" width="15px">
-                                            </a>
-
-                                            <span class="jobTitle" style="padding: 0 5px 0 5px"> <span>{{slideNumber}}</span> / <span> {{numberOfSlides}} </span></span>
-
-                                            <a href="javascript:void(0)" role="button" data-slide="next" class="cardLabel_interviews noScroll" @click="slideNext"
-                                            style="color:#697786;">
-                                                <img src="/images/right_arrow.png"
-                                                    alt="next" width="15px">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- end of portfolio section -->
-                                </div>
-                            </div>
                             
 
                             <!-- end of portfolio section -->
@@ -937,7 +969,7 @@
                 if (arrayOfSkillImages.hasOwnProperty(skill_title.toLowerCase())) {
                     return arrayOfSkillImages[skill_title.toLowerCase()];
                 }
-                return '../assets/icons/illustrator.png';
+                return '/images/skills_icons/skills.png';
             },
             getImageSrc(src) {
                 if (!src) {
@@ -950,8 +982,20 @@
 
                 return src;
             },
-            getTabIcon(title) {
-                return require(`../assets/icons/icon-${title.toLowerCase()}.png`);
+            getIconSrc(title) {
+                let arrayIcons = {
+                    'portfolio': 'icons/icon-portfolio.png',
+                    'work': 'icons/icon-work.png',
+                    'education': 'icons/icon-education.png',
+                    //
+                    'portfolio2': 'icons/icon-portfolio2.png',
+                    'work2': 'icons/icon-work2.png',
+                    'education2': 'icons/icon-education2.png'
+
+                }
+                if (arrayIcons.hasOwnProperty(title.toLowerCase())) {
+                    return require('@/assets/'+arrayIcons[title.toLowerCase()]);
+                }
             },
             loadHDImage(project_id) {
                 let projects = this.freelancer.projects;
@@ -1283,18 +1327,21 @@
     }
 
     .skills {
-        padding: 0px 15px 10px 15px;
+        padding: 0px;
     }
 
     .skills .skill {
-        margin-bottom: 30px;
+        margin-bottom: 0;
     }
 
     .skills .skill .skill-title {
         color: #808080;
-        margin-bottom: 15px;
         font-weight: 400;
         font-size: 14px;
+        img{
+            width: 64.5px;
+            height: 64.5px;
+        }
     }
 
     .container {
@@ -1304,8 +1351,17 @@
         margin: 0 auto;
     }
 
+    .wrap-section{
+        justify-content: center;
+        padding-top: 16px; 
+        .educationSection{
+            padding: 0;
+        }
+    }
+
     .educationSection {
-        height: 506px;
+
+        height: auto;
         overflow: auto;
         @media only screen and (max-width: 500px) {
             width: 315px;
@@ -1318,6 +1374,8 @@
     }
 
     .aboutText {
+        padding: 0;
+
         @media only screen and (max-width: 500px) {
             padding-left: 0;
         }
@@ -1337,15 +1395,11 @@
 
 
     .job-title{
-        font-size: 16px;color: #30323D;line-height: 19px;font-weight: bold;
+        font-family: "Nexa Bold";
+        font-style: normal;
+        font-size: 30px;
+        line-height: 30px;
     }
-
-    .tab-icon{
-        width:14px;
-        height:14px;
-    }
-
-
 
 
 /** NEXA Font theme2 */
@@ -1379,7 +1433,7 @@
 
 #freelancerResumeTheme2 .freelancerCard{
     width: 1152px;
-    height: 1066px;    
+    height: auto;    
 }
 
 .tap-to-chat{
@@ -1487,17 +1541,48 @@
     
     
 }
+// .portfolio-section{
+//     background: url('../assets/icons/bgSectionPortfolio.png') no-repeat;
+//     background-size: 550px 446px;
+//     background-position: 103% bottom;
+// }
+// .work-section{
+//     background: url('../assets/icons/bgSectionWork.png') no-repeat;
+//     background-size: 550px 446px;
+//     background-position: 103% bottom;
+// }
+// .education-section{
+//     background: url('../assets/icons/bgSectionEducation.png') no-repeat;
+//     background-size: 994px 546px;
+//     background-position: 103% bottom;
+// }
+
+.titleTabSection{
+
+    padding: 0;
+    justify-content: center;
 
 
-.name-section{
-    font-size: 32px;
-    line-height: 30px;
-    font-weight: bold;
-    font-family: 'Nexa Bold';
-    text-shadow: 3px 2px 0px #50E8FC;
-    text-transform: capitalize;
-    padding-left: 35px;
+    .col-lg-10{
+        padding: 0 20px;
+
+    }
+    .name-section{
+        font-family: "Nexa Bold";
+        font-style: normal;
+        font-size: 60px;
+        line-height: 60px;
+        text-shadow: 3px 2px 0px #50E8FC;
+        text-transform: capitalize;
+        margin: 0;
+
+        img{
+            float: right;
+        }
+    }
 }
+
+
 
 .hold_theme2 .col-md-2{
     padding-bottom: 0px !important;
@@ -1543,13 +1628,23 @@
         height: 150px;
     }
 }
+#nav-taps-resume{
+    margin-bottom: 0px;
+}
 #nav-taps-resume .items-skills{
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 #nav-taps-resume .nav-tabs .nav-item.show .nav-link, #nav-taps-resume .nav-tabs .nav-link{
     font-family: 'Nexa light';
 }
+.v-tabs-items {
+    .col-md-12{
+        padding-top: 28px;
+        padding-bottom: 50px;
+    }
+}
+
 .v-tab{
     color: #000;    
     font-family: "Nexa Light";
@@ -1559,15 +1654,11 @@
     line-height: 24px;
     text-align: left;
     align-self:flex-start;
+    margin: 0 3.5%;
     padding: 0;
 
     &:not(.v-tab--active){
         color: #000 !important; 
-    }
-    
-
-    +.v-tab{
-        margin: 0 0 0 62px;
     }
 
     &:hover{
@@ -1584,11 +1675,65 @@
 .v-tab.v-tab--active{
     font-family: "Nexa Bold";
     color: #000;
+    &::before{
+        background: none;
+        opacity: 1;
+    }
 }
 
     
 .col-md-4{
     padding: 0px;
+}
+
+
+.aboutSubText{
+
+    padding: 0;
+
+    .title.work{
+        font-family: "Nexa Bold";
+        font-style: normal;
+        font-size: 30px;
+        line-height: 30px;
+        
+        &::before{
+            content: "";
+            width: 14px;
+            height: 14px;
+            border: 1px solid #BDBDBD;
+            border-radius: 100%;
+            margin: 9px 9px 0 0;
+        }
+    }
+
+    .year{
+        padding: 0 0 0 23px;
+
+        .work{
+            font-family: "Nexa Light";
+            font-style: normal;
+            font-weight: 300;
+            font-size: 20px;
+            line-height: 24px;
+            color: rgba(0, 0, 0, 0.4);
+            padding: 0;
+        }
+    }
+    .desc{
+        padding-top: 0;
+        padding-left: 23px;
+        font-family: "Nexa Light";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 40px;
+    }
+
+}
+
+.seduHeader{
+    padding: 0;
 }
 
 </style>
