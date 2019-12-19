@@ -150,7 +150,7 @@
                         <div v-show="portfolio">
                             <!-- nav row section -->
                             <div class="row navRow" v-if="freelancer.agent.resume_tabs.length < 1">
-                                <div class="col-md-2 offset-md-3 col-4 text-center"
+                                <div class="col-md-3 col-4 text-center"
                                     style="border-right:1px solid #EBEDEF;" @click="setTabName('skills')">
                                     <div class="navTab NoDecor" :class="{active: currentTab === 'skills' }">
                                         <a href="javascript:void(0)">
@@ -159,7 +159,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-2 col-4 text-center" style="border-right:1px solid #EBEDEF;"
+                                <div class="col-md-3 col-4 text-center" style="border-right:1px solid #EBEDEF;"
                                     @click="setTabName('work')">
                                     <div class="navTab NoDecor" :class="{active: currentTab === 'work' }">
                                         <a href="javascript:void(0)">
@@ -168,7 +168,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-2 col-4 text-center" @click="setTabName('education')">
+                                <div class="col-md-3 col-4 text-center" @click="setTabName('education')">
                                     <div class="navTab NoDecor" :class="{active: currentTab === 'education' }">
                                         <a href="javascript:void(0)">
                                             Education
@@ -177,14 +177,15 @@
                                 </div>
                             </div>
                             <div v-else class="row navRow d-flex" style="justify-content:space-around !important;">
-                                <div class="col-md-2 col-4 text-center"
+                                <div class="col-md-3 col-4 text-center"
                                     @click="setTab(tab)" v-for="(tab,index) in freelancer.agent.resume_tabs"
                                     :key="index" >
                                     <div class="navTab NoDecor" :class="{active: currentTab.name === tab.name }">
                                         <a href="javascript:void(0)">
                                             {{tab.label}}
                                         </a>
-                                        <img :src="getImageSrc('/assets/icons/icon-'+tab.name+'.png')" />
+                                        
+                                        <img :src="getTabIcon(tab.name)" :alt="tabicon">
                                     </div>
                                 </div>
                             </div>
@@ -949,6 +950,9 @@
 
                 return src;
             },
+            getTabIcon(title) {
+                return require(`../assets/icons/icon-${title.toLowerCase()}.png`);
+            },
             loadHDImage(project_id) {
                 let projects = this.freelancer.projects;
                 $.each(projects, function (i) {
@@ -1131,6 +1135,9 @@
                 width: auto;
                 height: auto;
                 padding: 6px 23px 3px 22px;
+                &:hover{
+                    opacity: .5;
+                }
             }
 
             >.row{
@@ -1171,14 +1178,6 @@
         .cardLabel{
             color: #000;
         }
-
-        .navRow{
-            height: 112px;
-            border: none;
-            padding: 47px 0 0 0;
-            background: none;
-        }
-
 
 
         
@@ -1391,12 +1390,14 @@
     font-weight: bold;
     font-size: 10px;
     line-height: 10px;
-    
 }
 .btnSm-outline{
     border-radius: 8px !important;
     text-transform: capitalize;
     padding: 8px 14px 6px 14px;
+    &:hover{
+        opacity: .5;
+    }
 }
 .btnMd-outline{
     border-radius: 8px !important;
@@ -1426,14 +1427,24 @@
         color: #000
     }
     .navRow{
+        height: auto;
+        border: none;
+        padding: 47px 0 26px 0;
+        background: none;
+
+        .col-4{
+            padding: 0;
+        }
+        
         .navTab{
+
+            padding-bottom: 0px;
 
             &.active{
                 border-bottom: 0;
         
                 a{
 
-                
                     border-bottom: 2px solid #000;
                     
                     
@@ -1444,11 +1455,14 @@
                 color: #000;
                 text-shadow: 2px 1px 0px #50E8FC;
                 padding-bottom: 0;
-                font-family: "Nexa";
+                font-family: "Nexa Bold";
                 font-style: normal;
-                font-weight: bold;
                 font-size: 33px;
                 line-height: 33px;
+                vertical-align: text-top;
+            }
+            img{
+                margin-left: 10px;
             }
         }
     } 
