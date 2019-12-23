@@ -53,7 +53,7 @@
                                 </v-col>
                             </v-row>
                             <v-row class="w-100">
-                                <div class="col-md-4 text-center">
+                                <div class="col-md-3 text-center">
                                     <span style="font-family: 'Nexa';font-style: normal;font-weight: bold;font-size: 26px;line-height: 26px;">
                                         {{Math.ceil(freelancer.agent.hourly_rate)}}$
                                     </span>
@@ -62,7 +62,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-4 text-center">
+                                <div class="col-md-5 text-center">
                                     <span style="font-family: 'Nexa';font-style: normal;font-weight: bold;font-size: 26px;line-height: 26px;">{{Math.ceil(freelancer.user_data.available_hours_per_week)}} hours</span>
                                     <div class="cardLabel" style="font-family: 'Nexa Light';font-style: normal;font-weight: 300;font-size: 20px;line-height: 24px;">Weekly
                                         Availability
@@ -71,7 +71,7 @@
 
                                 <div class="col-md-4" style="padding: 0;">
 
-                                    <div class="row text-center cardRow NoDecor ml-8">
+                                    <div class="row text-center cardRow NoDecor">
                                         <a class="hireCardBtn btn-block showHireSection" href="javascript:void(0)"
                                         @click="showHireSection()">
                                             Hire me
@@ -80,9 +80,7 @@
                                 </div>
                             </v-row>
                         </v-col>
-                    </v-row>
-                    <v-row  justify="center" align="center">
-                        <v-col lg="11" style="border-bottom:3px solid #000" class="py-0"></v-col>
+                        <v-col lg="12" justify="center" align="center" style="border-bottom:3px solid #000" class="pt-4"></v-col>
                     </v-row>
                 </div>
                 <div class="showOnlyOnsm">
@@ -120,7 +118,7 @@
                                         <a class="opUpload" href="javascript:void(0)"><img src="../assets/icons/play-button.png"/></a>
                                     </v-col> 
                                 </v-row>
-                                <v-row>
+                                <v-row class="rates">
                                     <div class="col-md-4 text-center">
                                         <span style="font-family: 'Nexa';font-style: normal;font-weight: bold;font-size: 16px;line-height: 16px;">
                                             {{Math.ceil(freelancer.agent.hourly_rate)}}$
@@ -172,6 +170,7 @@
                                     <a href="javascript:void(0)">
                                         Portfolio
                                     </a>
+                                    <img :src="getIconSrc(tab.name)">
                                 </div>
                             </div>
 
@@ -181,6 +180,17 @@
                                     <a href="javascript:void(0)">
                                         Work
                                     </a>
+                                    <img :src="getIconSrc(tab.name)">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-4 text-center"
+                                style="border-right:1px solid #EBEDEF;" @click="setTabName('skills')">
+                                <div class="navTab NoDecor" :class="{active: currentTab === 'skills' }">
+                                    <a href="javascript:void(0)">
+                                        Skills
+                                    </a>
+                                    <img :src="getIconSrc(tab.name)">
                                 </div>
                             </div>
 
@@ -189,155 +199,25 @@
                                     <a href="javascript:void(0)">
                                         Education
                                     </a>
+                                    <img :src="getIconSrc(tab.name)">
                                 </div>
                             </div>
                         </div>
-                        <div v-else class="row navRow d-flex" style="justify-content:space-around !important;">
+                        <div v-else class="row navRow d-flex">
                             <div class="col-md-3 col-4 text-center"
                                 @click="setTab(tab)" v-for="(tab,index) in freelancer.agent.resume_tabs"
                                 :key="index" >
                                 <div class="navTab NoDecor" :class="{active: currentTab.name === tab.name }">
                                     <a href="javascript:void(0)">
                                         {{tab.label}}
-                                    </a>
-                                    
+                                    </a>                                    
                                     <img :src="getIconSrc(tab.name)">
                                 </div>
                             </div>
                         </div>
                         <!-- portfolio section -->
 
-                        <!-- New position the subtabs -->
-                        <div id="nav-taps-resume">                                    
-                            <v-tabs v-model="tabber" background-color="transparent" centered class="showOnlyOnmd">
-                                <v-tab :href="'#languagesTab' + freelancer.id" :ripple="false">
-                                    Programing Languages
-                                </v-tab>
-                                <v-tab :href="'#databases' + freelancer.id" :ripple="false">
-                                    Frameworks /<br/>Databases
-                                </v-tab>
-                                <v-tab :href="'#skillsTab' + freelancer.id" :ripple="false">
-                                    Design Skills
-                                </v-tab>
-                                <v-tab :href="'#software' + freelancer.id" :ripple="false">
-                                    Software
-                                </v-tab>
-                            </v-tabs>
-                            <v-tabs v-model="tabber" background-color="transparent" class="showOnlyOnsm" show-arrows center-active>
-                                <v-tab :href="'#languagesTab' + freelancer.id" :ripple="false">
-                                    Programing Languages
-                                </v-tab>
-                                <v-tab :href="'#databases' + freelancer.id" :ripple="false">
-                                    Frameworks /<br/>Databases
-                                </v-tab>
-                                <v-tab :href="'#skillsTab' + freelancer.id" :ripple="false">
-                                    Design Skills
-                                </v-tab>
-                                <v-tab :href="'#software' + freelancer.id" :ripple="false">
-                                    Software
-                                </v-tab>
-                            </v-tabs>
-                            <v-tabs-items v-model="tabber">
-                                <v-tab-item :value="'languagesTab' + freelancer.id">
-                                    <div class="row">
-                                        <div class="col-md-12  text-center">
-                                            <div class="d-flex items-skills">
-                                                <div v-for="(skill,index) in skills" :key="index"
-                                                    v-show="skill.type === 'programming'"
-                                                    class="skills">
-                                                    <!-- skill -->
-                                                    <div class="skill text-left">
-                                                        <!-- title -->
-                                                        <div class="skill-title">
-                                                            <img style="padding-bottom: 3px;"
-                                                                src="../assets/icons/icon-illustrator.png"
-                                                                alt="skill" :id="'skillImage_' + skill.id">
-                                            
-                                                        </div>
-                                                    
-                                                    </div>
-                                                    <!-- #skill -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </v-tab-item>
-                                <v-tab-item :value="'databases' + freelancer.id">
-                                    <div class="row">
-                                        <div class="col-md-12  text-center">
-                                            <div class="d-flex items-skills">
-                                                <div v-for="(skill,index) in skills" :key="index"
-                                                    v-show="skill.type === 'frameworks'"
-                                                    class="skills">
-                                                    <!-- skill -->
-                                                    <div class="skill text-left">
-                                                        <!-- title -->
-                                                        <div class="skill-title">
-                                                            <img style="padding-bottom: 3px;"
-                                                                src="../assets/icons/icon-premier.png"
-                                                                alt="skill" :id="'skillImage_' + skill.id">
-                                            
-                                                        </div>
-                                                    
-                                                    </div>
-                                                    <!-- #skill -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </v-tab-item>
-                                <v-tab-item :value="'skillsTab' + freelancer.id">
-                                    <div class="row">
-                                        <div class="col-md-12  text-center">
-                                            <div class="d-flex items-skills">
-                                                <div v-for="(skill,index) in skills" :key="index"
-                                                    v-show="skill.type === 'design'"
-                                                    class="skills">
-                                                    <!-- skill -->
-                                                    <div class="skill text-left">
-                                                        <!-- title -->
-                                                        <div class="skill-title">
-                                                            
-                                                            <img style="padding-bottom: 3px;"
-                                                                src="../assets/icons/icon-experience.png"
-                                                                alt="skill" :id="'skillImage_' + skill.id">
-                                                            
-                                            
-                                                        </div>
-                                                    
-                                                    </div>
-                                                    <!-- #skill -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </v-tab-item>
-                                <v-tab-item :value="'software' + freelancer.id">
-                                    <div class="row">
-                                        <div class="col-md-12  text-center">
-                                            <div class="d-flex items-skills">
-                                                <div v-for="(skill,index) in skills" :key="index"
-                                                    v-show="skill.type === 'software'"
-                                                    class="skills">
-                                                    <!-- skill -->
-                                                    <div class="skill text-left">
-                                                        <!-- title -->
-                                                        <div class="skill-title">
-                                                            <img style="padding-bottom: 3px;"
-                                                                src="../assets/icons/icon-aftereffects.png"
-                                                                alt="skill" :id="'skillImage_' + skill.id">
-                                            
-                                                        </div>
-                                                    
-                                                    </div>
-                                                    <!-- #skill -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </v-tab-item>
-                            </v-tabs-items>
-                        </div>
+                        
                         
                         <div v-show="currentTab.name === 'portfolio'" class="portfolio-section">   
                             <v-row align="center" class="titleTabSection">
@@ -349,55 +229,40 @@
                             </v-row>                            
                             <div>
                                 <!-- portfolio section -->
-                                <slick class="projectsSection" :id="'portfolio_section_' + freelancer.id" ref="slick" :options="slickOptions">
+                                <slick class="projectsSection" :id="'portfolio_section_' + freelancer.id" ref="slick" :options="slickOptions" @swipe="handleSwipe">
                                     <div  v-for="(project,index) in projects" :key="index + 'A'" >
                                         <div class="workCard" style="margin:10px; margin-bottom: 0px;">
                                             <div class="workImg">
                                                 <a href="javascript:void(0)"
-                                                style="outline: none;"
-                                                data-toggle="modal" :data-target="'#project_modal_'+project.id" @click="loadHDImage(project.id)">
-
+                                                style="outline: none;">
                                                     <vue-load-image class="d-flex justify-content-center align-items-center">
-                                                        <img :src="getImageSrc(project.mainImage)" alt="" width="260" slot="image">
+                                                        <img src="../assets/imgs/projSlide1.png" alt="" width="260" slot="image">
                                                         <img  alt="" slot="preloader" src="/images/spinner-load.gif" style="width: 100px; height: 100px;" />
                                                     </vue-load-image>
                                                 </a>
                                             </div>
-                                            <div class="workTitle">
-                                                <div class="row">
-                                                    <div class="col-md-10 col-9">
-                                                        {{project.projectName}}
-                                                    </div>
-                                                    <a class="col-md-1 col-1" href="javascript:void(0)"
-                                                    data-toggle="modal" :data-target="'#project_modal_'+project.id"
-                                                    style="outline: none; margin-left: 16px;">
-                                                        <img src="../assets/icons/link.png"
-                                                            alt="view work">
-                                                    </a>
-                                                </div>
-                                            </div>
                                         </div>
+                                        
                                     </div>
+                                <!-- end of portfolio section -->
                                 </slick>
-
                                 <div class="row carouselControls" style="width: 100%;">
                                     <div class=" col-12 text-center NoDecor">
-                                        <a href="javascript:void(0)" class="cardLabel_interviews noScroll" @click="slidePrev"
-                                        style="color:#697786;">
+                                        <a href="javascript:void(0)" class="cardLabel_interviews noScroll" @click="prevItemProject"
+                                            style="color:#697786;">
                                             <img src="../assets/icons/left_arrow.png"
-                                                alt="prev" width="15px">
+                                                    alt="prev" width="15px">
                                         </a>
 
                                         <span class="jobTitle" style="padding: 0 5px 0 5px"> <span>{{slideNumber}}</span> / <span> {{numberOfSlides}} </span></span>
 
-                                        <a href="javascript:void(0)" role="button" data-slide="next" class="cardLabel_interviews noScroll" @click="slideNext"
-                                        style="color:#697786;">
+                                        <a href="javascript:void(0)" role="button" data-slide="next" class="cardLabel_interviews noScroll" @click="nextItemProject"
+                                            style="color:#697786;">
                                             <img src="../assets/icons/right_arrow.png"
-                                                alt="next" width="15px">
+                                                    alt="next" width="15px">
                                         </a>
                                     </div>
                                 </div>
-                                <!-- end of portfolio section -->
                             </div>
                         </div>
                         
@@ -417,20 +282,19 @@
                                     <div class="aboutText">
                                         <div class="row" v-for="(work, index) in worksHistory" :key="index + 'V'">
                                             <div class="col-md-12 aboutSubText">
-                                                <div class="job-title d-flex align-items-center">
-                                                    <div>
-                                                        {{work.job_title}}
-                                                    </div>
-                                                </div>
-                                                <div class="company pl-0 mt-3">{{work.company}}</div>
                                                 <div class="year">
                                                     <span class="work pl-0">
-                                                        {{getDate(work.date_from)}}
-                                                        <span v-if="work.is_currently_working"> - Present </span>
-                                                        <span v-else> - {{getDate(work.date_to)}}</span>
+                                                        {{getFullYear(work.date_from)}}
+                                                        <span v-if="work.is_currently_working">-Now </span>
+                                                        <span v-else>&amp;{{getFullYear(work.date_to)}}</span>
                                                     </span>
                                                 </div>
-                                                <div class="desc pl-0">{{work.job_description}}</div>
+                                                <div class="title work d-flex">
+                                                    <span class="seduHeader">
+                                                        {{work.job_title}}
+                                                    </span>
+                                                </div>
+                                                <div class="desc">{{work.job_description}}</div>
                                             </div>
 
                                             <!-- related projects list -->
@@ -537,16 +401,16 @@
                                         <div class="row" v-for="(education, index) in educationsHistory"
                                             :key="index + 'E'">
                                             <div class="col-md-12 aboutSubText">
+                                                <div class="year">
+                                                    <span class="work">
+                                                        {{getFullYear(education.date_from)}}
+                                                        <span v-if="education.is_currently_learning">-Now </span>
+                                                        <span v-else>&amp;{{getFullYear(education.date_to)}}</span>
+                                                    </span>
+                                                </div>
                                                 <div class="title work d-flex">
                                                     <span class="seduHeader">
                                                         {{education.school_title}}
-                                                    </span>
-                                                </div>
-                                                <div class="year">
-                                                    <span class="work">
-                                                        {{getDate(education.date_from)}}
-                                                        <span v-if="education.is_currently_learning"> - Present </span>
-                                                        <span v-else> - {{getDate(education.date_to)}}</span>
                                                     </span>
                                                 </div>
                                                 <div class="desc">{{education.description}}</div>
@@ -649,6 +513,145 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div v-show="currentTab.name === 'skills'" class="skills-section">
+                            <v-row class="wrap-section">
+                                <v-col lg="10" md="10" sm="12">
+                                     <div id="nav-taps-resume">                                    
+                                        <v-tabs v-model="tabber" background-color="transparent" centered class="showOnlyOnmd">
+                                            <v-tab :href="'#languagesTab' + freelancer.id" :ripple="false">
+                                                Programing Languages
+                                            </v-tab>
+                                            <v-tab :href="'#databases' + freelancer.id" :ripple="false">
+                                                Frameworks /<br/>Databases
+                                            </v-tab>
+                                            <v-tab :href="'#skillsTab' + freelancer.id" :ripple="false">
+                                                Design Skills
+                                            </v-tab>
+                                            <v-tab :href="'#software' + freelancer.id" :ripple="false">
+                                                Software
+                                            </v-tab>
+                                        </v-tabs>
+                                        <v-tabs v-model="tabber" background-color="transparent" class="showOnlyOnsm"  centered show-arrows center-active>
+                                            <v-tab :href="'#languagesTab' + freelancer.id" :ripple="false">
+                                                Programing Languages
+                                            </v-tab>
+                                            <v-tab :href="'#databases' + freelancer.id" :ripple="false">
+                                                Frameworks /<br/>Databases
+                                            </v-tab>
+                                            <v-tab :href="'#skillsTab' + freelancer.id" :ripple="false">
+                                                Design Skills
+                                            </v-tab>
+                                            <v-tab :href="'#software' + freelancer.id" :ripple="false">
+                                                Software
+                                            </v-tab>
+                                        </v-tabs>
+                                        <v-tabs-items v-model="tabber">
+                                            <v-tab-item :value="'languagesTab' + freelancer.id">
+                                                <div class="row">
+                                                    <div class="col-md-12 px-8 text-center">
+                                                        <div class="d-flex items-skills">
+                                                            <div v-for="(skill,index) in skills" :key="index"
+                                                                v-show="skill.type === 'programming'"
+                                                                class="skills">
+                                                                <!-- skill -->
+                                                                <div class="skill text-left">
+                                                                    <!-- title -->
+                                                                    <div class="skill-title">
+                                                                        <img style="padding-bottom: 3px;"
+                                                                            src="../assets/icons/icon-illustrator.png"
+                                                                            alt="skill" :id="'skillImage_' + skill.id">
+                                                        
+                                                                    </div>
+                                                                
+                                                                </div>
+                                                                <!-- #skill -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </v-tab-item>
+                                            <v-tab-item :value="'databases' + freelancer.id">
+                                                <div class="row">
+                                                    <div class="col-md-12 px-8 text-center">
+                                                        <div class="d-flex items-skills">
+                                                            <div v-for="(skill,index) in skills" :key="index"
+                                                                v-show="skill.type === 'frameworks'"
+                                                                class="skills">
+                                                                <!-- skill -->
+                                                                <div class="skill text-left">
+                                                                    <!-- title -->
+                                                                    <div class="skill-title">
+                                                                        <img style="padding-bottom: 3px;"
+                                                                            src="../assets/icons/icon-premier.png"
+                                                                            alt="skill" :id="'skillImage_' + skill.id">
+                                                        
+                                                                    </div>
+                                                                
+                                                                </div>
+                                                                <!-- #skill -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </v-tab-item>
+                                            <v-tab-item :value="'skillsTab' + freelancer.id">
+                                                <div class="row">
+                                                    <div class="col-md-12 px-8 text-center">
+                                                        <div class="d-flex items-skills">
+                                                            <div v-for="(skill,index) in skills" :key="index"
+                                                                v-show="skill.type === 'design'"
+                                                                class="skills">
+                                                                <!-- skill -->
+                                                                <div class="skill text-left">
+                                                                    <!-- title -->
+                                                                    <div class="skill-title">
+                                                                        
+                                                                        <img style="padding-bottom: 3px;"
+                                                                            src="../assets/icons/icon-experience.png"
+                                                                            alt="skill" :id="'skillImage_' + skill.id">
+                                                                        
+                                                        
+                                                                    </div>
+                                                                
+                                                                </div>
+                                                                <!-- #skill -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </v-tab-item>
+                                            <v-tab-item :value="'software' + freelancer.id">
+                                                <div class="row">
+                                                    <div class="col-md-12 px-8 text-center">
+                                                        <div class="d-flex items-skills">
+                                                            <div v-for="(skill,index) in skills" :key="index"
+                                                                v-show="skill.type === 'software'"
+                                                                class="skills">
+                                                                <!-- skill -->
+                                                                <div class="skill text-left">
+                                                                    <!-- title -->
+                                                                    <div class="skill-title">
+                                                                        <img style="padding-bottom: 3px;"
+                                                                            src="../assets/icons/icon-aftereffects.png"
+                                                                            alt="skill" :id="'skillImage_' + skill.id">
+                                                        
+                                                                    </div>
+                                                                
+                                                                </div>
+                                                                <!-- #skill -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </v-tab-item>
+                                        </v-tabs-items>
+                                    </div>
+                                </v-col>
+                            </v-row>
+                         
+                           
+                        </div>                   
                     
                         
 
@@ -812,15 +815,13 @@
                     dots: false,
                     arrows: false,
                     slidesToShow: 2,
-                    slidesToScroll: 1,
+                    slidesToScroll: 2,
                     responsive: [
                         {
                             breakpoint: 600,
                             settings: {
                                 slidesToShow: 1,
-                                slidesToScroll: 1,
-                                dots: true,
-                                arrows: false
+                                slidesToScroll: 1
                             }
                         },
                         {
@@ -870,16 +871,19 @@
             },
             setTab(tab) {
                 this.currentTab = tab;
-                console.log(tab);
                 if (tab.name === 'work' || tab.name === 'portfolio') {
                     this.$nextTick(() => {
                         this.updateSlick();
+                        this.updateProjectsSlick();
                     });
                 }
+
+                /** reinit tabs skills */
+                this.tabber = 1;
             },
             setTabName(tabName) {
                 this.currentTab = tabName;
-                if (tabName === 'work' || tab.name === 'portfolio' ) {
+                if (tabName === 'work') {
                     this.$nextTick(() => {
                         this.updateSlick();
                     });
@@ -899,6 +903,11 @@
                 }
 
                 return dd + '/' + mm + '/' + yyyy;
+            },
+            getFullYear(date){
+                let newDate = new Date(date);
+                let yyyy = newDate.getFullYear();
+                return yyyy;
             },
             getSkillIconSrc(skill_title) {
                 let arrayOfSkillImages = {
@@ -1004,6 +1013,7 @@
                     'portfolio': 'icons/icon-portfolio.png',
                     'work': 'icons/icon-work.png',
                     'education': 'icons/icon-education.png',
+                    'skills': 'icons/icon-skills.png',
                     //
                     'portfolio2': 'icons/icon-portfolio2.png',
                     'work2': 'icons/icon-work2.png',
@@ -1063,6 +1073,16 @@
                     });
                 });
             },
+            updateProjectsSlick() {
+                this.$nextTick(() => {
+                    this.$refs.slick.reSlick();
+                });
+            },
+            handleSwipe(event, slick, direction) {
+
+                direction=='left'?this.slideNumber = slick.currentSlide:this.slideNumber = slick.currentSlide+1;
+               
+            },            
             addHours() {
                 this.hours++;
             },
@@ -1086,6 +1106,14 @@
                 if (this.slides[i].number + 1 <= this.calculateNumberOfRelatedSlides(maxprojects)) {
                     this.slides[i].number++;
                 }
+            },
+            prevItemProject() {
+                this.$refs.slick.prev();
+                this.slideNumber = this.$refs.slick.currentSlide()+1;
+            },
+            nextItemProject() {
+                this.$refs.slick.next();
+                this.slideNumber = this.$refs.slick.currentSlide();
             },
             calculateNumberOfSlides() {
                 let numberOfProjects = this.freelancer.projects.length;
@@ -1123,10 +1151,11 @@
         },
         mounted() {
             if(this.freelancer.agent.resume_tabs.length > 0){
-                this.setTab(this.freelancer.agent.resume_tabs[0]);
+                this.setTab(this.freelancer.agent.resume_tabs[1]);
             }
         },
         created: function () {
+            this.$parent.$on('update', this.updateProjectsSlick);
             this.$parent.$on('update', this.updateSlick);
             // create slides :
             $.each(this.freelancer.works_history, (i) => {
@@ -1358,7 +1387,7 @@
 
     .wrap-section{
         justify-content: center;
-        padding-top: 16px; 
+        min-height: 800px;
         .educationSection{
             padding: 0 23px;
             overflow-x: hidden;
@@ -1371,7 +1400,7 @@
         height: auto;
         overflow: auto;
         @media only screen and (max-width: 500px) {
-            width: 315px;
+            width: auto;
             height: 420px;
         }
         @media only screen and (max-width: 500px) {
@@ -1381,7 +1410,10 @@
     }
 
     .aboutText {
-        padding: 0;
+        padding-top: 38px;
+        >.row{
+            margin-bottom: 45px;
+        }
 
         @media only screen and (max-width: 500px) {
             padding-left: 0;
@@ -1448,7 +1480,10 @@
     text-decoration: none;
 }
 .hold_theme2 .headProfile{
-    padding: 6px 6px 8px 25px;
+    padding: 16px 25px 16px 25px;
+    background: url(/img/bgHeader.83cbd936.png) no-repeat;
+    background-size: 916px 184px;
+    background-position: 177px 28px;
 }
 
 #freelancerResumeTheme2 .freelancerCard{
@@ -1462,6 +1497,7 @@
     font-family: "Nexa";
     font-style: normal;
     font-weight: bold;
+    margin-bottom: 0;
     font-size: 10px;
     line-height: 10px;
     cursor: pointer;
@@ -1504,8 +1540,10 @@
     .navRow{
         height: auto;
         border: none;
-        padding: 47px 0 26px 0;
+        padding: 50px 0 60px 0;
         background: none;
+        overflow-x: auto;
+
 
         .col-4{
             padding: 0;
@@ -1514,26 +1552,15 @@
         .navTab{
 
             padding-bottom: 0px;
+            max-height: 40px;
+            line-height: 40px;
 
             &.active{
                 border-bottom: 0;
         
                 a{
 
-                    border-bottom: 2px solid #000;
-
-                    &::after{
-                        content: "";
-                        width: 6px;
-                        height: 6px;
-                        background: #000;
-                        border-radius: 100%;
-                        display: block;
-                        position: absolute;
-                        right: 0px;
-                        left: auto;
-                        bottom: -4px;
-                    }
+                    border-bottom: 3px solid #000;
                     
                 }
             }
@@ -1554,7 +1581,8 @@
             }
             img{
                 margin-left: 10px;
-                max-width: 30px;
+                max-width: 36px;
+                margin-top: -8px;
             }
         }
     } 
@@ -1583,21 +1611,23 @@
     
     
 }
-// .portfolio-section{
-//     background: url('../assets/icons/bgSectionPortfolio.png') no-repeat;
-//     background-size: 550px 446px;
-//     background-position: 103% bottom;
-// }
-// .work-section{
-//     background: url('../assets/icons/bgSectionWork.png') no-repeat;
-//     background-size: 550px 446px;
-//     background-position: 103% bottom;
-// }
-// .education-section{
-//     background: url('../assets/icons/bgSectionEducation.png') no-repeat;
-//     background-size: 994px 546px;
-//     background-position: 103% bottom;
-// }
+
+
+.skills-section{
+    background: url('../assets/icons/bgSkills.png') no-repeat;
+    background-size: 644px 644px;
+    background-position: 110% 200%;
+}
+.work-section{
+    background: url('../assets/icons/bgSectionWork.png') no-repeat;
+    background-size: 550px 446px;
+    background-position: 103% bottom;
+}
+.education-section{
+    background: url('../assets/icons/bgSectionEducation.png') no-repeat;
+    background-size: 994px 546px;
+    background-position: 305% bottom;
+}
 
 .titleTabSection{
 
@@ -1681,6 +1711,7 @@
     font-family: 'Nexa light';
 }
 .v-tabs-items {
+    background-color: transparent !important;
     .col-md-12{
         padding-top: 28px;
         padding-bottom: 50px;
@@ -1733,12 +1764,16 @@
     padding: 0;
 
     .title.work{
-        font-family: "Nexa Bold";
         font-style: normal;
-        font-size: 30px;
-        line-height: 30px;
         margin-left: -23px;
         padding: 0;
+
+        .seduHeader{
+            font-family: "Nexa Bold";
+            font-style: normal;
+            font-size: 30px;
+            line-height: 30px;
+        }
         
         &::before{
             content: "";
@@ -1756,9 +1791,8 @@
         .work{
             font-family: "Nexa Light";
             font-style: normal;
-            font-weight: 300;
             font-size: 20px;
-            line-height: 24px;
+            line-height: 20px;
             color: rgba(0, 0, 0, 0.4);
             padding: 0;
         }
@@ -1791,13 +1825,18 @@
     max-height: 100% !important;
     font-size: 0;
     box-shadow: none;
+    display: flex;
+    justify-content: center;
 
      .workImg{
         height: auto;
-        max-height: 500px;
+        max-height: 100%;
+        margin: 0 45px;
 
         img{
             padding: 0;
+            max-height: 490px;
+            max-width: 430px;
         }
     }
 }
@@ -1806,7 +1845,8 @@
 @media screen and (max-width: 992px) {
     .showOnlyOnsm{
         .headProfile{
-            padding: 10px;
+            padding: 20px 22px 26px 22px;
+            background: none;
         }
         .imageCol{
             flex: 3;
@@ -1822,20 +1862,21 @@
                     right: 0;
                     position: absolute;
                     z-index: 2;
-                    bottom: 0px;
-                    right: 5px;
+                    bottom: 10px;
+                    right: 0px;
 
                     .btnSm-outline{
                         border: 0;
                         font-size: 0;
                         padding: 0;
-                        border-radius: 0;
+                        border-radius: 100% !important;
                         background: url(/img/icon-bubbleChat.eaeda366.png) !important;
-                        width: 35px;
-                        height: 35px;
-                        background-size: 35px 35px !important;
+                        width: 33px;
+                        height: 33px;
+                        background-size: 33px 34px !important;
                         background-repeat: no-repeat;
                         margin: 0;
+                        box-shadow: 0px 2px 10px #ccc;
                     }
                 }
 
@@ -1856,33 +1897,33 @@
                 padding-left: 15px;
             }
 
-            >.row:nth-child(2){
-                display: flex;
-                align-items: center;
-                flex-flow: row;
-                justify-content: space-between;
-                padding-top: 10px;
+            // >.row:nth-child(2){
+            //     display: flex;
+            //     align-items: center;
+            //     flex-flow: row;
+            //     justify-content: space-between;
+            //     padding-top: 10px;
 
-                >div{
-                    width: auto;
-                    flex: 3;
-                    display: inline-flex;
-                    flex-flow: column;
+            //     >div{
+            //         width: auto;
+            //         flex: 3;
+            //         display: inline-flex;
+            //         flex-flow: column;
 
-                    &:nth-child(1){
-                        flex: 5
-                    }
-                    &:nth-child(2){
-                        flex: 7
-                    }
+            //         &:nth-child(1){
+            //             flex: 5
+            //         }
+            //         &:nth-child(2){
+            //             flex: 7
+            //         }
 
-                    span{
-                        font-size: 18px !important;
-                        line-height: 18px !important;
-                    }
-                }
+            //         span{
+            //             font-size: 18px !important;
+            //             line-height: 18px !important;
+            //         }
+            //     }
 
-            }
+            // }
 
             .jobTitle{
                 padding-left: 0;
@@ -1890,7 +1931,7 @@
             }
 
             .interviews{
-                justify-content: flex-end;
+                justify-content: center;
                 align-items: center;
                 display: inline-flex;
                 flex-flow: column;
@@ -1898,9 +1939,12 @@
             }
             .opUpload{
                 img{
-                    max-width: 30px;
+                    max-width: 19px;
                     width: 100%;
                 }
+            }
+            .rates{
+                display: none;
             }
             .cardLabel{
                 font-size: 15px;
@@ -1917,12 +1961,14 @@
                 justify-content: center;
             }
             .hireCardBtn{
-                padding: 8px 25px 5px 25px;
-                font-size: 18px;
-                line-height: 18px;
+                padding: 12px 25px 5px 25px;
+                font-size: 23px;
+                line-height: 14px;
                 border-radius: 5px;
                 background: none;
                 position: relative;
+                font-family: 'Nexa Bold';
+                font-weight: normal;
                 &::before{
                     content: "";
                     border: 2px solid #50E8FC;
@@ -1939,10 +1985,12 @@
             justify-content: space-around;
             padding: 2rem 0;
             a{
-                width: 50px;
-                height: 50px;
-                line-height: 55px;
-                margin: 0;
+                width: 37px;
+                height: 37px;
+                line-height: 36px;
+                margin: 0 auto;
+                text-align: center;
+                border: 2px solid #000;
             }
         }
 
@@ -1961,20 +2009,21 @@
         }
 
         .navRow{
-            padding: 30px 0px 20px 0px;
-            order: 2;
+            max-width: 100%;
+            flex-flow: nowrap;
+            align-items: center;
+            justify-content: flex-start !important ;
         }
         #nav-taps-resume{
             width: 100%;
-            order: 1;
             .v-tabs{
 
                 .v-tab{
       
-                    line-height: 48px;
+                    line-height: 50px;
                     margin: 0 auto;
-                    min-width: 250px;
-                    font-size: 16px;
+                    min-width: 246px;
+                    font-size: 18px;
 
                     br{
                         display: none;
@@ -1990,28 +2039,60 @@
         .portfolio-section{
             max-width: 100%;
         }
-        .portfolio-section,.work-section,.education-section{
-            order: 3;
+        .portfolio-section,.work-section,.education-section,.skills-section{
             width: 100%;
+            background: none;
+            min-height: 800px;
         }
         .wrap-section{
+            min-height: auto;
+
             .educationSection{
                 padding: 0;
 
                 .aboutText{
-                    padding-left: 30px;
+                    padding: 20px 36px;
+                    
                     .aboutSubText{
+                        .year{
+                            .work{
+                                font-family: "Nexa";
+                                font-style: normal;
+                                font-weight: 300;
+                                font-size: 14px;
+                                line-height: 17px;
+                            }
+                        }
                         .title{
                             &.work{
+                                margin: 0;                          
+
+                                .seduHeader{
+                                    font-family: "Nexa";
+                                    font-style: normal;
+                                    font-weight: bold;
+                                    font-size: 18px;
+                                    line-height: 18px;
+                                 
+                                }
 
                                 &::before{
-                                    width: 25px;
-                                    height: 18px;
+                                    display: none;
                                 }
                                 
                             }
                         }
+                        .desc{
+                            font-family: "Nexa";
+                            font-style: normal;
+                            font-weight: 300;
+                            font-size: 8px;
+                            line-height: 16px;
+                        }
                     } 
+                    >.row{
+                        margin-bottom: 25px;
+                    }
                 }
             }
         }
@@ -2019,6 +2100,8 @@
     .hold_theme2{
         .freelancerCard{
             .navRow{
+
+                padding: 0 0 20px 0;
 
                 >div{
                     justify-content: center;
@@ -2028,24 +2111,24 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    width: 80px;
-                    height: 80px;
+                    width: 68px;
+                    height: 68px;
                     padding: 10px;
                     border-radius: 100%;
-                    box-shadow: 0 5px 3px 0px #eee;
-                    background: #eee;
+                    box-shadow: 0 16px 18px -3px #eee;
+                    background: #fff;
+                    max-height: 100%;
 
                     &.active{
-                        width: 100px;
-                        height: 100px;
-                        background: #fff;
+                        width: 110px;
+                        height: 110px;
                         border-radius: 100%;
-                        box-shadow: 0 5px 3px 0px #eee;
+                        box-shadow: 0 16px 18px -3px #eee;
                         margin-top: -15px;
 
                         img{
                             margin: 0;
-                            max-width: 50px;
+                            max-width: 62px;
                             width: 100%;
                             opacity: 1;
                         }
@@ -2062,7 +2145,7 @@
                     }
                     img{
                         margin: 0;
-                        max-width: 45px;
+                        max-width: 36px;
                         width: 100%;
                         opacity: .5;
                     }
@@ -2091,7 +2174,6 @@
             display: none;
         }
     }
-
     
 }
 
