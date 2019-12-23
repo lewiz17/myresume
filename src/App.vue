@@ -2,7 +2,7 @@
   <v-app>
     <v-content>
       <main class="py-4" style="padding-bottom:0 !important;">
-        <div id="freelancerResumeTheme2" class="d-flex justify-content-center">
+        <div id="freelancerResumeTheme2" class="d-flex">
           <ResumeTheme2 v-bind:freelancer="dataFreelancer" />
         </div>
       </main>
@@ -29,6 +29,8 @@ export default {
 </script>
 
 <style>
+
+@import './assets/styles/slick.css';
 
 * {
   -webkit-box-sizing: border-box;
