@@ -270,7 +270,7 @@
                         <div v-show="currentTab.name === 'work'" class="work-section">
                             <!-- work section -->
                             <v-row align="center" class="titleTabSection">
-                                <v-col lg="10">
+                                <v-col lg="12">
                                     <h3 class="name-section">{{currentTab.name}}
                                         <img :src="getIconSrc(currentTab.name+'2')">
                                     </h3>
@@ -278,7 +278,7 @@
                             </v-row>
 
                             <div class="row wrap-section">
-                                <div class="col-lg-10 educationSection">
+                                <div class="col-lg-12 educationSection">
                                     <div class="aboutText">
                                         <div class="row" v-for="(work, index) in worksHistory" :key="index + 'V'">
                                             <div class="col-md-12 aboutSubText">
@@ -389,14 +389,14 @@
                         <div v-show="currentTab.name === 'education'" class="education-section">
                             <!-- education section -->
                             <v-row align="center" class="titleTabSection">
-                                <v-col lg="10">
+                                <v-col lg="12">
                                     <h3 class="name-section">{{currentTab.name}}
                                         <img :src="getIconSrc(currentTab.name+'2')">
                                     </h3>
                                 </v-col>
                             </v-row>
                             <div class="row wrap-section">
-                                <div class="col-lg-10 educationSection">
+                                <div class="col-lg-12 educationSection">
                                     <div class="aboutText">
                                         <div class="row" v-for="(education, index) in educationsHistory"
                                             :key="index + 'E'">
@@ -425,7 +425,7 @@
                         <div v-show="currentTab.name === 'references'">
                             <!-- education section -->
                             <v-row align="center" class="titleTabSection">
-                                <v-col lg="10">
+                                <v-col lg="12">
                                     <h3 class="name-section">{{currentTab.name}}
                                         <img :src="getIconSrc(currentTab.name+'2')">
                                     </h3>
@@ -468,7 +468,7 @@
                         <div v-show="currentTab.name === 'recordings'">
                             <!-- education section -->
                             <v-row align="center" class="titleTabSection">
-                                <v-col lg="10">
+                                <v-col lg="12">
                                     <h3 class="name-section">{{currentTab.name}}
                                         <img :src="getIconSrc(currentTab.name+'2')">
                                     </h3>
@@ -516,7 +516,7 @@
 
                         <div v-show="currentTab.name === 'skills'" class="skills-section">
                             <v-row class="wrap-section">
-                                <v-col lg="10" md="10" sm="12">
+                                <v-col lg="12" class="educationSection">
                                      <div id="nav-taps-resume">                                    
                                         <v-tabs v-model="tabber" background-color="transparent" centered class="showOnlyOnmd">
                                             <v-tab :href="'#languagesTab' + freelancer.id" :ripple="false">
@@ -1385,11 +1385,13 @@
         }
     }
 
+
+
     .wrap-section{
         justify-content: center;
         min-height: 800px;
         .educationSection{
-            padding: 0 23px;
+            padding: 0 75px;
             overflow-x: hidden;
         }
 
@@ -1631,7 +1633,7 @@
 
 .titleTabSection{
 
-    padding: 0;
+    padding: 0 75px;
     justify-content: center;
 
 
