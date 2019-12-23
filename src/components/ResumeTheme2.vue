@@ -221,7 +221,7 @@
                         
                         <div v-show="currentTab.name === 'portfolio'" class="portfolio-section">   
                             <v-row align="center" class="titleTabSection">
-                                <v-col lg="10">
+                                <v-col lg="12">
                                     <h3 class="name-section">{{currentTab.name}}
                                         <img :src="getIconSrc(currentTab.name+'2')">
                                     </h3>
@@ -1636,11 +1636,6 @@
     padding: 0 75px;
     justify-content: center;
 
-
-    .col-lg-10{
-        padding: 0 23px;
-
-    }
     .name-section{
         font-family: "Nexa Bold";
         font-style: normal;
