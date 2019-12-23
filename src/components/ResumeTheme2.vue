@@ -1210,7 +1210,21 @@
                 border-radius: 8px;
                 width: auto;
                 height: auto;
-                padding: 6px 23px 3px 22px;
+                padding: 8px 23px 5px 22px;
+                position: relative;
+
+                &::before{
+                    content:"";
+                    background: url('../assets/imgs/bgBtnHireme.png') no-repeat;
+                    width: 104px;
+                    height: 30px;
+                    display: block;
+                    left: 2px;
+                    top: 1px;
+                    position: absolute;
+                }
+                
+
                 &:hover{
                     opacity: .8;
                 }
@@ -1503,6 +1517,8 @@
     font-size: 10px;
     line-height: 10px;
     cursor: pointer;
+    position: relative;
+
 }
 .btnSm-outline{
     border-radius: 8px !important;
@@ -1596,7 +1612,7 @@
     align-items: center;
     
     a{
-        width: 33px;
+        min-width: 33px;
         height: 33px;
         line-height: 33px;
         border-radius: 100%;
@@ -1966,6 +1982,7 @@
                 position: relative;
                 font-family: 'Nexa Bold';
                 font-weight: normal;
+
                 &::before{
                     content: "";
                     border: 2px solid #50E8FC;
