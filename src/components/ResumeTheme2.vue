@@ -1403,12 +1403,30 @@
 
     .wrap-section{
         justify-content: center;
-        min-height: 800px;
+        
         .educationSection{
-            padding: 0 75px;
-            overflow-x: hidden;
+            padding: 0px 75px 129px 75px;
+            height: 784px;
+            overflow: hidden;
+
+            .aboutText{
+                overflow: auto;
+                height: 100%;
+                padding: 0px 24px;
+                margin-top: 50px;
+            }
         }
 
+    }
+    .portfolio-section,.work-section,.education-section{
+        padding-top: 66px;
+        @media only screen and (max-width: 992px) {
+            padding-top: 0;
+        }
+
+    }
+    .skills-section{
+        padding-top: 30px;
     }
 
     .educationSection {
@@ -1504,7 +1522,9 @@
 
 #freelancerResumeTheme2 .freelancerCard{
     width: 100%;
-    max-width: 1152px;  
+    max-width: 1152px;
+    margin: 0;
+    padding: 0;  
 }
 
 .tap-to-chat{
@@ -1558,7 +1578,7 @@
     .navRow{
         height: auto;
         border: none;
-        padding: 50px 0 60px 0;
+        padding: 50px 0 0px 0;
         background: none;
         overflow-x: auto;
 
@@ -1794,7 +1814,7 @@
             height: 14px;
             border: 1px solid #BDBDBD;
             border-radius: 100%;
-            margin: 9px 9px 0 0;
+            margin: 4px 7px 0 0;
         }
     }
 
@@ -1853,6 +1873,7 @@
         }
     }
 }
+
 
 
 @media screen and (max-width: 992px) {
@@ -1987,6 +2008,7 @@
                     content: "";
                     border: 2px solid #50E8FC;
                     position: absolute;
+                    background: none;
                     width: 100%;
                     height: 34px;
                     left: 4px;
@@ -2066,6 +2088,7 @@
 
                 .aboutText{
                     padding: 20px 36px;
+                    margin-top: 0;
                     
                     .aboutSubText{
                         .year{
@@ -2113,6 +2136,7 @@
     }
     .hold_theme2{
         .freelancerCard{
+
             .navRow{
 
                 padding: 0 0 20px 0;
