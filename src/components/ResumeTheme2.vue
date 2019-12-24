@@ -215,6 +215,9 @@
                                 </div>
                             </div>
                         </div>
+
+
+                        
                         <!-- portfolio section -->
 
                         
@@ -279,7 +282,7 @@
 
                             <div class="row wrap-section">
                                 <div class="col-lg-12 educationSection">
-                                    <div class="aboutText">
+                                    <div class="aboutText" id="hold_content">
                                         <div class="row" v-for="(work, index) in worksHistory" :key="index + 'V'">
                                             <div class="col-md-12 aboutSubText">
                                                 <div class="year">
@@ -382,6 +385,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <v-col v-show="showReadMore" lg="12" justify="center" class="readMore">
+                                    <a href="javascript:void(0)" role="button" @click="showTextExpanded('aboutText')">
+                                        <img src="../assets/icons/icon-arrowdown.png"> 
+                                    </a>
+                                </v-col>
                             </div>
                         </div>
                     
@@ -418,6 +426,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <v-col v-show="showReadMore" lg="12" justify="center" class="readMore">
+                                    <a href="javascript:void(0)" role="button" @click="showTextExpanded('aboutText')">
+                                        <img src="../assets/icons/icon-arrowdown.png">
+                                    </a>
+                                </v-col>
                             </div>
                         </div>
                     
@@ -844,6 +857,7 @@
                 hours: this.freelancer.user_data.available_hours_per_week,
                 portfolio: !this.hire,
                 showReferences: false,
+                showReadMore: true
             }
         },
         watch: {
@@ -869,6 +883,12 @@
                 }
                 return this.getImageSrc(src);
             },
+            showTextExpanded(container) {
+                this.showReadMore = false;
+                $('.'+container).css({
+                    'height':'100%'
+                })
+            },
             setTab(tab) {
                 this.currentTab = tab;
                 if (tab.name === 'work' || tab.name === 'portfolio') {
@@ -877,7 +897,6 @@
                         this.updateProjectsSlick();
                     });
                 }
-
                 /** reinit tabs skills */
                 this.tabber = 1;
             },
@@ -1079,9 +1098,7 @@
                 });
             },
             handleSwipe(event, slick, direction) {
-
                 direction=='left'?this.slideNumber = slick.currentSlide:this.slideNumber = slick.currentSlide+1;
-               
             },            
             addHours() {
                 this.hours++;
@@ -1147,16 +1164,18 @@
                     return source;
                 }
             }
+            
 
         },
         mounted() {
             if(this.freelancer.agent.resume_tabs.length > 0){
-                this.setTab(this.freelancer.agent.resume_tabs[1]);
+                this.setTab(this.freelancer.agent.resume_tabs[0]);
             }
         },
         created: function () {
             this.$parent.$on('update', this.updateProjectsSlick);
             this.$parent.$on('update', this.updateSlick);
+
             // create slides :
             $.each(this.freelancer.works_history, (i) => {
                 this.slides.push({
@@ -1169,6 +1188,30 @@
 </script>
 
 <style lang="scss" scoped>
+    /*** Style scroll box TAB Work */
+    #hold_content::-webkit-scrollbar-track
+    {
+        border-radius: 10px;
+        background-color: transparent;
+        border: 1px solid #f2f2f2;
+    }
+
+    #hold_content::-webkit-scrollbar
+    {
+        width: 12px;
+        background-color: transparent;
+        border: 1px solid #f2f2f2;
+        border-radius: 10px;
+    }
+
+    #hold_content::-webkit-scrollbar-thumb
+    {
+        border-radius: 10px;
+        background-color: #f3f3f3;
+       
+    }
+
+ 
     
     .projectsSection {
         margin-top: 1px;
@@ -1523,8 +1566,9 @@
 #freelancerResumeTheme2 .freelancerCard{
     width: 100%;
     max-width: 1152px;
-    margin: 0;
-    padding: 0;  
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0;
 }
 
 .tap-to-chat{
@@ -1743,7 +1787,7 @@
 #nav-taps-resume .nav-tabs .nav-item.show .nav-link, #nav-taps-resume .nav-tabs .nav-link{
     font-family: 'Nexa light';
 }
-.v-tabs-items {
+#nav-taps-resume .v-tabs-items {
     background-color: transparent !important;
     .col-md-12{
         padding-top: 28px;
@@ -1751,7 +1795,7 @@
     }
 }
 
-.v-tab{
+#nav-taps-resume .v-tab{
     color: #000;    
     font-family: "Nexa Light";
     text-transform: capitalize;
@@ -1780,7 +1824,7 @@
     
     
 }
-.v-tab.v-tab--active{
+#nav-taps-resume .v-tab.v-tab--active{
     font-family: "Nexa Bold";
     color: #000;
 
@@ -1874,6 +1918,9 @@
     }
 }
 
+.readMore{
+    display: none;
+}
 
 
 @media screen and (max-width: 992px) {
@@ -2078,17 +2125,20 @@
         .portfolio-section,.work-section,.education-section,.skills-section{
             width: 100%;
             background: none;
-            min-height: 800px;
+            min-height: auto;
         }
         .wrap-section{
             min-height: auto;
 
             .educationSection{
                 padding: 0;
+                height: 100%;
 
                 .aboutText{
+                    overflow: hidden;
                     padding: 20px 36px;
                     margin-top: 0;
+                    height: 285px;
                     
                     .aboutSubText{
                         .year{
@@ -2131,6 +2181,13 @@
                         margin-bottom: 25px;
                     }
                 }
+            }
+            .readMore{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 50px;
+                margin-bottom: 30px;
             }
         }
     }
