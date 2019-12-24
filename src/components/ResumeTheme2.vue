@@ -2099,6 +2099,7 @@
         }
         #nav-taps-resume{
             width: 100%;
+            min-height: 285px;
             .v-tabs{
 
                 .v-tab{
