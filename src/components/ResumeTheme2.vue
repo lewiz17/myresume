@@ -203,7 +203,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-else class="row navRow d-flex">
+                        <!-- <div v-else class="row navRow d-flex">
                             <div class="col-md-3 col-4 text-center"
                                 @click="setTab(tab)" v-for="(tab,index) in freelancer.agent.resume_tabs"
                                 :key="index" >
@@ -214,15 +214,31 @@
                                     <img :src="getIconSrc(tab.name)">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
-
-                        
-                        <!-- portfolio section -->
-
-                        
-                        
-                        <div v-show="currentTab.name === 'portfolio'" class="portfolio-section">   
+                        <v-tabs v-else
+                            class="main-tabs"
+                            slider-color="transparent"
+                            v-model="model"
+                            centered 
+                            :show-arrows="isMobile()"
+                            :center-active="isMobile()"
+                        >   
+                            <v-tab
+                                v-for="(tab,index) in freelancer.agent.resume_tabs"
+                                @click="setTab(tab)"
+                                :key="index"
+                                :href="`#tab-${index}`"
+                                :ripple="false"
+                            >
+                                {{tab.label}}                                   
+                                <img :src="getIconSrc(tab.name)">
+                            </v-tab>
+                            
+                            
+                           
+                        </v-tabs>
+                        <div v-show="currentTab.name === 'portfolio'" class="portfolio-section">
                             <v-row align="center" class="titleTabSection">
                                 <v-col lg="12">
                                     <h3 class="name-section">{{currentTab.name}}
@@ -268,8 +284,6 @@
                                 </div>
                             </div>
                         </div>
-                        
-                    
                         <div v-show="currentTab.name === 'work'" class="work-section">
                             <!-- work section -->
                             <v-row align="center" class="titleTabSection">
@@ -279,7 +293,6 @@
                                     </h3>
                                 </v-col>
                             </v-row>
-
                             <div class="row wrap-section">
                                 <div class="col-lg-12 educationSection">
                                     <div class="aboutText" id="hold_content">
@@ -392,160 +405,11 @@
                                 </v-col>
                             </div>
                         </div>
-                    
-                    
-                        <div v-show="currentTab.name === 'education'" class="education-section">
-                            <!-- education section -->
-                            <v-row align="center" class="titleTabSection">
-                                <v-col lg="12">
-                                    <h3 class="name-section">{{currentTab.name}}
-                                        <img :src="getIconSrc(currentTab.name+'2')">
-                                    </h3>
-                                </v-col>
-                            </v-row>
-                            <div class="row wrap-section">
-                                <div class="col-lg-12 educationSection">
-                                    <div class="aboutText">
-                                        <div class="row" v-for="(education, index) in educationsHistory"
-                                            :key="index + 'E'">
-                                            <div class="col-md-12 aboutSubText">
-                                                <div class="year">
-                                                    <span class="work">
-                                                        {{getFullYear(education.date_from)}}
-                                                        <span v-if="education.is_currently_learning">-Now </span>
-                                                        <span v-else>&amp;{{getFullYear(education.date_to)}}</span>
-                                                    </span>
-                                                </div>
-                                                <div class="title work d-flex">
-                                                    <span class="seduHeader">
-                                                        {{education.school_title}}
-                                                    </span>
-                                                </div>
-                                                <div class="desc">{{education.description}}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <v-col v-show="showReadMore" lg="12" justify="center" class="readMore">
-                                    <a href="javascript:void(0)" role="button" @click="showTextExpanded('aboutText')">
-                                        <img src="../assets/icons/icon-arrowdown.png">
-                                    </a>
-                                </v-col>
-                            </div>
-                        </div>
-                    
-                    
-                        <div v-show="currentTab.name === 'references'">
-                            <!-- education section -->
-                            <v-row align="center" class="titleTabSection">
-                                <v-col lg="12">
-                                    <h3 class="name-section">{{currentTab.name}}
-                                        <img :src="getIconSrc(currentTab.name+'2')">
-                                    </h3>
-                                </v-col>
-                            </v-row>
-                            <div class="row" style="padding-top: 10px;">
-                                <div class="col-12 educationSection">
-                                    <div class="aboutText">
-                                        <div class="row" v-for="(reference, index) in references"
-                                            :key="index + 'R'">
-                                            <div class="col-md-12 aboutSubText">
-                                                <div class="title work">
-                                                    <img :src="currentTab.default_icon_src" alt="tab icon" class="mr-2 tab-icon">
-                                                    {{reference.title}}
-                                                </div>
-                                                <div class="year">
-                                                    <span class="work">
-                                                        {{reference.company}}
-                                                    </span>
-                                                </div>
-                                                <div class="year">
-                                                    <span class="work">
-                                                        {{reference.email}}
-                                                    </span>
-                                                </div>
-                                                <div class="year">
-                                                    <span class="work">
-                                                        {{reference.phone}}
-                                                    </span>
-                                                </div>
-                                                <div class="desc">{{reference.details}}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                    
-                        <div v-show="currentTab.name === 'recordings'">
-                            <!-- education section -->
-                            <v-row align="center" class="titleTabSection">
-                                <v-col lg="12">
-                                    <h3 class="name-section">{{currentTab.name}}
-                                        <img :src="getIconSrc(currentTab.name+'2')">
-                                    </h3>
-                                </v-col>
-                            </v-row>
-                            <div class="row" style="padding-top: 10px;">
-                                <div class="col-12 educationSection">
-                                    <div class="aboutText">
-                                        <div v-for="(record,index) in records"
-                                            v-bind:key="index"
-                                            class="list-item workExperience col-12"
-                                            style="margin: 0px 10px 20px;">
-
-                                            <div class="job-title d-flex align-items-center">
-                                                <img :src="currentTab.default_icon_src" alt="tab icon" class="mr-2 tab-icon">
-                                                <div>
-                                                    {{record.title}}
-                                                </div>
-                                            </div>
-                                            <br/>
-                                            <div style="color: #30323D;">Transcription :
-                                                {{record.transcription}}
-                                            </div>
-                                            <div style="color: #30323D;"> Audio :
-                                                {{record.src.replace('/resumeApp/uploads/','')}}
-                                            </div>
-                                            <div class="row"
-                                                style="padding-top: 30px;">
-                                                <div class="col-12">
-                                                    <audio :id="'record'+record.id"
-                                                        controls
-                                                        style="padding-bottom: 10px;"
-                                                        preload="auto">
-                                                        <source :src="getRecordSrc(record.src)">
-                                                        Your browser does not support the audio element.
-                                                    </audio>
-                                                    <!--/.audio-container-->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <div v-show="currentTab.name === 'skills'" class="skills-section">
                             <v-row class="wrap-section">
                                 <v-col lg="12" class="educationSection">
-                                     <div id="nav-taps-resume">                                    
-                                        <v-tabs v-model="tabber" background-color="transparent" centered class="showOnlyOnmd">
-                                            <v-tab :href="'#languagesTab' + freelancer.id" :ripple="false">
-                                                Programing Languages
-                                            </v-tab>
-                                            <v-tab :href="'#databases' + freelancer.id" :ripple="false">
-                                                Frameworks /<br/>Databases
-                                            </v-tab>
-                                            <v-tab :href="'#skillsTab' + freelancer.id" :ripple="false">
-                                                Design Skills
-                                            </v-tab>
-                                            <v-tab :href="'#software' + freelancer.id" :ripple="false">
-                                                Software
-                                            </v-tab>
-                                        </v-tabs>
-                                        <v-tabs v-model="tabber" background-color="transparent" class="showOnlyOnsm"  centered show-arrows center-active>
+                                    <div id="nav-taps-resume">                                    
+                                        <v-tabs v-model="tabber" background-color="transparent" centered :show-arrows="isMobile()" :center-active="isMobile()">
                                             <v-tab :href="'#languagesTab' + freelancer.id" :ripple="false">
                                                 Programing Languages
                                             </v-tab>
@@ -661,14 +525,49 @@
                                         </v-tabs-items>
                                     </div>
                                 </v-col>
+                            </v-row>                         
+                        </div>
+                        <div v-show="currentTab.name === 'education'" class="education-section">
+                            <!-- education section -->
+                            <v-row align="center" class="titleTabSection">
+                                <v-col lg="12">
+                                    <h3 class="name-section">{{currentTab.name}}
+                                        <img :src="getIconSrc(currentTab.name+'2')">
+                                    </h3>
+                                </v-col>
                             </v-row>
-                         
-                           
-                        </div>                   
-                    
+                            <div class="row wrap-section">
+                                <div class="col-lg-12 educationSection">
+                                    <div class="aboutText">
+                                        <div class="row" v-for="(education, index) in educationsHistory"
+                                            :key="index + 'E'">
+                                            <div class="col-md-12 aboutSubText">
+                                                <div class="year">
+                                                    <span class="work">
+                                                        {{getFullYear(education.date_from)}}
+                                                        <span v-if="education.is_currently_learning">-Now </span>
+                                                        <span v-else>&amp;{{getFullYear(education.date_to)}}</span>
+                                                    </span>
+                                                </div>
+                                                <div class="title work d-flex">
+                                                    <span class="seduHeader">
+                                                        {{education.school_title}}
+                                                    </span>
+                                                </div>
+                                                <div class="desc">{{education.description}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <v-col v-show="showReadMore" lg="12" justify="center" class="readMore">
+                                    <a href="javascript:void(0)" role="button" @click="showTextExpanded('aboutText')">
+                                        <img src="../assets/icons/icon-arrowdown.png">
+                                    </a>
+                                </v-col>
+                            </div>
+                        </div>
                         
-
-                        <!-- end of portfolio section -->
+                        <!-- Section content tabsssss --->
                     </div>
                 </transition>
                 <transition name="slide-fade-left">
@@ -809,6 +708,7 @@
         },
         data() {
             return {
+                model: null,
                 tabber: null,
                 colors:{
                     hex: this.freelancer.agent.custom_resume ? this.freelancer.agent.custom_resume.background_color : '#4E75E8',
@@ -1163,14 +1063,20 @@
                 } else {
                     return source;
                 }
+            },
+            isMobile() {
+                if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    return true
+                } else {
+                    return false
+                }
             }
-            
-
         },
         mounted() {
             if(this.freelancer.agent.resume_tabs.length > 0){
                 this.setTab(this.freelancer.agent.resume_tabs[0]);
             }
+            
         },
         created: function () {
             this.$parent.$on('update', this.updateProjectsSlick);
@@ -1188,6 +1094,8 @@
 </script>
 
 <style lang="scss" scoped>
+
+
     /*** Style scroll box TAB Work */
     #hold_content::-webkit-scrollbar-track
     {
@@ -1469,7 +1377,7 @@
 
     }
     .skills-section{
-        padding-top: 30px;
+        padding-top: 28px;
     }
 
     .educationSection {
@@ -1541,6 +1449,8 @@
   font-style: normal;
 }
 
+.no-transition .v-window__container { transition: none; }
+
 
 /*** Styles Resume THEME 2 */
 
@@ -1557,7 +1467,7 @@
     text-decoration: none;
 }
 .hold_theme2 .headProfile{
-    padding: 16px 25px 16px 25px;
+    padding: 16px 25px 40px 25px;
     background: url(/img/bgHeader.83cbd936.png) no-repeat;
     background-size: 916px 184px;
     background-position: 177px 28px;
@@ -1692,6 +1602,56 @@
     }
     
     
+}
+
+/** New adjust tabs */
+.main-tabs {
+    padding-bottom: 0px;
+    max-height: 40px;
+    line-height: 40px;
+    .v-tab{
+        color: #000!important;
+        text-shadow: 2px 1px 0px #50E8FC;
+        padding-bottom: 0;
+        font-family: "Nexa Bold";
+        font-style: normal;
+        font-size: 33px;
+        line-height: 33px;
+        vertical-align: top;
+        position: relative;
+        text-transform: capitalize;
+        letter-spacing: normal;
+        padding: 0;
+        margin: 0 55px;
+
+        &::before{
+            content: "";
+            width: 75%;
+            height: 4px;
+            border-radius: 10px;
+            background-color: transparent;
+            bottom: 0px;
+            top: auto;
+            opacity: 1 !important;
+            left: 0px;
+            display: block;
+            transition: none;
+        }
+
+        &.v-tab--active{
+            
+            &::before{
+                background-color: #000 !important;
+                
+            }
+        }
+
+        img{
+            margin-left: 10px;
+            max-width: 36px;
+            margin-top: -8px;
+        }
+    }
 }
 
 
@@ -1926,7 +1886,7 @@
 @media screen and (max-width: 992px) {
     .showOnlyOnsm{
         .headProfile{
-            padding: 20px 22px 26px 22px;
+            padding: 20px 22px 0px 22px;
             background: none;
         }
         .imageCol{
@@ -1977,34 +1937,6 @@
             .nameArea{
                 padding-left: 15px;
             }
-
-            // >.row:nth-child(2){
-            //     display: flex;
-            //     align-items: center;
-            //     flex-flow: row;
-            //     justify-content: space-between;
-            //     padding-top: 10px;
-
-            //     >div{
-            //         width: auto;
-            //         flex: 3;
-            //         display: inline-flex;
-            //         flex-flow: column;
-
-            //         &:nth-child(1){
-            //             flex: 5
-            //         }
-            //         &:nth-child(2){
-            //             flex: 7
-            //         }
-
-            //         span{
-            //             font-size: 18px !important;
-            //             line-height: 18px !important;
-            //         }
-            //     }
-
-            // }
 
             .jobTitle{
                 padding-left: 0;
@@ -2114,12 +2046,10 @@
                     }
                 }
             }
-            .v-tabs-items{
-                .col-md-12{
-                    padding: 15px 0 0 0;
-                }
-            }
+
+           
         }
+
         .portfolio-section{
             max-width: 100%;
         }
@@ -2127,6 +2057,7 @@
             width: 100%;
             background: none;
             min-height: auto;
+            padding-top: 0;
         }
         .wrap-section{
             min-height: auto;
@@ -2192,6 +2123,7 @@
             }
         }
     }
+    
     .hold_theme2{
         .freelancerCard{
 
@@ -2203,7 +2135,7 @@
                     justify-content: center;
                     display: flex;
                 }
-                .navTab{
+                .navTab{//** Movil tabnormal */
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -2247,7 +2179,65 @@
                     }
                    
                 }
+            } 
+
+            .main-tabs{
+                max-height: 100%;
+                height: 155px;
+                padding: 0 0 0px 0;
+                margin-bottom: 25px;
+
+                >div{
+                    justify-content: center;
+                    display: flex;
+                }
+                .v-tab{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 68px;
+                    height: 68px;
+                    padding: 10px;
+                    border-radius: 100%;
+                    box-shadow: 0 10px 12px 0px #eee;
+                    background: #fff;
+                    max-height: 100%;
+                    font-size: 0;
+                    margin: 0px 6px 0 6px;
+                    min-width:68px;
+
+                    &::before{
+                        height: 0;
+                    }
+
+                    &.v-tab--active{
+                        width: 110px;
+                        height: 110px;
+                        border-radius: 100%;
+                        box-shadow: 0 16px 18px -3px #eee;
+                        margin-top: 0;
+
+                        img{
+                            margin: 0;
+                            max-width: 62px;
+                            width: 100%;
+                            opacity: 1;
+                        }
+
+         
+                    }
+                    img{
+                        margin: 0;
+                        max-width: 36px;
+                        width: 100%;
+                        opacity: .5;
+                    }
+                   
+                }
+
+                
             }
+
             .skills{
                 .skill{
                     .skill-title{
@@ -2266,16 +2256,18 @@
     }
 
     .workCard{
+
+        .workImg{
+            img{
+                max-height: 305px;
+                max-width: 100%; 
+            }
+        }
         .workTitle{
             display: none;
         }
     }
     
 }
-
-
-       
-    
-
 
 </style>

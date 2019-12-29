@@ -13237,4 +13237,29 @@ html {
 .newHomePage .freelancerCard .nameRow {
   max-height: 158px !important;
 }
+
+
+/** Additional fixes tabs theme2 */
+.v-icon.v-icon{
+    color: #000;
+    opacity: 1;
+}
+.main-tabs .v-tabs-bar{
+    min-height: 50px;
+    height: 100%;
+}
+
+.main-tabs .v-slide-group__next, .v-slide-group__prev{
+  min-width: 25px;
+  max-width: 35px;
+}
+.educationSection .v-slide-group__next,.educationSection .v-slide-group__prev{
+  min-width: 52px;
+}
+
+.main-tabs .v-slide-group__content{
+  justify-content: center;
+  align-items: center;
+}
+
 </style>
