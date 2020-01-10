@@ -18,7 +18,7 @@
         "id": 3,
         "first_name": "Eduardo",
         "last_name": "Acosta",
-        "profile_picture": "https://avatars3.githubusercontent.com/u/3957937?s=400&v=4",
+        "profile_picture": "https://i.imgur.com/0nEKYTZ.jpg",
         "skype": null,
         "whatsapp": null,
         "phone": "304 5405216",
@@ -296,8 +296,8 @@
         "resume_tabs": [
             {"name": "portfolio","label":"Portfolio"},
             {"name": "work","label":"Work"},
-            {"name": "skills","label":"Skills"},
-            {"name": "education","label":"Education"}
+            {"name": "education","label":"Education"},
+            {"name": "skills","label":"Skills"}
         ]
     },
     "works_history": [{

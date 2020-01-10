@@ -1,25 +1,25 @@
 <template>
-  <v-app>
+  <v-app id="main">
     <v-content>
-      <main class="py-4" style="padding-bottom:0 !important;">
-        <div id="freelancerResumeTheme2" class="d-flex">
-          <ResumeTheme2 v-bind:freelancer="dataFreelancer" />
-        </div>
-      </main>
+      <h3 class="titleHome">My Resume Themes Workforce</h3>
+      <ul class="mynav">
+        <li>
+          <router-link to="/">Theme 2</router-link>
+        </li>
+        <li>
+          <router-link to="/theme3">Theme 3</router-link>
+        </li>
+      </ul>    
+      <router-view :freelancer="dataFreelancer"></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import ResumeTheme2 from './components/ResumeTheme2';
 import freelancer from './static/freelancer.json';
 
 export default {
   name: 'App',
-  components: {
-    ResumeTheme2
-  },
-
   data() {
     return {
       dataFreelancer: freelancer
@@ -35,6 +35,41 @@ export default {
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+}
+.theme--light.v-application{
+  background: transparent !important;
+}
+.titleHome{
+  color: #008aff;
+  text-align: center;
+}
+.mynav{
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mynav li{
+  display: inline-block;
+  margin:0;
+  font-weight: bold;
+}
+.mynav li::after{
+  content: "|";
+  display: inline-block;
+  margin: 10px;
+  color: #ddd;
+}
+.mynav li a{
+  text-decoration: none;
+  color: #000;
+}
+.mynav li a:hover{
+  text-decoration: underline;
+  opacity: .8;
+}
+.mynav li a.router-link-exact-active{
+  color: #008aff;
 }
 
 /*** Style subtags skills */
@@ -13260,6 +13295,36 @@ html {
 .main-tabs .v-slide-group__content{
   justify-content: center;
   align-items: center;
+}
+
+
+/* .main-tabs_theme3 .v-slide-group__content .v-tabs-slider-wrapper{
+  height: 48px !important;
+  width: 48px !important;
+  z-index: -1;
+  top: 0px;
+}
+
+
+.main-tabs_theme3 .v-slide-group__content .v-tabs-slider-wrapper .v-tabs-slider{
+  border-radius: 100%;
+} */
+
+.main-tabs_theme3 .v-slide-group__content .v-tabs-slider-wrapper .v-tabs-slider.tabRed{
+    background-color: rgb(217, 48, 37) !important;
+    opacity: .1;
+}
+.main-tabs_theme3 .v-slide-group__content .v-tabs-slider-wrapper .v-tabs-slider.tabGreen{
+    background-color: #0F9D58 !important;
+    opacity: .1;
+}
+.main-tabs_theme3 .v-slide-group__content .v-tabs-slider-wrapper .v-tabs-slider.tabGold{
+    background-color: #F4B400 !important;
+    opacity: .1;
+}
+.main-tabs_theme3 .v-slide-group__content .v-tabs-slider-wrapper .v-tabs-slider.tabBlue{
+    background-color: #4285F4 !important;
+    opacity: .1;
 }
 
 </style>

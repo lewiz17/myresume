@@ -1,699 +1,701 @@
 <template>
-    <v-container class="hold_theme2">
-        <v-row class="freelancerCard">
-            <v-col lg="12" md="12" cols="12" class="resumeCardRight">
-                <div class="showOnlyOnmd">
-                    <v-row class="headProfile">
-                        <v-col lg="2" md="2" class="imageCol">
-                            <div class="imageContainer">
-                                <span class="circle_black"></span> 
-                                <span class="circle_golden"></span>  
-                                <img :src="getImageSrc(freelancer.user_data.profile_picture)" alt="freelancer"
-                                    class="photoProfile" width="120" height="120">                                  
-                            </div>
-                        </v-col>
-                        <v-col lg="2" md="2" class="freelancerCardLeft">
-                            <div class="nameArea">
-                                <div class="nameCard">
-                                    {{freelancer.user_data.first_name}}
+    <div id="freelancerResumeTheme2" class="d-flex">
+        <v-container class="hold_theme2">
+            <v-row class="freelancerCard">
+                <v-col lg="12" md="12" cols="12" class="resumeCardRight">
+                    <div class="showOnlyOnmd">
+                        <v-row class="headProfile">
+                            <v-col lg="2" md="2" class="imageCol">
+                                <div class="imageContainer">
+                                    <span class="circle_black"></span> 
+                                    <span class="circle_golden"></span>  
+                                    <img :src="getImageSrc(freelancer.user_data.profile_picture)" alt="freelancer"
+                                        class="photoProfile" width="120" height="120">                                  
                                 </div>
-                                <div class="jobTitle" style="font-size: 14px; padding-top: 0px;"
-                                    :id="'animatedText'+freelancer.id">
-                                    {{freelancer.user_data.job_title}}
-                                </div>
-
-                                <form action="/chat-room/start_conversation" method="post">
-                                    <input type="hidden" name="freelancer_id" :value="freelancer.id">
-                                    <input type="submit" value="Tap to chat"
-                                        class="tap-to-chat btnSm-outline cursorPointerOnHover"
-                                        style="background: none; outline: none;">
-                                </form>
-
-                                <div :id="'welcomeText'+freelancer.id" class="d-none">
-                                    Hi, I am {{freelancer.user_data.first_name}}, I am a {{freelancer.user_data.job_title}}, How
-                                    can I help
-                                    you ?
-                                </div>
-                            </div>
-                        </v-col>
-                        <v-col lg="2" md="2" class="freelancerCardSocial" >
-                            <a href="" alt="Behance" title="Behance"><img src="../assets/icons/behance.png"/></a>
-                            <a href="" alt="Dribble" title="Dribble"><img src="../assets/icons/dribble.png"/></a>
-                            <a href="" alt="Instagram" title="Instagram"><img src="../assets/icons/instagram.png"/></a>
-                            <a href="" alt="Linkedin" title="Linkedin"><img src="../assets/icons/linkedin.png"/></a>
-                            <a href="" alt="Facebook" title="Facebook"><img src="../assets/icons/facebook.png"/></a>
-
-                        </v-col>
-                        <v-col lg="6" md="6" class="freelancerCardRight">
-                            <v-row class="w-100 pb-5">
-                                <v-col lg="12" md="12">
-                                    <span class="titleInterview">Your Interviews: </span>
-                                    <a class="opUpload" href="javascript:void(0)"><img src="../assets/icons/speaker.png"/>Upload audio</a>
-                                    <a class="opUpload" href="javascript:void(0)"><img src="../assets/icons/play-button.png"/>Upload Video</a>
-                                </v-col>
-                            </v-row>
-                            <v-row class="w-100">
-                                <div class="col-md-3 text-center">
-                                    <span style="font-family: 'Nexa';font-style: normal;font-weight: bold;font-size: 26px;line-height: 26px;">
-                                        {{Math.ceil(freelancer.agent.hourly_rate)}}$
-                                    </span>
-                                    <div class="cardLabel" style="font-family: 'Nexa Light';font-style: normal;font-weight: 300;font-size: 20px;line-height: 24px;">
-                                        Hourly rate
-                                    </div>
-                                </div>
-
-                                <div class="col-md-5 text-center">
-                                    <span style="font-family: 'Nexa';font-style: normal;font-weight: bold;font-size: 26px;line-height: 26px;">{{Math.ceil(freelancer.user_data.available_hours_per_week)}} hours</span>
-                                    <div class="cardLabel" style="font-family: 'Nexa Light';font-style: normal;font-weight: 300;font-size: 20px;line-height: 24px;">Weekly
-                                        Availability
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4" style="padding: 0;">
-
-                                    <div class="row text-center cardRow NoDecor">
-                                        <a class="hireCardBtn btn-block showHireSection" href="javascript:void(0)"
-                                        @click="showHireSection()">
-                                            Hire me
-                                        </a>
-                                    </div>
-                                </div>
-                            </v-row>
-                        </v-col>
-                        <v-col lg="12" justify="center" align="center" style="border-bottom:3px solid #000" class="pt-4"></v-col>
-                    </v-row>
-                </div>
-                <div class="showOnlyOnsm">
-                    <div class="headProfile">
-                        <v-row>
-                            <v-col class="imageCol" sm="2">
-                                <v-row>
-                                    <div class="imageContainer">
-                                        <span class="circle_black"></span> 
-                                        <span class="circle_golden"></span>  
-                                        <img :src="getImageSrc(freelancer.user_data.profile_picture)" alt="freelancer"
-                                            class="photoProfile" width="120" height="120"> 
-                                        <form action="/chat-room/start_conversation" method="post">
-                                            <input type="hidden" name="freelancer_id" :value="freelancer.id">
-                                            <input type="submit" value="Tap to chat"
-                                                class="tap-to-chat btnSm-outline cursorPointerOnHover"
-                                                style="outline: none;">
-                                        </form>                                
-                                    </div>
-                                </v-row>                                
                             </v-col>
-                            <v-col class="freelancerCardLeft" sm="10"> 
-                                <v-row>
-                                    <v-col class="nameArea">
-                                        <div class="nameCard">
-                                            {{freelancer.user_data.first_name}}
-                                        </div>
-                                        <div class="jobTitle" style="font-size: 14px; padding-top: 0px;"
-                                            :id="'animatedText'+freelancer.id">
-                                            {{freelancer.user_data.job_title}}
-                                        </div>
-                                    </v-col>
-                                    <v-col class="interviews">
-                                        <a class="opUpload" href="javascript:void(0)"><img src="../assets/icons/speaker.png"/></a>
-                                        <a class="opUpload" href="javascript:void(0)"><img src="../assets/icons/play-button.png"/></a>
-                                    </v-col> 
-                                </v-row>
-                                <v-row class="rates">
-                                    <div class="col-md-4 text-center">
-                                        <span style="font-family: 'Nexa';font-style: normal;font-weight: bold;font-size: 16px;line-height: 16px;">
-                                            {{Math.ceil(freelancer.agent.hourly_rate)}}$
-                                        </span>
-                                        <div class="cardLabel">
-                                            Hourly rate
-                                        </div>
+                            <v-col lg="2" md="2" class="freelancerCardLeft">
+                                <div class="nameArea">
+                                    <div class="nameCard">
+                                        {{freelancer.user_data.first_name}}
+                                    </div>
+                                    <div class="jobTitle" style="font-size: 14px; padding-top: 0px;"
+                                        :id="'animatedText'+freelancer.id">
+                                        {{freelancer.user_data.job_title}}
                                     </div>
 
-                                    <div class="col-md-4 text-center">
-                                        <span style="font-family: 'Nexa';font-style: normal;font-weight: bold;font-size: 16px;line-height: 16px;">{{Math.ceil(freelancer.user_data.available_hours_per_week)}} hours</span>
-                                        <div class="cardLabel">Weekly Availability</div>
+                                    <form action="/chat-room/start_conversation" method="post">
+                                        <input type="hidden" name="freelancer_id" :value="freelancer.id">
+                                        <input type="submit" value="Tap to chat"
+                                            class="tap-to-chat btnSm-outline cursorPointerOnHover"
+                                            style="background: none; outline: none;">
+                                    </form>
+
+                                    <div :id="'welcomeText'+freelancer.id" class="d-none">
+                                        Hi, I am {{freelancer.user_data.first_name}}, I am a {{freelancer.user_data.job_title}}, How
+                                        can I help
+                                        you ?
                                     </div>
-                                </v-row>
-                                                 
+                                </div>
                             </v-col>
-                           
-             
-                        </v-row>
-                        <v-row>
-                            <v-col sm="12" class="freelancerCardSocial" >
+                            <v-col lg="2" md="2" class="freelancerCardSocial" >
                                 <a href="" alt="Behance" title="Behance"><img src="../assets/icons/behance.png"/></a>
                                 <a href="" alt="Dribble" title="Dribble"><img src="../assets/icons/dribble.png"/></a>
                                 <a href="" alt="Instagram" title="Instagram"><img src="../assets/icons/instagram.png"/></a>
                                 <a href="" alt="Linkedin" title="Linkedin"><img src="../assets/icons/linkedin.png"/></a>
                                 <a href="" alt="Facebook" title="Facebook"><img src="../assets/icons/facebook.png"/></a>
+
                             </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col sm="12" class="freelancerCardRight">
-                                <v-row class="text-center cardRow NoDecor">
-                                    <a class="hireCardBtn btn-block showHireSection" href="javascript:void(0)"
-                                    @click="showHireSection()">
-                                        Hire me
-                                    </a>
+                            <v-col lg="6" md="6" class="freelancerCardRight">
+                                <v-row class="w-100 pb-5">
+                                    <v-col lg="12" md="12">
+                                        <span class="titleInterview">Your Interviews: </span>
+                                        <a class="opUpload" href="javascript:void(0)"><img src="../assets/icons/speaker.png"/>Upload audio</a>
+                                        <a class="opUpload" href="javascript:void(0)"><img src="../assets/icons/play-button.png"/>Upload Video</a>
+                                    </v-col>
+                                </v-row>
+                                <v-row class="w-100">
+                                    <div class="col-md-3 text-center">
+                                        <span style="font-family: 'Nexa';font-style: normal;font-weight: bold;font-size: 26px;line-height: 26px;">
+                                            {{Math.ceil(freelancer.agent.hourly_rate)}}$
+                                        </span>
+                                        <div class="cardLabel" style="font-family: 'Nexa Light';font-style: normal;font-weight: 300;font-size: 20px;line-height: 24px;">
+                                            Hourly rate
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5 text-center">
+                                        <span style="font-family: 'Nexa';font-style: normal;font-weight: bold;font-size: 26px;line-height: 26px;">{{Math.ceil(freelancer.user_data.available_hours_per_week)}} hours</span>
+                                        <div class="cardLabel" style="font-family: 'Nexa Light';font-style: normal;font-weight: 300;font-size: 20px;line-height: 24px;">Weekly
+                                            Availability
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4" style="padding: 0;">
+
+                                        <div class="row text-center cardRow NoDecor">
+                                            <a class="hireCardBtn btn-block showHireSection" href="javascript:void(0)"
+                                            @click="showHireSection()">
+                                                Hire me
+                                            </a>
+                                        </div>
+                                    </div>
                                 </v-row>
                             </v-col>
+                            <v-col lg="12" justify="center" align="center" style="border-bottom:3px solid #000" class="pt-4"></v-col>
                         </v-row>
-                    </div> 
-                     
-                </div>
-                <transition name="slide-fade">
-                    <div v-show="portfolio" class="wrap-portfolio">
-                        <!-- nav row section -->
-                        <div class="row navRow" v-if="freelancer.agent.resume_tabs.length < 1">
-                            <div class="col-md-3 col-4 text-center"
-                                style="border-right:1px solid #EBEDEF;" @click="setTabName('portfolio')">
-                                <div class="navTab NoDecor" :class="{active: currentTab === 'portfolio' }">
-                                    <a href="javascript:void(0)">
-                                        Portfolio
-                                    </a>
-                                    <img :src="getIconSrc(tab.name)">
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-4 text-center" style="border-right:1px solid #EBEDEF;"
-                                @click="setTabName('work')">
-                                <div class="navTab NoDecor" :class="{active: currentTab === 'work' }">
-                                    <a href="javascript:void(0)">
-                                        Work
-                                    </a>
-                                    <img :src="getIconSrc(tab.name)">
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-4 text-center"
-                                style="border-right:1px solid #EBEDEF;" @click="setTabName('skills')">
-                                <div class="navTab NoDecor" :class="{active: currentTab === 'skills' }">
-                                    <a href="javascript:void(0)">
-                                        Skills
-                                    </a>
-                                    <img :src="getIconSrc(tab.name)">
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-4 text-center" @click="setTabName('education')">
-                                <div class="navTab NoDecor" :class="{active: currentTab === 'education' }">
-                                    <a href="javascript:void(0)">
-                                        Education
-                                    </a>
-                                    <img :src="getIconSrc(tab.name)">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <div v-else class="row navRow d-flex">
-                            <div class="col-md-3 col-4 text-center"
-                                @click="setTab(tab)" v-for="(tab,index) in freelancer.agent.resume_tabs"
-                                :key="index" >
-                                <div class="navTab NoDecor" :class="{active: currentTab.name === tab.name }">
-                                    <a href="javascript:void(0)">
-                                        {{tab.label}}
-                                    </a>                                    
-                                    <img :src="getIconSrc(tab.name)">
-                                </div>
-                            </div>
-                        </div> -->
-
-                        <v-tabs v-else
-                            class="main-tabs"
-                            slider-color="transparent"
-                            v-model="model"
-                            centered 
-                            :show-arrows="isMobile()"
-                            :center-active="isMobile()"
-                        >   
-                            <v-tab
-                                v-for="(tab,index) in freelancer.agent.resume_tabs"
-                                @click="setTab(tab)"
-                                :key="index"
-                                :href="`#tab-${index}`"
-                                :ripple="false"
-                            >
-                                {{tab.label}}                                   
-                                <img :src="getIconSrc(tab.name)">
-                            </v-tab>
-                            
-                            
-                           
-                        </v-tabs>
-                        <div v-show="currentTab.name === 'portfolio'" class="portfolio-section">
-                            <v-row align="center" class="titleTabSection">
-                                <v-col lg="12">
-                                    <h3 class="name-section">{{currentTab.name}}
-                                        <img :src="getIconSrc(currentTab.name+'2')">
-                                    </h3>
+                    </div>
+                    <div class="showOnlyOnsm">
+                        <div class="headProfile">
+                            <v-row>
+                                <v-col class="imageCol" sm="2">
+                                    <v-row>
+                                        <div class="imageContainer">
+                                            <span class="circle_black"></span> 
+                                            <span class="circle_golden"></span>  
+                                            <img :src="getImageSrc(freelancer.user_data.profile_picture)" alt="freelancer"
+                                                class="photoProfile" width="120" height="120"> 
+                                            <form action="/chat-room/start_conversation" method="post">
+                                                <input type="hidden" name="freelancer_id" :value="freelancer.id">
+                                                <input type="submit" value="Tap to chat"
+                                                    class="tap-to-chat btnSm-outline cursorPointerOnHover"
+                                                    style="outline: none;">
+                                            </form>                                
+                                        </div>
+                                    </v-row>                                
                                 </v-col>
-                            </v-row>                            
-                            <div>
-                                <!-- portfolio section -->
-                                <slick class="projectsSection" :id="'portfolio_section_' + freelancer.id" ref="slick" :options="slickOptions" @swipe="handleSwipe">
-                                    <div  v-for="(project,index) in projects" :key="index + 'A'" >
-                                        <div class="workCard" style="margin:10px; margin-bottom: 0px;">
-                                            <div class="workImg">
-                                                <a href="javascript:void(0)"
-                                                style="outline: none;">
-                                                    <vue-load-image class="d-flex justify-content-center align-items-center">
-                                                        <img src="../assets/imgs/projSlide1.png" alt="" width="260" slot="image">
-                                                        <img  alt="" slot="preloader" src="/images/spinner-load.gif" style="width: 100px; height: 100px;" />
-                                                    </vue-load-image>
-                                                </a>
+                                <v-col class="freelancerCardLeft" sm="10"> 
+                                    <v-row>
+                                        <v-col class="nameArea">
+                                            <div class="nameCard">
+                                                {{freelancer.user_data.first_name}}
+                                            </div>
+                                            <div class="jobTitle" style="font-size: 14px; padding-top: 0px;"
+                                                :id="'animatedText'+freelancer.id">
+                                                {{freelancer.user_data.job_title}}
+                                            </div>
+                                        </v-col>
+                                        <v-col class="interviews">
+                                            <a class="opUpload" href="javascript:void(0)"><img src="../assets/icons/speaker.png"/></a>
+                                            <a class="opUpload" href="javascript:void(0)"><img src="../assets/icons/play-button.png"/></a>
+                                        </v-col> 
+                                    </v-row>
+                                    <v-row class="rates">
+                                        <div class="col-md-4 text-center">
+                                            <span style="font-family: 'Nexa';font-style: normal;font-weight: bold;font-size: 16px;line-height: 16px;">
+                                                {{Math.ceil(freelancer.agent.hourly_rate)}}$
+                                            </span>
+                                            <div class="cardLabel">
+                                                Hourly rate
                                             </div>
                                         </div>
-                                        
+
+                                        <div class="col-md-4 text-center">
+                                            <span style="font-family: 'Nexa';font-style: normal;font-weight: bold;font-size: 16px;line-height: 16px;">{{Math.ceil(freelancer.user_data.available_hours_per_week)}} hours</span>
+                                            <div class="cardLabel">Weekly Availability</div>
+                                        </div>
+                                    </v-row>
+                                                    
+                                </v-col>
+                            
+                
+                            </v-row>
+                            <v-row>
+                                <v-col sm="12" class="freelancerCardSocial" >
+                                    <a href="" alt="Behance" title="Behance"><img src="../assets/icons/behance.png"/></a>
+                                    <a href="" alt="Dribble" title="Dribble"><img src="../assets/icons/dribble.png"/></a>
+                                    <a href="" alt="Instagram" title="Instagram"><img src="../assets/icons/instagram.png"/></a>
+                                    <a href="" alt="Linkedin" title="Linkedin"><img src="../assets/icons/linkedin.png"/></a>
+                                    <a href="" alt="Facebook" title="Facebook"><img src="../assets/icons/facebook.png"/></a>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col sm="12" class="freelancerCardRight">
+                                    <v-row class="text-center cardRow NoDecor">
+                                        <a class="hireCardBtn btn-block showHireSection" href="javascript:void(0)"
+                                        @click="showHireSection()">
+                                            Hire me
+                                        </a>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                        </div> 
+                        
+                    </div>
+                    <transition name="slide-fade">
+                        <div v-show="portfolio" class="wrap-portfolio">
+                            <!-- nav row section -->
+                            <div class="row navRow" v-if="freelancer.agent.resume_tabs.length < 1">
+                                <div class="col-md-3 col-4 text-center"
+                                    style="border-right:1px solid #EBEDEF;" @click="setTabName('portfolio')">
+                                    <div class="navTab NoDecor" :class="{active: currentTab === 'portfolio' }">
+                                        <a href="javascript:void(0)">
+                                            Portfolio
+                                        </a>
+                                        <img :src="getIconSrc(tab.name)">
                                     </div>
-                                <!-- end of portfolio section -->
-                                </slick>
-                                <div class="row carouselControls" style="width: 100%;">
-                                    <div class=" col-12 text-center NoDecor">
-                                        <a href="javascript:void(0)" class="cardLabel_interviews noScroll" @click="prevItemProject"
-                                            style="color:#697786;">
-                                            <img src="../assets/icons/left_arrow.png"
-                                                    alt="prev" width="15px">
-                                        </a>
+                                </div>
 
-                                        <span class="jobTitle" style="padding: 0 5px 0 5px"> <span>{{slideNumber}}</span> / <span> {{numberOfSlides}} </span></span>
-
-                                        <a href="javascript:void(0)" role="button" data-slide="next" class="cardLabel_interviews noScroll" @click="nextItemProject"
-                                            style="color:#697786;">
-                                            <img src="../assets/icons/right_arrow.png"
-                                                    alt="next" width="15px">
+                                <div class="col-md-3 col-4 text-center" style="border-right:1px solid #EBEDEF;"
+                                    @click="setTabName('work')">
+                                    <div class="navTab NoDecor" :class="{active: currentTab === 'work' }">
+                                        <a href="javascript:void(0)">
+                                            Work
                                         </a>
+                                        <img :src="getIconSrc(tab.name)">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-4 text-center"
+                                    style="border-right:1px solid #EBEDEF;" @click="setTabName('skills')">
+                                    <div class="navTab NoDecor" :class="{active: currentTab === 'skills' }">
+                                        <a href="javascript:void(0)">
+                                            Skills
+                                        </a>
+                                        <img :src="getIconSrc(tab.name)">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-4 text-center" @click="setTabName('education')">
+                                    <div class="navTab NoDecor" :class="{active: currentTab === 'education' }">
+                                        <a href="javascript:void(0)">
+                                            Education
+                                        </a>
+                                        <img :src="getIconSrc(tab.name)">
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div v-show="currentTab.name === 'work'" class="work-section">
-                            <!-- work section -->
-                            <v-row align="center" class="titleTabSection">
-                                <v-col lg="12">
-                                    <h3 class="name-section">{{currentTab.name}}
-                                        <img :src="getIconSrc(currentTab.name+'2')">
-                                    </h3>
-                                </v-col>
-                            </v-row>
-                            <div class="row wrap-section">
-                                <div class="col-lg-12 educationSection">
-                                    <div class="aboutText" id="hold_content">
-                                        <div class="row" v-for="(work, index) in worksHistory" :key="index + 'V'">
-                                            <div class="col-md-12 aboutSubText">
-                                                <div class="year">
-                                                    <span class="work pl-0">
-                                                        {{getFullYear(work.date_from)}}
-                                                        <span v-if="work.is_currently_working">-Now </span>
-                                                        <span v-else>&amp;{{getFullYear(work.date_to)}}</span>
-                                                    </span>
+                            <!-- <div v-else class="row navRow d-flex">
+                                <div class="col-md-3 col-4 text-center"
+                                    @click="setTab(tab)" v-for="(tab,index) in freelancer.agent.resume_tabs"
+                                    :key="index" >
+                                    <div class="navTab NoDecor" :class="{active: currentTab.name === tab.name }">
+                                        <a href="javascript:void(0)">
+                                            {{tab.label}}
+                                        </a>                                    
+                                        <img :src="getIconSrc(tab.name)">
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <v-tabs v-else
+                                class="main-tabs"
+                                slider-color="transparent"
+                                v-model="model"
+                                centered 
+                                :show-arrows="isMobile()"
+                                :center-active="isMobile()"
+                            >   
+                                <v-tab
+                                    v-for="(tab,index) in freelancer.agent.resume_tabs"
+                                    @click="setTab(tab)"
+                                    :key="index"
+                                    :href="`#tab-${index}`"
+                                    :ripple="false"
+                                >
+                                    {{tab.label}}                                   
+                                    <img :src="getIconSrc(tab.name)">
+                                </v-tab>
+                                
+                                
+                            
+                            </v-tabs>
+                            <div v-show="currentTab.name === 'portfolio'" class="portfolio-section">
+                                <v-row align="center" class="titleTabSection">
+                                    <v-col lg="12">
+                                        <h3 class="name-section">{{currentTab.name}}
+                                            <img :src="getIconSrc(currentTab.name+'2')">
+                                        </h3>
+                                    </v-col>
+                                </v-row>                            
+                                <div>
+                                    <!-- portfolio section -->
+                                    <slick class="projectsSection" :id="'portfolio_section_' + freelancer.id" ref="slick" :options="slickOptions" @swipe="handleSwipe">
+                                        <div  v-for="(project,index) in projects" :key="index + 'A'" >
+                                            <div class="workCard" style="margin:10px; margin-bottom: 0px;">
+                                                <div class="workImg">
+                                                    <a href="javascript:void(0)"
+                                                    style="outline: none;">
+                                                        <vue-load-image class="d-flex justify-content-center align-items-center">
+                                                            <img src="../assets/imgs/projSlide1.png" alt="" width="260" slot="image">
+                                                            <img  alt="" slot="preloader" src="/images/spinner-load.gif" style="width: 100px; height: 100px;" />
+                                                        </vue-load-image>
+                                                    </a>
                                                 </div>
-                                                <div class="title work d-flex">
-                                                    <span class="seduHeader">
-                                                        {{work.job_title}}
-                                                    </span>
-                                                </div>
-                                                <div class="desc">{{work.job_description}}</div>
                                             </div>
+                                            
+                                        </div>
+                                    <!-- end of portfolio section -->
+                                    </slick>
+                                    <div class="row carouselControls" style="width: 100%;">
+                                        <div class=" col-12 text-center NoDecor">
+                                            <a href="javascript:void(0)" class="cardLabel_interviews noScroll" @click="prevItemProject"
+                                                style="color:#697786;">
+                                                <img src="../assets/icons/left_arrow.png"
+                                                        alt="prev" width="15px">
+                                            </a>
 
-                                            <!-- related projects list -->
+                                            <span class="jobTitle" style="padding: 0 5px 0 5px"> <span>{{slideNumber}}</span> / <span> {{numberOfSlides}} </span></span>
 
-                                            <!-- portfolio section -->
-                                            <div class="w-100">
-                                                <slick class="projectsSection" ref="slickSlide" :id="work.id"
-                                                    :options="slickOptions">
-                                                    <div v-for="(project,index) in work.projects"
-                                                        :key="index + 'A'">
-                                                        <!-- class="d-flex justify-content-center" style="height: 250px !important; padding: 0 2px 0 2px; overflow: hidden;" -->
+                                            <a href="javascript:void(0)" role="button" data-slide="next" class="cardLabel_interviews noScroll" @click="nextItemProject"
+                                                style="color:#697786;">
+                                                <img src="../assets/icons/right_arrow.png"
+                                                        alt="next" width="15px">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-show="currentTab.name === 'work'" class="work-section">
+                                <!-- work section -->
+                                <v-row align="center" class="titleTabSection">
+                                    <v-col lg="12">
+                                        <h3 class="name-section">{{currentTab.name}}
+                                            <img :src="getIconSrc(currentTab.name+'2')">
+                                        </h3>
+                                    </v-col>
+                                </v-row>
+                                <div class="row wrap-section">
+                                    <div class="col-lg-12 educationSection">
+                                        <div class="aboutText" id="hold_content">
+                                            <div class="row" v-for="(work, index) in worksHistory" :key="index + 'V'">
+                                                <div class="col-md-12 aboutSubText">
+                                                    <div class="year">
+                                                        <span class="work pl-0">
+                                                            {{getFullYear(work.date_from)}}
+                                                            <span v-if="work.is_currently_working">-Now </span>
+                                                            <span v-else>&amp;{{getFullYear(work.date_to)}}</span>
+                                                        </span>
+                                                    </div>
+                                                    <div class="title work d-flex">
+                                                        <span class="seduHeader">
+                                                            {{work.job_title}}
+                                                        </span>
+                                                    </div>
+                                                    <div class="desc">{{work.job_description}}</div>
+                                                </div>
 
-                                                        <div class="workCard"
-                                                            style="margin:10px; margin-bottom: 0px;">
-                                                            <div class="workImg">
-                                                                <a href="javascript:void(0)"
-                                                                style="outline: none;"
-                                                                data-toggle="modal"
-                                                                :data-target="'#project_modal_'+project.id"
-                                                                @click="loadHDImage(project.id)">
+                                                <!-- related projects list -->
 
-                                                                    <vue-load-image
-                                                                            class="d-flex justify-content-center align-items-center">
-                                                                        <img :src="getImageSrc(project.mainImage)"
-                                                                            alt="" width="260" slot="image">
-                                                                        <img alt="" slot="preloader"
-                                                                            src="/images/spinner-load.gif"
-                                                                            style="width: 100px; height: 100px;"/>
-                                                                    </vue-load-image>
-                                                                </a>
-                                                            </div>
-                                                            <div class="workTitle">
-                                                                <div class="row">
-                                                                    <div class="col-md-10 col-9">
-                                                                        {{project.projectName}}
-                                                                    </div>
-                                                                    <a class="col-md-1 col-1"
-                                                                    href="javascript:void(0)"
+                                                <!-- portfolio section -->
+                                                <div class="w-100">
+                                                    <slick class="projectsSection" ref="slickSlide" :id="work.id"
+                                                        :options="slickOptions">
+                                                        <div v-for="(project,index) in work.projects"
+                                                            :key="index + 'A'">
+                                                            <!-- class="d-flex justify-content-center" style="height: 250px !important; padding: 0 2px 0 2px; overflow: hidden;" -->
+
+                                                            <div class="workCard"
+                                                                style="margin:10px; margin-bottom: 0px;">
+                                                                <div class="workImg">
+                                                                    <a href="javascript:void(0)"
+                                                                    style="outline: none;"
                                                                     data-toggle="modal"
                                                                     :data-target="'#project_modal_'+project.id"
-                                                                    style="outline: none; margin-left: 16px;">
-                                                                        <img src="/images/newResume/link.png"
-                                                                            alt="view work">
+                                                                    @click="loadHDImage(project.id)">
+
+                                                                        <vue-load-image
+                                                                                class="d-flex justify-content-center align-items-center">
+                                                                            <img :src="getImageSrc(project.mainImage)"
+                                                                                alt="" width="260" slot="image">
+                                                                            <img alt="" slot="preloader"
+                                                                                src="/images/spinner-load.gif"
+                                                                                style="width: 100px; height: 100px;"/>
+                                                                        </vue-load-image>
                                                                     </a>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <!--<div>-->
-                                                        <!--<a @click="loadHDImage(project.id)" href="javascript:void(0)"   data-toggle="modal" :data-target="'#project_modal_'+project.id" style="outline:0; " >-->
-                                                        <!--<vue-load-image>-->
-                                                        <!--<img :src="getResizedImage(project.mainImage)" alt="" width="100%" slot="image" height="auto" style="min-height:250px; border-radius:10px;">-->
-                                                        <!--<img  alt="" slot="preloader" src="/images/spinner-load.gif"/>-->
-                                                        <!--</vue-load-image>-->
-                                                        <!--</a>-->
-                                                        <!--</div>-->
-                                                    </div>
-                                                </slick>
-
-                                                <div class="row carouselControls" style="width: 100%;"
-                                                    v-show="work.projects.length > 0">
-                                                    <div class=" col-12 text-center NoDecor">
-                                                        <a href="javascript:void(0)"
-                                                        class="cardLabel_interviews noScroll"
-                                                        @click="slidePrev(index)"
-                                                        style="color:#697786;">
-                                                            <img src="../assets/icons/left_arrow.png"
-                                                                alt="prev" width="15px">
-                                                        </a>
-
-                                                        <span class="jobTitle" style="padding: 0 5px 0 5px"> <span>{{slides[index].number}}</span> / <span> {{calculateNumberOfRelatedSlides( work.projects.length)}} </span></span>
-
-                                                        <a href="javascript:void(0)" role="button" data-slide="next"
-                                                        class="cardLabel_interviews noScroll"
-                                                        @click="slideNext(index,work.projects.length)"
-                                                        style="color:#697786;">
-                                                            <img src="../assets/icons/right_arrow.png"
-                                                                alt="next" width="15px">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- end of portfolio section -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <v-col v-show="showReadMore" lg="12" justify="center" class="readMore">
-                                    <a href="javascript:void(0)" role="button" @click="showTextExpanded('aboutText')">
-                                        <img src="../assets/icons/icon-arrowdown.png"> 
-                                    </a>
-                                </v-col>
-                            </div>
-                        </div>
-                        <div v-show="currentTab.name === 'skills'" class="skills-section">
-                            <v-row class="wrap-section">
-                                <v-col lg="12" class="educationSection">
-                                    <div id="nav-taps-resume">                                    
-                                        <v-tabs v-model="tabber" background-color="transparent" centered :show-arrows="isMobile()" :center-active="isMobile()">
-                                            <v-tab :href="'#languagesTab' + freelancer.id" :ripple="false">
-                                                Programing Languages
-                                            </v-tab>
-                                            <v-tab :href="'#databases' + freelancer.id" :ripple="false">
-                                                Frameworks /<br/>Databases
-                                            </v-tab>
-                                            <v-tab :href="'#skillsTab' + freelancer.id" :ripple="false">
-                                                Design Skills
-                                            </v-tab>
-                                            <v-tab :href="'#software' + freelancer.id" :ripple="false">
-                                                Software
-                                            </v-tab>
-                                        </v-tabs>
-                                        <v-tabs-items v-model="tabber">
-                                            <v-tab-item :value="'languagesTab' + freelancer.id">
-                                                <div class="row">
-                                                    <div class="col-md-12 px-8 text-center">
-                                                        <div class="d-flex items-skills">
-                                                            <div v-for="(skill,index) in skills" :key="index"
-                                                                v-show="skill.type === 'programming'"
-                                                                class="skills">
-                                                                <!-- skill -->
-                                                                <div class="skill text-left">
-                                                                    <!-- title -->
-                                                                    <div class="skill-title">
-                                                                        <img style="padding-bottom: 3px;"
-                                                                            src="../assets/icons/icon-illustrator.png"
-                                                                            alt="skill" :id="'skillImage_' + skill.id">
-                                                        
+                                                                <div class="workTitle">
+                                                                    <div class="row">
+                                                                        <div class="col-md-10 col-9">
+                                                                            {{project.projectName}}
+                                                                        </div>
+                                                                        <a class="col-md-1 col-1"
+                                                                        href="javascript:void(0)"
+                                                                        data-toggle="modal"
+                                                                        :data-target="'#project_modal_'+project.id"
+                                                                        style="outline: none; margin-left: 16px;">
+                                                                            <img src="/images/newResume/link.png"
+                                                                                alt="view work">
+                                                                        </a>
                                                                     </div>
-                                                                
                                                                 </div>
-                                                                <!-- #skill -->
                                                             </div>
+
+                                                            <!--<div>-->
+                                                            <!--<a @click="loadHDImage(project.id)" href="javascript:void(0)"   data-toggle="modal" :data-target="'#project_modal_'+project.id" style="outline:0; " >-->
+                                                            <!--<vue-load-image>-->
+                                                            <!--<img :src="getResizedImage(project.mainImage)" alt="" width="100%" slot="image" height="auto" style="min-height:250px; border-radius:10px;">-->
+                                                            <!--<img  alt="" slot="preloader" src="/images/spinner-load.gif"/>-->
+                                                            <!--</vue-load-image>-->
+                                                            <!--</a>-->
+                                                            <!--</div>-->
+                                                        </div>
+                                                    </slick>
+
+                                                    <div class="row carouselControls" style="width: 100%;"
+                                                        v-show="work.projects.length > 0">
+                                                        <div class=" col-12 text-center NoDecor">
+                                                            <a href="javascript:void(0)"
+                                                            class="cardLabel_interviews noScroll"
+                                                            @click="slidePrev(index)"
+                                                            style="color:#697786;">
+                                                                <img src="../assets/icons/left_arrow.png"
+                                                                    alt="prev" width="15px">
+                                                            </a>
+
+                                                            <span class="jobTitle" style="padding: 0 5px 0 5px"> <span>{{slides[index].number}}</span> / <span> {{calculateNumberOfRelatedSlides( work.projects.length)}} </span></span>
+
+                                                            <a href="javascript:void(0)" role="button" data-slide="next"
+                                                            class="cardLabel_interviews noScroll"
+                                                            @click="slideNext(index,work.projects.length)"
+                                                            style="color:#697786;">
+                                                                <img src="../assets/icons/right_arrow.png"
+                                                                    alt="next" width="15px">
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </v-tab-item>
-                                            <v-tab-item :value="'databases' + freelancer.id">
-                                                <div class="row">
-                                                    <div class="col-md-12 px-8 text-center">
-                                                        <div class="d-flex items-skills">
-                                                            <div v-for="(skill,index) in skills" :key="index"
-                                                                v-show="skill.type === 'frameworks'"
-                                                                class="skills">
-                                                                <!-- skill -->
-                                                                <div class="skill text-left">
-                                                                    <!-- title -->
-                                                                    <div class="skill-title">
-                                                                        <img style="padding-bottom: 3px;"
-                                                                            src="../assets/icons/icon-premier.png"
-                                                                            alt="skill" :id="'skillImage_' + skill.id">
-                                                        
-                                                                    </div>
-                                                                
-                                                                </div>
-                                                                <!-- #skill -->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </v-tab-item>
-                                            <v-tab-item :value="'skillsTab' + freelancer.id">
-                                                <div class="row">
-                                                    <div class="col-md-12 px-8 text-center">
-                                                        <div class="d-flex items-skills">
-                                                            <div v-for="(skill,index) in skills" :key="index"
-                                                                v-show="skill.type === 'design'"
-                                                                class="skills">
-                                                                <!-- skill -->
-                                                                <div class="skill text-left">
-                                                                    <!-- title -->
-                                                                    <div class="skill-title">
-                                                                        
-                                                                        <img style="padding-bottom: 3px;"
-                                                                            src="../assets/icons/icon-experience.png"
-                                                                            alt="skill" :id="'skillImage_' + skill.id">
-                                                                        
-                                                        
-                                                                    </div>
-                                                                
-                                                                </div>
-                                                                <!-- #skill -->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </v-tab-item>
-                                            <v-tab-item :value="'software' + freelancer.id">
-                                                <div class="row">
-                                                    <div class="col-md-12 px-8 text-center">
-                                                        <div class="d-flex items-skills">
-                                                            <div v-for="(skill,index) in skills" :key="index"
-                                                                v-show="skill.type === 'software'"
-                                                                class="skills">
-                                                                <!-- skill -->
-                                                                <div class="skill text-left">
-                                                                    <!-- title -->
-                                                                    <div class="skill-title">
-                                                                        <img style="padding-bottom: 3px;"
-                                                                            src="../assets/icons/icon-aftereffects.png"
-                                                                            alt="skill" :id="'skillImage_' + skill.id">
-                                                        
-                                                                    </div>
-                                                                
-                                                                </div>
-                                                                <!-- #skill -->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </v-tab-item>
-                                        </v-tabs-items>
-                                    </div>
-                                </v-col>
-                            </v-row>                         
-                        </div>
-                        <div v-show="currentTab.name === 'education'" class="education-section">
-                            <!-- education section -->
-                            <v-row align="center" class="titleTabSection">
-                                <v-col lg="12">
-                                    <h3 class="name-section">{{currentTab.name}}
-                                        <img :src="getIconSrc(currentTab.name+'2')">
-                                    </h3>
-                                </v-col>
-                            </v-row>
-                            <div class="row wrap-section">
-                                <div class="col-lg-12 educationSection">
-                                    <div class="aboutText">
-                                        <div class="row" v-for="(education, index) in educationsHistory"
-                                            :key="index + 'E'">
-                                            <div class="col-md-12 aboutSubText">
-                                                <div class="year">
-                                                    <span class="work">
-                                                        {{getFullYear(education.date_from)}}
-                                                        <span v-if="education.is_currently_learning">-Now </span>
-                                                        <span v-else>&amp;{{getFullYear(education.date_to)}}</span>
-                                                    </span>
-                                                </div>
-                                                <div class="title work d-flex">
-                                                    <span class="seduHeader">
-                                                        {{education.school_title}}
-                                                    </span>
-                                                </div>
-                                                <div class="desc">{{education.description}}</div>
+
+                                                <!-- end of portfolio section -->
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <v-col v-show="showReadMore" lg="12" justify="center" class="readMore">
-                                    <a href="javascript:void(0)" role="button" @click="showTextExpanded('aboutText')">
-                                        <img src="../assets/icons/icon-arrowdown.png">
-                                    </a>
-                                </v-col>
-                            </div>
-                        </div>
-                        
-                        <!-- Section content tabsssss --->
-                    </div>
-                </transition>
-                <transition name="slide-fade-left">
-                    <div v-show="hire">
-                        <div style="border-top: 1px solid #EBEDEF; ">
-                            <div class="row">
-                                <div class="offset-md-4 col-md-4 col-12">
-                                    <div class="hireText">
-                                        Select the number of Hours you need per week:
-                                    </div>
-                                    <div class="hoursBtn NoDecor">
-                                        <a href="javascript:void(0)">
-                                            <img src="../assets/icons/minus.png"
-                                                style="width: 18px; padding-right: 8px;" alt="minus"
-                                                @click="subtractHours">
+                                    <v-col v-show="showReadMore" lg="12" justify="center" class="readMore">
+                                        <a href="javascript:void(0)" role="button" @click="showTextExpanded('aboutText')">
+                                            <img src="../assets/icons/icon-arrowdown.png"> 
                                         </a>
-                                        <span>{{hours}}</span> hours
-                                        <a href="javascript:void(0)">
-                                            <img src="../assets/icons/plus.png"
-                                                style="width: 18px; padding-left: 8px;" alt="plus"
-                                                @click="addHours">
-                                        </a>
-                                    </div>
+                                    </v-col>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="offset-md-4 col-md-4 col-12">
-                                    <div class="hireText">
-                                        How many weeks would you like to book for?
-                                    </div>
-                                    <div class="hoursBtn NoDecor">
-                                        <a href="javascript:void(0)">
-                                            <img src="../assets/icons/minus.png"
-                                                style="width: 18px; padding-right: 8px;" alt="minus"
-                                                @click="subtractWeeks">
-                                        </a>
-                                        <span>{{weeks}}</span> weeks
-                                        <a href="javascript:void(0)">
-                                            <img src="../assets/icons/plus.png"
-                                                style="width: 18px; padding-left: 8px;" alt="plus"
-                                                @click="addWeeks">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row" style="padding-top:50px; padding-bottom: 50px;">
-                                <div class="offset-md-2 col-12 col-md-8" style="border-top: 1px solid #EBEDEF;">
-                                    <div class="row">
-                                        <div class="col-md-2 col-4 text-left jobTitle"
-                                            style="font-size: 12px; color: #30323D;">
-                                            Monthly rate
+                            <div v-show="currentTab.name === 'skills'" class="skills-section">
+                                <v-row class="wrap-section">
+                                    <v-col lg="12" class="educationSection">
+                                        <div id="nav-taps-resume">                                    
+                                            <v-tabs v-model="tabber" background-color="transparent" centered :show-arrows="isMobile()" :center-active="isMobile()">
+                                                <v-tab :href="'#languagesTab' + freelancer.id" :ripple="false">
+                                                    Programing Languages
+                                                </v-tab>
+                                                <v-tab :href="'#databases' + freelancer.id" :ripple="false">
+                                                    Frameworks /<br/>Databases
+                                                </v-tab>
+                                                <v-tab :href="'#skillsTab' + freelancer.id" :ripple="false">
+                                                    Design Skills
+                                                </v-tab>
+                                                <v-tab :href="'#software' + freelancer.id" :ripple="false">
+                                                    Software
+                                                </v-tab>
+                                            </v-tabs>
+                                            <v-tabs-items v-model="tabber">
+                                                <v-tab-item :value="'languagesTab' + freelancer.id">
+                                                    <div class="row">
+                                                        <div class="col-md-12 px-8 text-center">
+                                                            <div class="d-flex items-skills">
+                                                                <div v-for="(skill,index) in skills" :key="index"
+                                                                    v-show="skill.type === 'programming'"
+                                                                    class="skills">
+                                                                    <!-- skill -->
+                                                                    <div class="skill text-left">
+                                                                        <!-- title -->
+                                                                        <div class="skill-title">
+                                                                            <img style="padding-bottom: 3px;"
+                                                                                src="../assets/icons/icon-illustrator.png"
+                                                                                alt="skill" :id="'skillImage_' + skill.id">
+                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+                                                                    <!-- #skill -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </v-tab-item>
+                                                <v-tab-item :value="'databases' + freelancer.id">
+                                                    <div class="row">
+                                                        <div class="col-md-12 px-8 text-center">
+                                                            <div class="d-flex items-skills">
+                                                                <div v-for="(skill,index) in skills" :key="index"
+                                                                    v-show="skill.type === 'frameworks'"
+                                                                    class="skills">
+                                                                    <!-- skill -->
+                                                                    <div class="skill text-left">
+                                                                        <!-- title -->
+                                                                        <div class="skill-title">
+                                                                            <img style="padding-bottom: 3px;"
+                                                                                src="../assets/icons/icon-premier.png"
+                                                                                alt="skill" :id="'skillImage_' + skill.id">
+                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+                                                                    <!-- #skill -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </v-tab-item>
+                                                <v-tab-item :value="'skillsTab' + freelancer.id">
+                                                    <div class="row">
+                                                        <div class="col-md-12 px-8 text-center">
+                                                            <div class="d-flex items-skills">
+                                                                <div v-for="(skill,index) in skills" :key="index"
+                                                                    v-show="skill.type === 'design'"
+                                                                    class="skills">
+                                                                    <!-- skill -->
+                                                                    <div class="skill text-left">
+                                                                        <!-- title -->
+                                                                        <div class="skill-title">
+                                                                            
+                                                                            <img style="padding-bottom: 3px;"
+                                                                                src="../assets/icons/icon-experience.png"
+                                                                                alt="skill" :id="'skillImage_' + skill.id">
+                                                                            
+                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+                                                                    <!-- #skill -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </v-tab-item>
+                                                <v-tab-item :value="'software' + freelancer.id">
+                                                    <div class="row">
+                                                        <div class="col-md-12 px-8 text-center">
+                                                            <div class="d-flex items-skills">
+                                                                <div v-for="(skill,index) in skills" :key="index"
+                                                                    v-show="skill.type === 'software'"
+                                                                    class="skills">
+                                                                    <!-- skill -->
+                                                                    <div class="skill text-left">
+                                                                        <!-- title -->
+                                                                        <div class="skill-title">
+                                                                            <img style="padding-bottom: 3px;"
+                                                                                src="../assets/icons/icon-aftereffects.png"
+                                                                                alt="skill" :id="'skillImage_' + skill.id">
+                                                            
+                                                                        </div>
+                                                                    
+                                                                    </div>
+                                                                    <!-- #skill -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </v-tab-item>
+                                            </v-tabs-items>
                                         </div>
-                                        <div class="col-md-2 col-3 offset-5 offset-md-8 text-right jobTitle"
-                                            style="font-weight: bold;font-size: 12px; color: #30323D;">
-                                            {{freelancer.user_data.salary_month}} $
+                                    </v-col>
+                                </v-row>                         
+                            </div>
+                            <div v-show="currentTab.name === 'education'" class="education-section">
+                                <!-- education section -->
+                                <v-row align="center" class="titleTabSection">
+                                    <v-col lg="12">
+                                        <h3 class="name-section">{{currentTab.name}}
+                                            <img :src="getIconSrc(currentTab.name+'2')">
+                                        </h3>
+                                    </v-col>
+                                </v-row>
+                                <div class="row wrap-section">
+                                    <div class="col-lg-12 educationSection">
+                                        <div class="aboutText">
+                                            <div class="row" v-for="(education, index) in educationsHistory"
+                                                :key="index + 'E'">
+                                                <div class="col-md-12 aboutSubText">
+                                                    <div class="year">
+                                                        <span class="work">
+                                                            {{getFullYear(education.date_from)}}
+                                                            <span v-if="education.is_currently_learning">-Now </span>
+                                                            <span v-else>&amp;{{getFullYear(education.date_to)}}</span>
+                                                        </span>
+                                                    </div>
+                                                    <div class="title work d-flex">
+                                                        <span class="seduHeader">
+                                                            {{education.school_title}}
+                                                        </span>
+                                                    </div>
+                                                    <div class="desc">{{education.description}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <v-col v-show="showReadMore" lg="12" justify="center" class="readMore">
+                                        <a href="javascript:void(0)" role="button" @click="showTextExpanded('aboutText')">
+                                            <img src="../assets/icons/icon-arrowdown.png">
+                                        </a>
+                                    </v-col>
+                                </div>
+                            </div>
+                            
+                            <!-- Section content tabsssss --->
+                        </div>
+                    </transition>
+                    <transition name="slide-fade-left">
+                        <div v-show="hire">
+                            <div style="border-top: 1px solid #EBEDEF; ">
+                                <div class="row">
+                                    <div class="offset-md-4 col-md-4 col-12">
+                                        <div class="hireText">
+                                            Select the number of Hours you need per week:
+                                        </div>
+                                        <div class="hoursBtn NoDecor">
+                                            <a href="javascript:void(0)">
+                                                <img src="../assets/icons/minus.png"
+                                                    style="width: 18px; padding-right: 8px;" alt="minus"
+                                                    @click="subtractHours">
+                                            </a>
+                                            <span>{{hours}}</span> hours
+                                            <a href="javascript:void(0)">
+                                                <img src="../assets/icons/plus.png"
+                                                    style="width: 18px; padding-left: 8px;" alt="plus"
+                                                    @click="addHours">
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row" style="border-top: 1px solid #EBEDEF;">
-                                <div class="col-md-4 offset-md-2 col-12 NoDecor" style="padding-top: 17px;">
-                                    <a href="javascript:void(0)"
-                                    class="justify-content-center d-flex btn-block cancelBtn"
-                                    @click="hideHireSection">Cancel Booking</a>
+                                <div class="row">
+                                    <div class="offset-md-4 col-md-4 col-12">
+                                        <div class="hireText">
+                                            How many weeks would you like to book for?
+                                        </div>
+                                        <div class="hoursBtn NoDecor">
+                                            <a href="javascript:void(0)">
+                                                <img src="../assets/icons/minus.png"
+                                                    style="width: 18px; padding-right: 8px;" alt="minus"
+                                                    @click="subtractWeeks">
+                                            </a>
+                                            <span>{{weeks}}</span> weeks
+                                            <a href="javascript:void(0)">
+                                                <img src="../assets/icons/plus.png"
+                                                    style="width: 18px; padding-left: 8px;" alt="plus"
+                                                    @click="addWeeks">
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-4 col-12 NoDecor whiteOnHover"
-                                    style="padding-top: 17px; padding-bottom: 30px;">
-                                    <a class="btn d-flex btn-block summaryBtn"
-                                    :href="'/stripe/hire?freelancerID=' + freelancer.id + '&hours=' + hours + '&weeks=' + weeks ">Booking
-                                        Summary</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </transition>
-                <transition name="slide-fade-left">
-                    <!--references content-->
-                    <div v-show="showReferences">
-                        <div class="row" style="border-bottom: 1px solid whitesmoke; padding-bottom: 25px;">
-                            <div class="col-lg-11 col-11 text-left" style="padding: 25px 0 0 20px;">
-                                <span>
-                                    <img src="/images/comment-512.png"
-                                        alt="" style="padding-right: 14px; width: 34px;">
-                                    <span class="audioText"
-                                        style="color: #4E75E8;">  References & Testimonials</span>
-                                </span>
-                            </div>
-                            <div class="col-lg-1 col-1 text-center NoDecor" style="padding: 24px 0 0 0;">
-                                <a href="javascript:void(0)" @click="hideReferencesSection"
-                                class="audioText audioDismiss" style="color: #4E75E8; font-size: large;"> x </a>
-                            </div>
-                        </div>
-                        <div style="padding-bottom: 35px;">
 
-                            <div class="row" v-for="(reference, index) in references" :key="index + 'R'">
-                                <div class="col-md-12 aboutSubText">
-                                    <div class="title work">
-                                        <span class="circle"></span>
-                                        {{reference.title}}
+                                <div class="row" style="padding-top:50px; padding-bottom: 50px;">
+                                    <div class="offset-md-2 col-12 col-md-8" style="border-top: 1px solid #EBEDEF;">
+                                        <div class="row">
+                                            <div class="col-md-2 col-4 text-left jobTitle"
+                                                style="font-size: 12px; color: #30323D;">
+                                                Monthly rate
+                                            </div>
+                                            <div class="col-md-2 col-3 offset-5 offset-md-8 text-right jobTitle"
+                                                style="font-weight: bold;font-size: 12px; color: #30323D;">
+                                                {{freelancer.user_data.salary_month}} $
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="year">
-                                        <span class="work">
-                                            {{reference.company}}
-                                        </span>
+                                </div>
+                                <div class="row" style="border-top: 1px solid #EBEDEF;">
+                                    <div class="col-md-4 offset-md-2 col-12 NoDecor" style="padding-top: 17px;">
+                                        <a href="javascript:void(0)"
+                                        class="justify-content-center d-flex btn-block cancelBtn"
+                                        @click="hideHireSection">Cancel Booking</a>
                                     </div>
-                                    <div class="year">
-                                        <span class="work">
-                                            {{reference.email}}
-                                        </span>
+                                    <div class="col-md-4 col-12 NoDecor whiteOnHover"
+                                        style="padding-top: 17px; padding-bottom: 30px;">
+                                        <a class="btn d-flex btn-block summaryBtn"
+                                        :href="'/stripe/hire?freelancerID=' + freelancer.id + '&hours=' + hours + '&weeks=' + weeks ">Booking
+                                            Summary</a>
                                     </div>
-                                    <div class="year">
-                                        <span class="work">
-                                            {{reference.phone}}
-                                        </span>
-                                    </div>
-                                    <div class="desc">{{reference.details}}</div>
                                 </div>
                             </div>
-
                         </div>
-                    </div>
-                </transition>
-            </v-col>           
-        </v-row>
-    </v-container>
+                    </transition>
+                    <transition name="slide-fade-left">
+                        <!--references content-->
+                        <div v-show="showReferences">
+                            <div class="row" style="border-bottom: 1px solid whitesmoke; padding-bottom: 25px;">
+                                <div class="col-lg-11 col-11 text-left" style="padding: 25px 0 0 20px;">
+                                    <span>
+                                        <img src="/images/comment-512.png"
+                                            alt="" style="padding-right: 14px; width: 34px;">
+                                        <span class="audioText"
+                                            style="color: #4E75E8;">  References & Testimonials</span>
+                                    </span>
+                                </div>
+                                <div class="col-lg-1 col-1 text-center NoDecor" style="padding: 24px 0 0 0;">
+                                    <a href="javascript:void(0)" @click="hideReferencesSection"
+                                    class="audioText audioDismiss" style="color: #4E75E8; font-size: large;"> x </a>
+                                </div>
+                            </div>
+                            <div style="padding-bottom: 35px;">
+
+                                <div class="row" v-for="(reference, index) in references" :key="index + 'R'">
+                                    <div class="col-md-12 aboutSubText">
+                                        <div class="title work">
+                                            <span class="circle"></span>
+                                            {{reference.title}}
+                                        </div>
+                                        <div class="year">
+                                            <span class="work">
+                                                {{reference.company}}
+                                            </span>
+                                        </div>
+                                        <div class="year">
+                                            <span class="work">
+                                                {{reference.email}}
+                                            </span>
+                                        </div>
+                                        <div class="year">
+                                            <span class="work">
+                                                {{reference.phone}}
+                                            </span>
+                                        </div>
+                                        <div class="desc">{{reference.details}}</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </transition>
+                </v-col>           
+            </v-row>
+        </v-container>
+    </div>
 </template>
 
 <script>
@@ -701,6 +703,7 @@
     import VueLoadImage from 'vue-load-image';
 
     export default {
+        name: 'Theme2',
         props: ['freelancer', 'hire', 'search'],
         components: {
             'vue-load-image': VueLoadImage,
