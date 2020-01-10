@@ -169,7 +169,6 @@
         padding-top: 18px;
         padding-bottom: 20px;
         border-bottom: 1px solid #E5E5E5;
-        max-width: 900px;
     }
 
     .imageCol{
