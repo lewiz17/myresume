@@ -12,10 +12,6 @@ window.$ = window.jQuery = require("jquery");
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
 
-// Vue.use(BootstrapVue)
-
-Vue.use(vuetify);
-
 new Vue({
   router,
   store,

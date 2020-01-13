@@ -7,7 +7,7 @@
                         <v-row class="head-section">
                             <v-col lg="2" md="2" class="imageCol">
                                 <span class="profile-img" v-bind:style="{ backgroundImage: 'url(' + freelancer.user_data.profile_picture + ')' }" /> 
-                                <a href="" class="chat-option"><v-icon>mdi-message-text</v-icon></a>
+                                <a href="#" class="chat-option" @click.prevent="dialogMessage = true"><v-icon>mdi-message-text</v-icon></a>
                             </v-col>
                             <v-col lg="2" md="2">
                                <div class="head-name">{{freelancer.user_data.first_name}}</div>
@@ -19,16 +19,16 @@
                                     <a href="" alt="Instagram" title="Instagram"><v-icon>mdi-instagram</v-icon></a>
                                </div>
                             </v-col>
-                            <v-col lg="4" md="2" class="interviewSection">
+                            <v-col lg="5" class="interviewSection">
                                 <span class="title-medium">View interviews</span>
                                 <div class="option-wrap">
-                                    <a href="" class="btn-default"><v-icon>mdi-microphone</v-icon>Audio &amp; Text</a>
-                                    <a href="" class="btn-default"><v-icon>mdi-play-circle</v-icon>Video</a>
+                                    <a href="#" class="btn-default" @click.prevent="dialogAudio = true"><v-icon>mdi-microphone</v-icon>Audio &amp; Text</a>
+                                    <a href="#" class="btn-default" @click.prevent="dialogVideo = true"><v-icon>mdi-play-circle</v-icon>Video</a>
                                 </div>
                             </v-col>
-                            <v-col lg="3" md="2" class="rateSection">
+                            <v-col lg="3" class="rateSection">
                                 <v-row class="rate-wrap">
-                                    <v-col lg="5">
+                                    <v-col lg="4">
                                         <span class="price">
                                             ${{Math.ceil(freelancer.agent.hourly_rate)}}
                                         </span>
@@ -36,7 +36,7 @@
                                             Hourly rate
                                         </span>
                                     </v-col>
-                                    <v-col lg="5">
+                                    <v-col lg="6">
                                         <span class="hours">
                                            {{Math.ceil(freelancer.user_data.available_hours_per_week)}} hrs
                                         </span>
@@ -45,16 +45,12 @@
                                         </span>
                                     </v-col>
                                 </v-row>
-                                <v-row>
+                                <v-row class="mt-5">
                                     <v-col lg="10">
-                                        <a href="" class="btn-action">Hire Me</a>
+                                        <a href="#" class="btn-action" @click.prevent="dialogHireme = true">Hire Me</a>
                                     </v-col>    
                                 </v-row>                      
-                                    
-                            
-                                
                             </v-col>
-    
                         </v-row>
                     </div>
                     <div class="showOnlyOnsm">
@@ -62,60 +58,156 @@
 
                         </div>            
                     </div>
-                    <v-tabs
-                        class="main-tabs_theme3"
-                        v-model="activeTab"
-                        centered
-                        :center-active="isMobile()"
-                        :slider-color="colorTab"
-                        :hide-slider="setIndicator()"
-                    >   
-                        <v-tab
-                            v-for="(tab,index) in freelancer.agent.resume_tabs"
-                            :key="index"
-                            :href="`#tab-${index}`"
-                            @click="setTab(tab)"
-                            :ripple="false"
+                    <div class="hold-tabs">
+                        <v-tabs
+                            class="main-tabs_theme3"
+                            v-model="activeTab"
+                            :slider-color="colorTab"
                         >
-                            <v-icon>mdi-{{getTabIcon(tab.name)}}</v-icon>
-                            {{getTabName(tab.label)}}                                   
-                        </v-tab>                       
-                    </v-tabs>
+                            <v-tab
+                                v-for="(tab,index) in freelancer.agent.resume_tabs"
+                                :key="index"
+                                :href="`#tab-${index}`"
+                                @click="setTab(tab)"
+                                :ripple="false"
+                            >
+                                <v-icon>mdi-{{getTabIcon(tab.name)}}</v-icon>
+                                {{getTabName(tab.label)}}                                   
+                            </v-tab>                       
+                        </v-tabs>
+                    </div>                    
                     <div class="hold-contents">
                         <v-tabs-items v-model="activeTab">
-                            <v-tab-item class="portfolio-section" value="tab-0" transition="false" reverse-transition="false">
-                                <v-row>
-                                    <v-col lg="6">
+                            <v-tab-item class="portfolio-section" value="tab-0" transition="fade-transition" reverse-transition="fade-transition">
+                                <v-row class="portfolio-wrap"> 
+                                    <v-col lg="6" sm="12" cols="12">
                                         <div class="box-photo">
                                             <img src="@/assets/imgs/resume3/picture1.png"/>
                                         </div>
                                     </v-col>
-                                    <v-col lg="6">
-                                        <v-row>
-                                            <v-col>
-                                                <div class="box-photo">
-                                                    <img src="@/assets/imgs/resume3/picture2.png"/>
-                                                </div>
-                                            </v-col>
-                                        </v-row>
-                                        <v-row>
-                                            <v-col>
-                                                <div class="box-photo">
-                                                    <img src="@/assets/imgs/resume3/picture3.png"/>
-                                                </div>
-                                            </v-col>
-                                        </v-row>
+                                    <v-col lg="6" sm="12" cols="12">
+                                        <div class="box-photo">
+                                            <img src="@/assets/imgs/resume3/picture2.png"/>
+                                        </div>
+                                    
+                                        <div class="box-photo">
+                                            <img src="@/assets/imgs/resume3/picture3.png"/>
+                                        </div>
                                     </v-col>
                                 </v-row>
                             </v-tab-item>
-                            <v-tab-item class="work-section" value="tab-1" transition="false" reverse-transition="false">
-                                dfgsdfgsdf
+                            <v-tab-item class="work-section" value="tab-1" transition="fade-transition" reverse-transition="fade-transition">
+                                <v-timeline :reverse="reverseTimeline">
+                                    <v-timeline-item
+                                        v-for="(work, index) in worksHistory"
+                                        :key="index+'W'"
+                                        :small="smallTimeline"
+                                        color="#fff"
+                                        :hide-dot="false"                                        
+                                    >
+                                        <span slot="opposite">
+                                            {{getFullYear(work.date_from)}}
+                                            <span v-if="work.is_currently_working">- Present</span>
+                                            <span v-else>&nbsp;-&nbsp;{{getFullYear(work.date_to)}}</span>         
+                                        </span>
+                                        <v-card class="">
+                                            <v-card-title class="headline">{{work.job_title}}</v-card-title>
+                                            <v-card-text>{{work.job_description}}</v-card-text>
+                                        </v-card>
+                                    </v-timeline-item>
+                                </v-timeline>
                             </v-tab-item>
-                            <v-tab-item class="education-section" value="tab-2" transition="false" reverse-transition="false">
-                                fdsgsdfgsrtwert
+                            <v-tab-item class="education-section" value="tab-2" transition="fade-transition" reverse-transition="fade-transition">
+                                <v-timeline :reverse="reverseTimeline">
+                                    <v-timeline-item
+                                        v-for="(education, index) in educationsHistory"
+                                        :key="index + 'E'"
+                                        :small="smallTimeline"
+                                        :hide-dot="false"
+                                    >
+                                        <span slot="opposite">
+                                            {{getFullYear(education.date_from)}}
+                                            <span v-if="education.is_currently_learning">- Present</span>
+                                            <span v-else>&nbsp;-&nbsp;{{getFullYear(education.date_to)}}</span>        
+                                        </span>
+                                        <v-card class="">
+                                            <v-card-title class="headline">{{education.school_title}}</v-card-title>
+                                            <v-card-text>{{education.description}}</v-card-text>
+                                        </v-card>
+                                    </v-timeline-item>
+                                </v-timeline>
                             </v-tab-item>
-                            <v-tab-item class="skills-section" value="tab-3" transition="false" reverse-transition="false">
-                                5634563456
+                            <v-tab-item class="skills-section" value="tab-3" transition="fade-transition" reverse-transition="fade-transition">
+                                <v-row class="skills-wrap">
+                                    <v-col class="box-skill" cols="12" lg="4" sm="12">
+                                        <div class="logo-skill icon_ps">Ps</div>
+                                        <div class="info-skill">
+                                            <div class="head-skill">
+                                                <span class="nameSkill">Photoshop</span>
+                                                <span class="percentSkill">95%</span>
+                                            </div>
+                                            <v-progress-linear
+                                                buffer-value="100"
+                                                height="7px"
+                                                value="95"
+                                                color="#2E9EF5"
+                                                background-color="rgba(46, 158, 245, 0.25)"
+                                                :rounded="true"
+                                            ></v-progress-linear>
+                                        </div>
+                                    </v-col>
+                                    <v-col class="box-skill" cols="12" lg="4" sm="12">
+                                        <div class="logo-skill icon_ai">Ai</div>
+                                        <div class="info-skill">
+                                            <div class="head-skill">
+                                                <span class="nameSkill">Adobe Illustrator</span>
+                                                <span class="percentSkill">90%</span>
+                                            </div>
+                                            <v-progress-linear
+                                                buffer-value="100"
+                                                height="7px"
+                                                value="90"
+                                                color="#F4B400"
+                                                background-color="rgba(244, 180, 0, 0.25)"
+                                                :rounded="true"
+                                            ></v-progress-linear>
+                                        </div>
+                                    </v-col>
+                                    <v-col class="box-skill" cols="12" lg="4" sm="12">
+                                        <div class="logo-skill icon_xd">Xd</div>
+                                        <div class="info-skill">
+                                            <div class="head-skill">
+                                                <span class="nameSkill">Adobe XD</span>
+                                                <span class="percentSkill">85%</span>
+                                            </div>
+                                            <v-progress-linear
+                                                buffer-value="100"
+                                                height="7px"
+                                                value="85"
+                                                color="#E535AB"
+                                                background-color="rgba(229, 53, 171, 0.25)"
+                                                :rounded="true"
+                                            ></v-progress-linear>
+                                        </div>
+                                    </v-col>
+                                    <v-col class="box-skill" cols="12" lg="4" sm="12">
+                                        <div class="logo-skill icon_id">Id</div>
+                                        <div class="info-skill">
+                                            <div class="head-skill">
+                                                <span class="nameSkill">Adobe InDesign</span>
+                                                <span class="percentSkill">75%</span>
+                                            </div>
+                                            <v-progress-linear
+                                                :buffer-value="100"
+                                                height="7px"
+                                                value="75"
+                                                color="#FF00AB"
+                                                background-color="rgba(255, 0, 171, 0.25)"
+                                                :rounded="true"
+                                            ></v-progress-linear>
+                                        </div>
+                                    </v-col>
+                                </v-row>
                             </v-tab-item>                        
                         </v-tabs-items>
                     </div>
@@ -124,11 +216,124 @@
                 </v-col>
             </v-row>
         </v-container>
+        <v-dialog v-model="dialogMessage" persistent max-width="850" overlay-opacity="0.5" overlay-color="#202124">
+            <v-card class="form-wrap">
+                <v-form v-model="formMessage.valid" ref="formMessages" class="form-messages">
+                    <v-container>
+                        <v-row>
+                            <v-col lg="12">
+                                <v-text-field
+                                    v-model="formMessage.name"
+                                    :rules="formMessage.nameRules"
+                                    label="Name"
+                                    required
+                                    color="#202124"
+                                ></v-text-field>
+                            </v-col>
+                            <v-col lg="12">
+                                <v-text-field
+                                    v-model="formMessage.email"
+                                    :rules="formMessage.emailRules"
+                                    label="E-mail"
+                                    required
+                                    color="#202124"
+                                ></v-text-field>
+                            </v-col>
+                            <v-col lg="12">
+                                <v-textarea
+                                    filled
+                                    height="162"
+                                    :no-resize="true"
+                                    color="#202124"
+                                    label="Message"
+                                ></v-textarea>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-btn depressed small @click="submitForm" class="btn-send"><v-icon>mdi-message-text</v-icon>Send Message</v-btn>
+                            <v-btn text small @click="dialogMessage = false">Cancel</v-btn>
+                        </v-row>                        
+                    </v-container>                    
+                </v-form>
+            </v-card>
+        </v-dialog>
+        <v-dialog v-model="dialogAudio" persistent max-width="850" overlay-opacity="0.5" overlay-color="#202124" :class="checkMobile">
+             <v-card>
+                <v-card-actions>
+                    <v-icon class="close-icon" @click="dialogAudio = false || pauseAudio()">mdi-close</v-icon>
+                </v-card-actions>
+                <div class="player">
+                    <div class="hold-spectre" @click.prevent="!playing ? playAudio() : pauseAudio()">
+                        <img src="@/assets/icons/resume3/spectre.png" alt="">
+                    </div>
+                    <a @click.prevent="!playing ? playAudio() : pauseAudio()" title="Play/Pause" href="#">
+                        <v-icon v-if="!playing">mdi-play-circle</v-icon>
+                        <v-icon v-else>mdi-pause-circle</v-icon>
+                    </a>
+                    <audio style="display:none" ref="audioElem" id="audioElem" :src="require('@/'+freelancer.user_data.audio_transcription)" @ended="playing = !playing"></audio>
+                </div>
+            </v-card>
+        </v-dialog>
+        <v-dialog v-model="dialogVideo" persistent max-width="850" overlay-opacity="0.5" overlay-color="#202124">
+            <v-card>
+                <v-card-actions>
+                    <v-icon class="close-icon" @click="dialogVideo = false">mdi-close</v-icon>
+                </v-card-actions>
+                <div class="hold-video">
+                    <div class="poster-video" ref="videoPoster">
+                        <a href="#" @click.prevent="playVideo()">
+                            <v-icon>mdi-play-circle</v-icon>
+                        </a>                        
+                    </div>
+                    <video ref="videoElem" controls :src="require('@/'+freelancer.user_data.video_url)"></video>
+                </div>
+            </v-card>
+        </v-dialog>
+        <v-dialog v-model="dialogHireme" persistent max-width="850" overlay-opacity="0.5" overlay-color="#202124">
+            <v-card class="payment-wrap">
+                <v-card-actions>
+                    <v-icon class="close-icon" @click="dialogHireme = false">mdi-close</v-icon>
+                </v-card-actions>
+                <v-container>
+                    <h3>Select Payment Method :</h3>
+                    <v-row class="hold-payment">
+                        <v-col cols="12" lg="12">
+                            <v-radio-group v-model="radioGroup" :row="true" class="pay-method">
+                                <v-radio
+                                    color="#d8d8d8"
+                                    value="1"
+                                    name="opt-paypal"
+                                    off-icon="mdi-checkbox-blank-circle"
+                                    :ripple="false"
+                                >
+                                    
+                                </v-radio>
+                                <img src="@/assets/icons/resume3/icon-paypal.png" alt="">
+                                <v-radio
+                                    color="#d8d8d8"
+                                    value="2"
+                                    name="opt-payonner"
+                                    off-icon="mdi-checkbox-blank-circle"
+                                    :ripple="false"
+                                >  
+                                    
+                                </v-radio>
+                                <img src="@/assets/icons/resume3/icon-payonner.png" alt="">
+                            </v-radio-group>
+                            
+                        </v-col>
+                    </v-row> 
+                </v-container>                         
+                
+            </v-card>
+        </v-dialog>
+        
     </div>
 </template>
 <style lang="scss" scoped>
     @import '../../node_modules/roboto-fontface/css/roboto/roboto-fontface.css';
 
+    $max_wTheme : 1420px;
     $tab_OneColor : #D93025;
     $tab_TwoColor : #0F9D58;
     $tab_ThreeColor : #F4B400;
@@ -143,6 +348,7 @@
 
         .freelancerCard{
             width: 100%;
+            background: #F5F7F7;
         }
 
         &.hold_theme3{
@@ -150,32 +356,39 @@
                 justify-content: center;
                 display: flex;
                 align-items: center;
+                border-bottom: 1px solid #E5E5E5;
+                background: #ffffff;
             }
         }
 
     }
     
-
-
-
     .hold-contents{
         background: #F5F7F7;
+        overflow: hidden;
+        padding: 10px 0;
+        margin-top: 10px;
+        min-height: 100%;
+
         .v-tabs-items{
+            max-width: $max_wTheme;
+            margin: 0px auto;
             background: transparent;
         }
     }
     .head-section{
         align-items: center;
-        padding-top: 18px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid #E5E5E5;
+        padding-top: 25px;
+        padding-bottom: 60px;
+        max-width: $max_wTheme;
     }
 
     .imageCol{
         position: relative;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         display: flex;
+        max-width: 190px;
 
         .profile-img{
             width: 140px;
@@ -190,13 +403,14 @@
             bottom: -22px;
             width: 55px;
             height: 55px;
+            left: 20%;
             
             border-radius: 100%;
             text-decoration: none;  
             border: 5px solid #fff;
             background: #F1F3F4;
             justify-content: center;
-            display: inline-flex;
+            display: flex;
             align-items: center;
 
             i{
@@ -239,8 +453,21 @@
 
     .interviewSection{
         display: flex;
-        flex-wrap: wrap;
         justify-content: center;
+        align-items: center;
+        flex-flow: column;
+        margin-top: 20px;
+
+
+        border-left: 1px solid #E5E5E5;
+        border-right: 1px solid #E5E5E5;
+        .option-wrap{
+            margin-top: 25px;
+
+            .btn-default{
+                margin: 0 15px;
+            }
+        }
     }
 
     .rateSection{
@@ -249,16 +476,28 @@
         display: flex;
         align-items: center;
         .rate-wrap{
+
             .col{
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 flex-flow: column;
+
+                .price,.hours{
+                    font-size: 30px;
+                    font-family: 'Roboto-Bold';
+                    color: #202124;
+                }
+                .text_price,.text_hours{
+                    font-size: 16px;
+                    font-family: 'Roboto';
+                    color: #5F6368;
+                }
             }
         }
 
         >.row{
-            justify-content: center;
+            justify-content: flex-end;
 
             .col{
                 align-items: center;
@@ -269,13 +508,32 @@
     }
 
     
+    .hold-tabs{
+        box-shadow: 0px 3px 6px #d8d8d8;
+        background: #fff;
+
+        @media screen and (max-width: 769px) {
+            position: fixed;
+            width: 100%;
+            bottom: 0px;
+            z-index: 10;
+        }
+    }
+    
     .main-tabs_theme3{
+
+        max-width: $max_wTheme;
+        margin: 0px auto;
+
+       
+        
+
         .v-tab{
-            margin: 0 3%;
             text-transform: capitalize;
             font-size: 24px;
-            padding: 0;
             font-family: "Roboto-Medium";
+            padding: 0px;
+            margin: 0 6%;
 
             i{
                 margin-right: 30px;
@@ -336,6 +594,101 @@
             
         }
     }
+
+    .v-timeline{
+        padding-top: 0;
+
+        &.mobile__version{
+            &::before{
+                display: none;
+            }
+        }
+
+        &::before{
+            background: #d8d8d8 !important;
+        }
+        .v-timeline-item{
+            .v-card{
+                padding: 30px;
+
+                .headline{
+                    padding: 0;
+                    font-size: 18px;
+
+                    &::before{
+                        content: "";
+                        width: 40px;
+                        height: 40px;
+                        border: 3px solid #d8d8d8;
+                        border-radius: 100%;
+                        margin-right: 25px;
+                        
+                    }
+                }
+                .v-card__text{
+                    font-size: 12px;
+                    color: rgba(32, 33, 36, 0.5);
+                }
+                &::before{
+                    border: 0;
+                }
+                &::after{
+                    border: 0;
+                }
+            }
+
+            .v-timeline-item__opposite{
+                >span,span+span{
+                    font-size: 20px;
+                    color: #202124;
+                    opacity: .5;
+                }
+            }
+        }
+    }  
+    /** Icon timeline work */
+    .work-section{
+        .v-timeline{
+            .v-timeline-item{
+                .v-card{
+                    .headline{
+                        color: $tab_TwoColor;
+
+                        &::before{
+                            background: url('../assets/icons/resume3/icon-designer.png') no-repeat;
+                            background-position: center;
+                            background-size: 50%;
+                        }
+                    }
+                    .v-card__text{
+                        padding: 20px 0 0 60px;
+                    }
+                }
+            }
+        }
+    } 
+    /** Icon timeline education */
+    .education-section{
+        .v-timeline{
+            .v-timeline-item{
+                .v-card{
+                    .headline{
+                        color: $tab_ThreeColor;
+                        
+                        &::before{
+                            content: "";
+                            display: none;
+                        }
+                    }
+                    .v-card__text{
+                        padding: 20px 0 0 0px;
+                    }
+                }
+            }
+        }
+    } 
+
+
     .title-medium{
         font-size: 24px;
         font-family: 'Roboto-Medium';
@@ -357,6 +710,10 @@
         display: inline-block;
         margin: 0px 5px;
 
+        &:hover{
+            opacity: 0.8;
+        }
+
 
         i{
             margin-right: 10px;
@@ -375,46 +732,329 @@
         text-decoration: none;
         font-size: 20px;
         font-family: "Roboto";
+
+        &:hover{
+            opacity: 0.8;
+        }
+    }
+    .portfolio-wrap{
+
+        justify-content: space-between;
+
+        .col-12{
+            max-width: 700px;
+        }
+        
+        .box-photo{
+            padding: 16px 15px;
+            background: #fff;
+            box-shadow: 0px 3px 6px #d8d8d8;
+            margin-bottom: 20px;
+            display: flex;
+
+            img{
+                max-width: 100%;
+            }
+        }
+        @media screen and (max-width: 960px) {
+            .col-12{
+                max-width: 100%;
+            }
+
+            .box-photo{
+                img{
+                    width: 100%;
+                }
+            }
+        }
     }
 
-    .box-photo{
-        max-width: 700px;
-        max-height: 700px;
-        padding: 15px;
-        background: #fff;
-        box-shadow: 0 5px 10px 0px #ddd;
+    
 
-        img{
+    .skills-wrap{
+        
+        justify-content: space-between;
+
+        .box-skill{
+            display: flex;
+            background: #ffffff;
+            box-shadow: 0px 3px 6px #d8d8d8;
+            padding: 25px 0px 25px 50px;
+            margin-bottom: 2%;
+            align-self: stretch;
+            max-width: 460px;
+
+            .logo-skill{
+                width: 63px;
+                height: 63px;
+                border-radius: 100%;
+                background: #D8D8D8;
+                color: #fff;
+                text-align: center;
+                font-size: 24px;
+                line-height: 54px;
+                font-family: 'Roboto-Bold';
+                border: 5px solid #D8D8D8;
+
+                &.icon_ps{
+                    background: #242B74;
+                    border-color: #2E9EF5;
+                }
+                &.icon_ai{
+                    background: #202124;
+                    border-color: #F4B400;
+                }
+                &.icon_xd{
+                    background: #202124;
+                    border-color: #E535AB;
+                }
+                &.icon_id{
+                    background: #242B74;
+                    border-color: #FF00AB;
+                }
+            }
+
+            .info-skill{
+                margin-left: 30px;
+                width: 277px;
+                .head-skill{
+
+                    width: 100%;
+                    justify-content: space-between;
+                    display: flex;
+                    margin-bottom: 25px;
+
+                    >span{
+                        font-size: 20px;
+                        font-family: "Roboto";
+                        color: #202124;
+                    }
+                }
+            }
+
+
+            @media screen and (max-width: 960px) {
+                max-width: 100%;
+
+                .info-skill{
+                    width: 80%;
+                }
+            }
+        }
+    }
+
+    /** Modals styles */
+    .v-dialog{
+        .v-card{
+            padding-bottom: 80px;
+
+            &.form-wrap{
+                padding: 0;
+
+                .v-btn{
+                    &.btn-send{
+                        max-width: 207px;
+                        max-height: 48px;
+                        height: 48px;
+                        padding: 0 30px;
+                        background: #D93025;
+                        color: #fff;
+                        text-transform: capitalize;
+                        font-size: 16px;
+                        font-family: "Roboto";
+
+                        i{
+                            font-size: 26px;
+                            color: #fff;
+                            margin-right: 20px;
+                        }
+                    }
+
+                    padding: 0 30px;
+                    max-height: 48px;
+                    height: 48px;
+                    color: #5F6368;
+                    text-transform: capitalize;
+                    font-size: 16px;
+                    font-family: "Roboto";
+
+                }
+            }
+
+            .v-card__actions{
+                padding: 30px;
+                display: flex;
+                justify-content: flex-end;
+            }
+            .close-icon{
+                color: #D93025;
+                width: 46px;
+                height: 46px;
+                font-size: 76px;
+            }
+
+            .container{
+                padding: 70px;
+            }
+        }
+
+    }
+
+
+    /** Player styles */
+    .player{
+        justify-content: center;
+        align-items:center;
+        flex-direction: column;
+        display: flex;
+
+        .hold-spectre{
+            background: #F5F7F7;
+            padding: 15px 22px;
+            margin-bottom: 50px;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        i{
+            font-size: 76px;
+            color: #202124;
+        }
+    }
+    .hold-video{
+        position: relative;
+        max-width: 613px;
+        max-height: 373px;
+        margin: 0 auto;
+
+        .poster-video{
+            position: absolute;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            a{
+                text-decoration: none;
+                i{
+                    font-size: 65px;
+                    color: #D8D8D8;
+                }
+            }
+        }
+
+        video{
+            position: relative;
+            z-index: 1;
             max-width: 100%;
         }
     }
+
+    .payment-wrap{
+
+        .container{
+            padding: 0px 70px !important;
+        }
+
+        h3{
+            font-size: 24px;
+            font-family: "Roboto-Medium";
+            color: #5F6368;
+            font-weight: normal;
+        }
+
+        .hold-payment{
+            margin-top: 20px;
+            background: #F5F7F7;
+            max-width: 710px;
+            min-height: 160px;
+
+            .pay-method{
+
+                .v-radio{
+                    margin-right: 0px;
+                    margin-left: 17%;
+                }
+            }
+
+            .col-12{
+                align-items: center;
+                display: flex;
+            }
+        }
+    }
+
+    
     
     
 </style>
 <script>
-import { parse } from 'path';
     export default {
         name: 'Theme3',
         props: ['freelancer'],
         components: {},
+        data() {
+            return {
+                worksHistory: this.freelancer.works_history,
+                educationsHistory: this.freelancer.educations_history,
+                portfolio: true,
+                activeTab: null,
+                currentTab: 'portfolio',
+                colorTab: '',
+                formMessage: {
+                    valid: true,
+                    name: '',
+                    nameRules: [
+                        v => !!v || 'Name is required',
+                        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+                    ],
+                    email: '',
+                    emailRules: [
+                        v => !!v || 'E-mail is required',
+                        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+                    ]
+                },
+                // --Timeline
+                reverseTimeline: true,
+                smallTimeline: true,
+                // --Dialog
+                dialogMessage: false,
+                dialogAudio: false,
+                dialogVideo: false,
+                dialogHireme: false,
+                // --Player
+                playing: false,
+                radioGroup: 1
+            }
+        },
         watch: {
+
             freelancer: function () {
                 // update freelancer data when prop changes
                 this.skills = this.freelancer.skills;
                 this.worksHistory = this.freelancer.works_history;
                 this.educationsHistory = this.freelancer.educations_history;
             }
+            
         },
-        data() {
-            return {
-                portfolio: true,
-                activeTab: null,
-                currentTab: 'portfolio',
-                colorTab: '',
-                indicatorStatus: true
+        computed: {
+            checkMobile: function() {
+                return this.isMobile() ? 'mobile__version' : '';
             }
         },
         methods: {
+            getFullYear(date){
+                let newDate = new Date(date);
+                let yyyy = newDate.getFullYear();
+                return yyyy;
+            },
             getTabName(label) {
                 let arrayTabs = {
                     'portfolio': 'Portfolio',
@@ -455,9 +1095,6 @@ import { parse } from 'path';
                         break;
                     default: this.colorTab = "gray"; break;
                 }
-
-               
-
             },
             isMobile() {
                 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -466,18 +1103,28 @@ import { parse } from 'path';
                     return false
                 }
             },
-            setIndicator() {
-                setTimeout(()=>{
-                    if(this.indicatorStatus == true){
-                        this.indicatorStatus = false
-                    }
-                },200)
+            playAudio() {
+                this.playing = true;
+                this.$refs.audioElem.play();
+            },
+            pauseAudio() {
+                this.playing = false;
+                this.$refs.audioElem.pause();
+            },
+            playVideo() {
+                this.$refs.videoPoster.style.display = "none";
+                this.$refs.videoElem.play();
+            },
+            submitForm() {
+                const form = this.$refs.formMessages;
+                console.log('Data Sent');
             }
         },
+        beforeMount(){},
         mounted() {
+            
             if(this.freelancer.agent.resume_tabs.length > 0){
                 this.setTab(this.freelancer.agent.resume_tabs[0]);
-                
             }
             
         }

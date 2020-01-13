@@ -13296,19 +13296,18 @@ html {
   justify-content: center;
   align-items: center;
 }
-
-
-/* .main-tabs_theme3 .v-slide-group__content .v-tabs-slider-wrapper{
+/** Theme 3 fixes */
+.main-tabs_theme3 .v-slide-group__content .v-tabs-slider-wrapper{
   height: 48px !important;
   width: 48px !important;
   z-index: -1;
-  top: 0px;
+  top: 25px;
+  margin-left: -12px !important;
 }
-
 
 .main-tabs_theme3 .v-slide-group__content .v-tabs-slider-wrapper .v-tabs-slider{
   border-radius: 100%;
-} */
+}
 
 .main-tabs_theme3 .v-slide-group__content .v-tabs-slider-wrapper .v-tabs-slider.tabRed{
     background-color: rgb(217, 48, 37) !important;
@@ -13326,5 +13325,67 @@ html {
     background-color: #4285F4 !important;
     opacity: .1;
 }
+
+.main-tabs_theme3>.v-tabs-bar{
+    height: 100px !important;
+}
+
+/** Timeline dot styles */
+.work-section .v-timeline .v-timeline-item__dot{
+  border: 6px solid #0F9D58;
+}
+.education-section .v-timeline .v-timeline-item__dot{
+  border: 6px solid #F4B400;
+}
+.v-timeline .v-timeline-item__dot--small .v-timeline-item__inner-dot{
+  display: none;
+}
+.v-timeline.mobile__version .v-timeline-item .v-timeline-item__body{
+  max-width: 100%;
+}
+.v-timeline.mobile__version .v-timeline-item .v-timeline-item__divider{
+  display: none;
+}
+
+/** Form general fixes theme */
+.form-wrap .v-text-field{
+  padding: 0;
+  margin-top: 30px;
+}
+.form-wrap .v-text-field.v-text-field--enclosed{
+  margin-top: 30px;
+}
+.form-wrap .v-text-field .v-label{
+  font-size: 18px;
+  font-family: "Roboto";
+  color: #5F6368;           
+}
+
+.form-wrap .v-text-field > .v-input__control > .v-input__slot:before{
+  border-color: #e5e5e5 !important;
+}
+
+.form-wrap .v-text-field--filled > .v-input__control > .v-input__slot{
+  background: #F5F7F7 !important;
+}
+
+/** Payment options section */
+.hold-payment .pay-method.v-input--radio-group--row .v-input--radio-group__input{
+  flex-wrap: nowrap;
+}
+.hold-payment .pay-method .v-radio i{
+  font-size: 41px;
+  color: #D8D8D8;
+}
+.hold-payment .pay-method .v-radio .v-input--selection-controls__input{
+  width: 41px;
+  height: 41px;
+}
+.hold-payment .pay-method .v-radio .v-input--selection-controls__input input[type=radio]{
+  max-height: 100%;
+}
+        
+
+
 
 </style>
