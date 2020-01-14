@@ -53,11 +53,6 @@
                             </v-col>
                         </v-row>
                     </div>
-                    <div class="showOnlyOnsm">
-                        <div class="headProfile">
-
-                        </div>            
-                    </div>
                     <div class="hold-tabs">
                         <v-tabs
                             class="main-tabs_theme3"
@@ -391,6 +386,7 @@
                 .showOnlyOnmd{
                     border: 0;
                     box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.07);
+                    margin-bottom: 15px;
                 }
             }
         }
@@ -703,10 +699,9 @@
         background: #fff;
 
         @media screen and (max-width: 769px) {
-            position: fixed;
+            box-shadow: none;
+            position: relative;
             width: 100%;
-            bottom: 0px;
-            z-index: 10;
         }
     }
     
@@ -783,9 +778,7 @@
 
         @media screen and (max-width: 769px) {
 
-            box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.35);
             min-height: 77px;
-            padding-bottom: 28px;
 
             .v-tab{
                 flex-flow: column;
@@ -1023,6 +1016,7 @@
 
             .box-photo{
                 margin-bottom: 10px;
+                max-height: 372px;
 
                 img{
                     width: 100%;
