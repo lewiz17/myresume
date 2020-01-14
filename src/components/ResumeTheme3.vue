@@ -445,7 +445,7 @@
                 }
             }
             .profileCol{
-                margin-left: 20px;
+                margin-left: 5%;
 
                 .head-name{
                     font-size: 20px;
@@ -566,6 +566,15 @@
                 }
             }
         }
+
+        @media screen and (max-width: 375px) {
+            .profileCol{
+                max-width: 132px;
+                margin-left: 3%;
+            }
+        }
+
+
 
     }
 
