@@ -672,18 +672,35 @@
         align-items: center;
         .rate-wrap{
 
-            .col{
+            .col-5{
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 flex-flow: column;
 
-                .price,.hours{
+                .price{
                     font-size: 30px;
                     font-family: 'Roboto-Bold';
                     color: #202124;
                 }
-                .text_price,.text_hours{
+                .text_price{
+                    font-size: 16px;
+                    font-family: 'Roboto';
+                    color: #5F6368;
+                }
+            }
+            .col-7{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-flow: column;
+
+                .hours{
+                    font-size: 30px;
+                    font-family: 'Roboto-Bold';
+                    color: #202124;
+                }
+                .text_hours{
                     font-size: 16px;
                     font-family: 'Roboto';
                     color: #5F6368;
@@ -694,7 +711,7 @@
         >.row{
             justify-content: flex-end;
 
-            .col{
+            .col-12{
                 align-items: center;
                 justify-content: center;
                 display: flex;
