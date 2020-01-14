@@ -13297,6 +13297,7 @@ html {
   align-items: center;
 }
 /** Theme 3 fixes */
+
 .main-tabs_theme3 .v-slide-group__content .v-tabs-slider-wrapper{
   height: 48px !important;
   width: 48px !important;
@@ -13384,7 +13385,55 @@ html {
 .hold-payment .pay-method .v-radio .v-input--selection-controls__input input[type=radio]{
   max-height: 100%;
 }
-        
+@media screen and (max-width: 769px) {
+  .main-tabs_theme3 .v-slide-group__content{
+    justify-content: center;  
+  }
+  .main-tabs_theme3 .v-slide-group__content .v-tabs-slider-wrapper{
+    display: none;
+  }
+  .main-tabs_theme3>.v-tabs-bar{
+    height: 77px !important;
+  }
+  .main-tabs_theme3>.v-tabs-bar .v-slide-group__prev{
+    display: none !important;
+  }
+
+
+  .v-timeline-item .v-timeline-item__body{
+    max-width: 100% !important;
+  }
+
+  .v-timeline::before,.v-timeline-item .v-timeline-item__divider,.v-timeline-item .v-timeline-item__opposite{
+    display: none;
+  }
+  .form-wrap .v-text-field{
+    margin: 0 0 40px 0;
+  }
+
+  .form-wrap .v-text-field .v-label{
+    font-size: 16px;
+  }
+  .form-wrap .v-text-field.v-text-field--enclosed{
+    margin: 0;
+    border-radius: 0px;
+  }
+  .form-wrap .v-text-field.v-textarea > .v-input__control > .v-input__slot:before{
+    border-width: 0px;
+  }
+
+  .hold-payment .pay-method.v-input--radio-group--row .v-input--radio-group__input{
+    flex-wrap: wrap;
+  }
+  .hold-payment .pay-method .v-radio i{
+    font-size: 26px;
+  }
+  .hold-payment .pay-method .v-radio .v-input--selection-controls__input{
+    width: 26px;
+    height: 26px;
+  }
+
+}
 
 
 

@@ -257,7 +257,7 @@
                                                     style="outline: none;">
                                                         <vue-load-image class="d-flex justify-content-center align-items-center">
                                                             <img src="../assets/imgs/projSlide1.png" alt="" width="260" slot="image">
-                                                            <img  alt="" slot="preloader" src="/images/spinner-load.gif" style="width: 100px; height: 100px;" />
+                                                            <img  alt="" slot="preloader" src="" style="width: 100px; height: 100px;" />
                                                         </vue-load-image>
                                                     </a>
                                                 </div>
@@ -651,7 +651,7 @@
                             <div class="row" style="border-bottom: 1px solid whitesmoke; padding-bottom: 25px;">
                                 <div class="col-lg-11 col-11 text-left" style="padding: 25px 0 0 20px;">
                                     <span>
-                                        <img src="/images/comment-512.png"
+                                        <img src=""
                                             alt="" style="padding-right: 14px; width: 34px;">
                                         <span class="audioText"
                                             style="color: #4E75E8;">  References & Testimonials</span>

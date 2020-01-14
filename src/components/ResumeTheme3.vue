@@ -5,11 +5,11 @@
                 <v-col lg="12" md="12" cols="12" class="resumeCardRight">
                     <div class="showOnlyOnmd">
                         <v-row class="head-section">
-                            <v-col lg="2" md="2" class="imageCol">
+                            <v-col lg="2" md="2" sm="2" cols="2" class="imageCol">
                                 <span class="profile-img" v-bind:style="{ backgroundImage: 'url(' + freelancer.user_data.profile_picture + ')' }" /> 
                                 <a href="#" class="chat-option" @click.prevent="dialogMessage = true"><v-icon>mdi-message-text</v-icon></a>
                             </v-col>
-                            <v-col lg="2" md="2">
+                            <v-col lg="2" md="2" sm="5" cols="5" class="profileCol">
                                <div class="head-name">{{freelancer.user_data.first_name}}</div>
                                <div class="head-profile">{{freelancer.user_data.job_title}}</div>
                                <div class="social-wrap">
@@ -19,16 +19,16 @@
                                     <a href="" alt="Instagram" title="Instagram"><v-icon>mdi-instagram</v-icon></a>
                                </div>
                             </v-col>
-                            <v-col lg="5" class="interviewSection">
+                            <v-col lg="5" md="5" sm="3" cols="3" class="interviewSection">
                                 <span class="title-medium">View interviews</span>
                                 <div class="option-wrap">
                                     <a href="#" class="btn-default" @click.prevent="dialogAudio = true"><v-icon>mdi-microphone</v-icon>Audio &amp; Text</a>
                                     <a href="#" class="btn-default" @click.prevent="dialogVideo = true"><v-icon>mdi-play-circle</v-icon>Video</a>
                                 </div>
                             </v-col>
-                            <v-col lg="3" class="rateSection">
+                            <v-col lg="3" md="12" sm="12" class="rateSection">
                                 <v-row class="rate-wrap">
-                                    <v-col lg="4">
+                                    <v-col lg="4" sm="5" cols="5">
                                         <span class="price">
                                             ${{Math.ceil(freelancer.agent.hourly_rate)}}
                                         </span>
@@ -36,7 +36,7 @@
                                             Hourly rate
                                         </span>
                                     </v-col>
-                                    <v-col lg="6">
+                                    <v-col lg="6" sm="7" cols="7">
                                         <span class="hours">
                                            {{Math.ceil(freelancer.user_data.available_hours_per_week)}} hrs
                                         </span>
@@ -45,8 +45,8 @@
                                         </span>
                                     </v-col>
                                 </v-row>
-                                <v-row class="mt-5">
-                                    <v-col lg="10">
+                                <v-row class="mt-5 hire-wrap">
+                                    <v-col lg="10" sm="12" cols="12">
                                         <a href="#" class="btn-action" @click.prevent="dialogHireme = true">Hire Me</a>
                                     </v-col>    
                                 </v-row>                      
@@ -111,7 +111,16 @@
                                             <span v-else>&nbsp;-&nbsp;{{getFullYear(work.date_to)}}</span>         
                                         </span>
                                         <v-card class="">
-                                            <v-card-title class="headline">{{work.job_title}}</v-card-title>
+                                            <v-card-title class="headline">
+                                                <span class="title-job">
+                                                    {{work.job_title}}
+                                                </span>                                                
+                                                <span class="title-mob">
+                                                    {{getFullYear(work.date_from)}}
+                                                    <span v-if="work.is_currently_working">- Present</span>
+                                                    <span v-else>&nbsp;-&nbsp;{{getFullYear(work.date_to)}}</span>
+                                                </span>                                                
+                                            </v-card-title>
                                             <v-card-text>{{work.job_description}}</v-card-text>
                                         </v-card>
                                     </v-timeline-item>
@@ -131,7 +140,16 @@
                                             <span v-else>&nbsp;-&nbsp;{{getFullYear(education.date_to)}}</span>        
                                         </span>
                                         <v-card class="">
-                                            <v-card-title class="headline">{{education.school_title}}</v-card-title>
+                                            <v-card-title class="headline">
+                                                <span class="title-job">
+                                                    {{education.school_title}}
+                                                </span>                                                
+                                                <span class="title-mob">
+                                                    {{getFullYear(education.date_from)}}
+                                                    <span v-if="education.is_currently_learning">- Present</span>
+                                                    <span v-else>&nbsp;-&nbsp;{{getFullYear(education.date_to)}}</span> 
+                                                </span>                                                
+                                            </v-card-title>
                                             <v-card-text>{{education.description}}</v-card-text>
                                         </v-card>
                                     </v-timeline-item>
@@ -218,10 +236,10 @@
         </v-container>
         <v-dialog v-model="dialogMessage" persistent max-width="850" overlay-opacity="0.5" overlay-color="#202124">
             <v-card class="form-wrap">
-                <v-form v-model="formMessage.valid" ref="formMessages" class="form-messages">
+                <v-form ref="formMessages" class="form-messages">
                     <v-container>
                         <v-row>
-                            <v-col lg="12">
+                            <v-col lg="12" sm="12" cols="12">
                                 <v-text-field
                                     v-model="formMessage.name"
                                     :rules="formMessage.nameRules"
@@ -230,7 +248,7 @@
                                     color="#202124"
                                 ></v-text-field>
                             </v-col>
-                            <v-col lg="12">
+                            <v-col lg="12" sm="12" cols="12">
                                 <v-text-field
                                     v-model="formMessage.email"
                                     :rules="formMessage.emailRules"
@@ -239,8 +257,9 @@
                                     color="#202124"
                                 ></v-text-field>
                             </v-col>
-                            <v-col lg="12">
+                            <v-col lg="12" sm="12" cols="12">
                                 <v-textarea
+                                    v-model="formMessage.message"
                                     filled
                                     height="162"
                                     :no-resize="true"
@@ -251,13 +270,13 @@
                         </v-row>
                         <v-row>
                             <v-btn depressed small @click="submitForm" class="btn-send"><v-icon>mdi-message-text</v-icon>Send Message</v-btn>
-                            <v-btn text small @click="dialogMessage = false">Cancel</v-btn>
+                            <v-btn text small @click="cancelForm">Cancel</v-btn>
                         </v-row>                        
                     </v-container>                    
                 </v-form>
             </v-card>
         </v-dialog>
-        <v-dialog v-model="dialogAudio" persistent max-width="850" overlay-opacity="0.5" overlay-color="#202124" :class="checkMobile">
+        <v-dialog v-model="dialogAudio" persistent max-width="850" overlay-opacity="0.5" overlay-color="#202124">
              <v-card>
                 <v-card-actions>
                     <v-icon class="close-icon" @click="dialogAudio = false || pauseAudio()">mdi-close</v-icon>
@@ -299,26 +318,30 @@
                     <v-row class="hold-payment">
                         <v-col cols="12" lg="12">
                             <v-radio-group v-model="radioGroup" :row="true" class="pay-method">
-                                <v-radio
-                                    color="#d8d8d8"
-                                    value="1"
-                                    name="opt-paypal"
-                                    off-icon="mdi-checkbox-blank-circle"
-                                    :ripple="false"
-                                >
-                                    
-                                </v-radio>
-                                <img src="@/assets/icons/resume3/icon-paypal.png" alt="">
-                                <v-radio
-                                    color="#d8d8d8"
-                                    value="2"
-                                    name="opt-payonner"
-                                    off-icon="mdi-checkbox-blank-circle"
-                                    :ripple="false"
-                                >  
-                                    
-                                </v-radio>
-                                <img src="@/assets/icons/resume3/icon-payonner.png" alt="">
+                                <span class="item-pay">
+                                    <v-radio
+                                        color="#d8d8d8"
+                                        value="1"
+                                        name="opt-paypal"
+                                        off-icon="mdi-checkbox-blank-circle"
+                                        :ripple="false"
+                                    >
+                                        
+                                    </v-radio>
+                                    <img src="@/assets/icons/resume3/icon-paypal.png" alt="">
+                                </span>
+                                <span class="item-pay">
+                                    <v-radio
+                                        color="#d8d8d8"
+                                        value="2"
+                                        name="opt-payonner"
+                                        off-icon="mdi-checkbox-blank-circle"
+                                        :ripple="false"
+                                    >  
+                                        
+                                    </v-radio>
+                                    <img src="@/assets/icons/resume3/icon-payonner.png" alt="">
+                                </span>
                             </v-radio-group>
                             
                         </v-col>
@@ -352,12 +375,23 @@
         }
 
         &.hold_theme3{
+
+
             .showOnlyOnmd{
                 justify-content: center;
                 display: flex;
                 align-items: center;
                 border-bottom: 1px solid #E5E5E5;
                 background: #ffffff;
+            }
+
+            @media screen and (max-width: 769px) {
+                padding: 0;
+
+                .showOnlyOnmd{
+                    border: 0;
+                    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.07);
+                }
             }
         }
 
@@ -375,12 +409,168 @@
             margin: 0px auto;
             background: transparent;
         }
+        @media screen and (max-width: 769px) {
+            min-height: auto;
+            padding: 0px 0px 110px 0px;
+
+            .portfolio-section,.work-section,.education-section,.skills-section{
+                max-width: 90%;
+                margin: 0px auto;
+            }
+        }
+
     }
     .head-section{
         align-items: center;
         padding-top: 25px;
         padding-bottom: 60px;
         max-width: $max_wTheme;
+
+        @media screen and (max-width: 769px) {
+            max-width: 90%;
+            padding-top: 55px;
+            padding-bottom: 0;
+
+            .imageCol{
+                .profile-img{
+                    max-width: 79px;
+                    max-height: 79px;
+                }
+                .chat-option{
+                    max-width: 34px;
+                    max-height: 34px;
+                    border-width: 3px;
+                    left: 28%;
+                    bottom: -15px;
+
+                    i{
+                        font-size: 15px;
+                    }
+                }
+            }
+            .profileCol{
+                margin-left: 20px;
+
+                .head-name{
+                    font-size: 20px;
+                }
+                .head-profile{
+                    font-size: 12px;
+                }
+                .social-wrap{
+                    a{
+                        max-width: 23px;
+                        max-height: 23px;
+                        line-height: 20px;
+                        margin-right: 10px;
+
+                        i{
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+
+            .interviewSection{
+                border: 0;
+                align-items: flex-start;
+                margin-top: 0;
+
+                .title-medium{
+                    font-size: 0;
+                    &::before{
+                        content: "Interviews:";
+                        font-size: 12px;
+                        font-family: "Roboto-Medium";
+                    }
+                }
+                .option-wrap{
+                    margin-top: 5px;
+
+                    .btn-default{
+                        min-width: 116px;
+                        min-height: 30px;
+                        line-height: 30px;
+                        margin: 0 0 5px 0;
+                        border-width: 0.5px;
+                        font-size: 10px;
+
+                        i{
+                            font-size: 15px;
+                        }
+                    }
+                }
+            }
+            .rateSection{
+                border-top: 1px solid #E5E5E5;
+                margin-top: 15px;
+                flex-flow: nowrap;
+                min-height: 69px;
+
+                .rate-wrap{
+
+                    justify-content: center;
+
+                    
+
+                    .col-5,.col-7{
+
+                        justify-content: center;
+                        display: flex;
+                        .price{
+                            &::before{
+                                content: "Hourly Rate:";
+                                font-size: 10px;
+                                font-style: italic;
+                                font-weight: normal;
+                                font-family: "Roboto";
+                                color: #5F6368;
+                                vertical-align: middle;
+                            }
+                            font-size: 16px;
+                            font-weight: bold;
+                        }
+                        .hours{
+                            &::before{
+                                content: "Weekly Avaiablity:";
+                                font-size: 10px;
+                                font-style: italic;
+                                font-weight: normal;
+                                font-family: "Roboto";
+                                color: #5F6368;
+                                vertical-align: middle;
+                            }
+                            font-size: 16px;
+                            font-weight: bold;
+                        }
+                        .text_price{
+                            font-size: 0px;
+                        }
+                        .text_hours{
+                            font-size: 0px;
+                        }
+                    }
+                    
+                }
+                .hire-wrap{
+                    margin-top: 0px !important;
+
+                    .col-12{
+                        display: flex;
+                        justify-content: flex-end;
+                    }
+                    
+                }
+
+                .btn-action{
+                    min-width: 95px;
+                    min-height: 29px;
+                    line-height: 29px;
+                    font-size: 10px;
+                }
+            }
+        }
+
     }
 
     .imageCol{
@@ -525,9 +715,6 @@
         max-width: $max_wTheme;
         margin: 0px auto;
 
-       
-        
-
         .v-tab{
             text-transform: capitalize;
             font-size: 24px;
@@ -593,27 +780,46 @@
             }
             
         }
+
+        @media screen and (max-width: 769px) {
+
+            box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.35);
+            min-height: 77px;
+            padding-bottom: 28px;
+
+            .v-tab{
+                flex-flow: column;
+                min-width: 80px;
+                max-height: 77px;
+                margin: 0 5px;
+                font-size: 10px;
+                i{
+                    margin: 0 0 8px 0;
+                    font-size: 22px;
+                }
+            }
+
+        }
     }
 
     .v-timeline{
         padding-top: 0;
-
-        &.mobile__version{
-            &::before{
-                display: none;
-            }
-        }
 
         &::before{
             background: #d8d8d8 !important;
         }
         .v-timeline-item{
             .v-card{
+                box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
                 padding: 30px;
 
                 .headline{
                     padding: 0;
                     font-size: 18px;
+
+                    .title-mob{
+                        display: none;
+                    }
 
                     &::before{
                         content: "";
@@ -645,6 +851,40 @@
                 }
             }
         }
+
+        @media screen and (max-width: 769px) {
+            .v-timeline-item{
+                padding-bottom: 10px;
+                .v-card{
+                    padding: 25px;
+
+                    .headline{
+                        font-size: 14px !important;
+                        font-family: "Roboto-Medium" !important;
+                        align-items: center;
+                        line-height: 18px;
+                        position: relative;
+
+                        &::before{
+                            margin-right: 20px;
+                            border-width: 1px;
+                        }
+
+                        .title-mob{
+                            font-size: 10px;
+                            display: inline-block;
+                            color: #5F6368;
+                            line-height: 18px;                        
+                        }
+                    }
+                    .v-card__text{
+                        font-size: 10px;
+                        line-height: 16px;
+                    }
+                }
+            }
+        }
+        
     }  
     /** Icon timeline work */
     .work-section{
@@ -659,9 +899,19 @@
                             background-position: center;
                             background-size: 50%;
                         }
+                        .title-mob{
+                            @media screen and (max-width: 769px) {
+                                position: absolute;
+                                right: 0;
+                            }
+                        }
                     }
                     .v-card__text{
                         padding: 20px 0 0 60px;
+                        @media screen and (max-width: 769px) {
+                            padding: 0 0 0 60px !important;
+                        }
+                                                
                     }
                 }
             }
@@ -679,9 +929,19 @@
                             content: "";
                             display: none;
                         }
+                        .title-mob{
+                            @media screen and (max-width: 769px) {
+                                position: relative;
+                                width: 100%;
+                                font-style: italic;
+                            }                           
+                        }
                     }
                     .v-card__text{
                         padding: 20px 0 0 0px;
+                        @media screen and (max-width: 769px) {
+                            padding: 0 0 0 0px !important;
+                        }
                     }
                 }
             }
@@ -748,7 +1008,7 @@
         .box-photo{
             padding: 16px 15px;
             background: #fff;
-            box-shadow: 0px 3px 6px #d8d8d8;
+            box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
             margin-bottom: 20px;
             display: flex;
 
@@ -762,6 +1022,8 @@
             }
 
             .box-photo{
+                margin-bottom: 10px;
+
                 img{
                     width: 100%;
                 }
@@ -778,7 +1040,7 @@
         .box-skill{
             display: flex;
             background: #ffffff;
-            box-shadow: 0px 3px 6px #d8d8d8;
+            box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
             padding: 25px 0px 25px 50px;
             margin-bottom: 2%;
             align-self: stretch;
@@ -841,6 +1103,34 @@
                 }
             }
         }
+        @media screen and (max-width: 769px) {
+            .box-skill{
+
+                padding: 20px 0px 20px 30px;
+                margin-bottom: 10px;
+
+                .logo-skill{
+                    max-width: 52px;
+                    max-height: 52px;
+                    font-size: 19px;
+                    line-height: 44px;
+                }
+                .info-skill{
+                    width: 68%;
+
+                    .head-skill{
+                        margin-bottom: 15px;
+
+                        > span{
+                            font-size: 15px;
+                        }
+                    }
+                    .v-progress-linear{
+                        height: 6px !important;
+                    }
+                } 
+            } 
+        }
     }
 
     /** Modals styles */
@@ -879,6 +1169,7 @@
                     font-family: "Roboto";
 
                 }
+
             }
 
             .v-card__actions{
@@ -888,16 +1179,54 @@
             }
             .close-icon{
                 color: #D93025;
-                width: 46px;
-                height: 46px;
-                font-size: 76px;
+                font-size: 46px;
             }
 
             .container{
                 padding: 70px;
+
+                @media screen and (max-width: 769px) {
+                    padding: 35px 18px;
+                }
             }
         }
 
+        @media screen and (max-width: 769px) {
+            
+
+            .v-card{
+                padding-bottom: 70px !important;
+                border-radius: 10px !important;
+
+                &.form-wrap{
+                    padding-bottom: 0px !important;
+                    .v-btn{
+                        font-size: 14px;
+                        padding: 0px 25px;
+                        min-height: 36px;
+                        height: 36px;
+
+                        &.btn-send{
+                            max-width: 157px;
+                            max-height: 36px;
+                            height: 36px;
+                            font-size: 14px;
+
+                            i{
+                                font-size: 16.8px;
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                }
+                .close-icon{
+                    font-size: 22.5px;
+                }
+                .v-card__actions{
+                    padding: 18px 18px 35px 18px;
+                }
+            }
+        }
     }
 
 
@@ -925,6 +1254,23 @@
             font-size: 76px;
             color: #202124;
         }
+
+        @media screen and (max-width: 769px) {
+            .hold-spectre{
+                max-width: 334px;
+                max-height: 205px;
+                margin-bottom: 30px;
+
+                img{
+                    max-width: 100%;
+                }
+            }
+
+            i{
+                font-size: 50px;
+            }
+        }
+
     }
     .hold-video{
         position: relative;
@@ -954,6 +1300,10 @@
             position: relative;
             z-index: 1;
             max-width: 100%;
+        }
+
+        @media screen and (max-width: 769px) {
+            max-width: 334px;
         }
     }
 
@@ -989,6 +1339,40 @@
                 display: flex;
             }
         }
+        @media screen and (max-width: 769px) {
+
+            h3{
+                font-size: 16px;
+            }
+            .container{
+                padding: 0px 20px !important;
+            }
+
+            .hold-payment{
+                margin-top: 10px;
+                max-height: 147px;
+                min-height: 100%;
+
+                .pay-method{
+                    .item-pay{
+                        flex-flow: row;
+                        display: flex;
+                        margin-left: 30px;
+                        margin-bottom: 20px;
+
+                        .v-radio{
+                            margin-left: 0px;
+                        }
+                        img{
+                            max-width: 124px;
+                        }
+                    }
+                    
+                }
+            }
+            
+        }
+
     }
 
     
@@ -1009,7 +1393,6 @@
                 currentTab: 'portfolio',
                 colorTab: '',
                 formMessage: {
-                    valid: true,
                     name: '',
                     nameRules: [
                         v => !!v || 'Name is required',
@@ -1019,8 +1402,10 @@
                     emailRules: [
                         v => !!v || 'E-mail is required',
                         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-                    ]
+                    ],
+                    message: ''
                 },
+                formHasErrors: false,
                 // --Timeline
                 reverseTimeline: true,
                 smallTimeline: true,
@@ -1043,11 +1428,6 @@
                 this.educationsHistory = this.freelancer.educations_history;
             }
             
-        },
-        computed: {
-            checkMobile: function() {
-                return this.isMobile() ? 'mobile__version' : '';
-            }
         },
         methods: {
             getFullYear(date){
@@ -1116,8 +1496,11 @@
                 this.$refs.videoElem.play();
             },
             submitForm() {
-                const form = this.$refs.formMessages;
-                console.log('Data Sent');
+                /** Logic data send */
+            },
+            cancelForm() {
+                this.dialogMessage = false;
+                this.$refs.formMessages.reset();
             }
         },
         beforeMount(){},
