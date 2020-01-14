@@ -386,7 +386,7 @@
                 .showOnlyOnmd{
                     border: 0;
                     box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.07);
-                    margin-bottom: 15px;
+                    margin-bottom: 10px;
                 }
             }
         }
@@ -795,6 +795,10 @@
                 max-height: 77px;
                 margin: 0 5px;
                 font-size: 10px;
+                font-family: "Roboto";
+                font-style: normal;
+
+
                 i{
                     margin: 0 0 8px 0;
                     font-size: 22px;
@@ -1026,6 +1030,7 @@
             .box-photo{
                 margin-bottom: 10px;
                 max-height: 372px;
+                padding: 10px;
 
                 img{
                     width: 100%;
