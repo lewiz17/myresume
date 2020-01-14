@@ -13378,6 +13378,9 @@ html {
   font-size: 41px;
   color: #D8D8D8;
 }
+.hold-payment .pay-method .v-radio.v-item--active i{
+  color: #D93025 !important;
+}
 .hold-payment .pay-method .v-radio .v-input--selection-controls__input{
   width: 41px;
   height: 41px;

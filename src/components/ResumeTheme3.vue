@@ -1131,7 +1131,8 @@
         @media screen and (max-width: 769px) {
             .box-skill{
 
-                padding: 20px 0px 20px 30px;
+                padding: 20px 30px;
+                justify-content: space-between;
                 margin-bottom: 10px;
 
                 .logo-skill{
@@ -1141,7 +1142,8 @@
                     line-height: 44px;
                 }
                 .info-skill{
-                    width: 68%;
+                    width: 73%;
+                    margin-left: 0px;
 
                     .head-skill{
                         margin-bottom: 15px;
