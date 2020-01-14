@@ -1353,9 +1353,14 @@
 
             .pay-method{
 
+                .item-pay{
+                    display: flex;
+                    margin-left: 15%;
+                }
+
                 .v-radio{
                     margin-right: 0px;
-                    margin-left: 17%;
+                    margin-left: 0;
                 }
             }
 
