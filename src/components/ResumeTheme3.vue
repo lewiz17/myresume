@@ -1353,7 +1353,7 @@
 
             .hold-payment{
                 margin-top: 10px;
-                max-height: 147px;
+                height: 147px;
                 min-height: 100%;
 
                 .pay-method{
