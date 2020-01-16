@@ -3,12 +3,9 @@
     <v-content>
       <h3 class="titleHome">My Resume Themes Workforce</h3>
       <ul class="mynav">
-        <li>
-          <router-link to="/">Theme 2</router-link>
-        </li>
-        <li>
-          <router-link to="/theme3">Theme 3</router-link>
-        </li>
+        <li v-for="(theme,i) in routes" :key="i">
+          <router-link :to="theme.path">{{theme.name}}</router-link>  
+        </li>  
       </ul>    
       <router-view :freelancer="dataFreelancer"></router-view>
     </v-content>
@@ -22,6 +19,11 @@ export default {
   name: 'App',
   data() {
     return {
+      routes: [
+        {"name":"Theme2", "path":"/"},
+        {"name":"Theme3", "path":"/theme3"},
+        {"name":"Theme21","path":"/theme21"}
+      ],
       dataFreelancer: freelancer
     }
   }
@@ -72,10 +74,7 @@ export default {
   color: #008aff;
 }
 
-/*** Style subtags skills */
-.v-tabs-slider{
-  background-color: transparent !important;
-}
+
 /***/
 body {
   background: #f4f4f4 !important;
@@ -13284,6 +13283,8 @@ html {
     height: 100%;
 }
 
+
+
 .main-tabs .v-slide-group__next, .v-slide-group__prev{
   min-width: 25px;
   max-width: 35px;
@@ -13295,6 +13296,10 @@ html {
 .main-tabs .v-slide-group__content{
   justify-content: center;
   align-items: center;
+}
+
+#nav-taps-resume .v-tabs-slider-wrapper .v-tabs-slider{
+  background-color: transparent !important;
 }
 /** Theme 3 fixes */
 
@@ -13308,6 +13313,7 @@ html {
 
 .main-tabs_theme3 .v-slide-group__content .v-tabs-slider-wrapper .v-tabs-slider{
   border-radius: 100%;
+  background-color: transparent !important;
 }
 
 .main-tabs_theme3 .v-slide-group__content .v-tabs-slider-wrapper .v-tabs-slider.tabRed{
@@ -13330,6 +13336,8 @@ html {
 .main-tabs_theme3>.v-tabs-bar{
     height: 100px !important;
 }
+
+
 
 /** Timeline dot styles */
 .work-section .v-timeline .v-timeline-item__dot{
@@ -13388,6 +13396,27 @@ html {
 .hold-payment .pay-method .v-radio .v-input--selection-controls__input input[type=radio]{
   max-height: 100%;
 }
+
+
+/*Theme 21*/
+.main-tabs_theme21>.v-tabs-bar{
+  height: 100%;
+  min-height: 184px;
+  background: none !important;
+}
+.main-tabs_theme21 .v-slide-group__content{
+  justify-content: center;
+  align-items: center;
+}
+
+.main-subtabs_skills .v-slide-group__content .v-tabs-slider-wrapper{
+  width: 170px !important;
+}
+.main-subtabs_skills .v-tabs-bar{
+  height: 72px;
+  background: transparent !important;
+}
+
 @media screen and (max-width: 769px) {
   .main-tabs_theme3 .v-slide-group__content{
     justify-content: center;  
@@ -13437,6 +13466,8 @@ html {
   }
 
 }
+
+
 
 
 
