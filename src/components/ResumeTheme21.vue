@@ -666,7 +666,7 @@
                     justify-content: center;
                     align-items: center;
                     display: flex;
-                    margin-right: 32px;
+                    margin-right: 15%;
 
                     &:hover{
                         box-shadow: -6px -6px 16px #FFFFFF, 
