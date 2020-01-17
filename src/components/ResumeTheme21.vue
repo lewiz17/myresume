@@ -735,6 +735,7 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        max-width: 97.2%;
 
         a{
             width: 67px;
