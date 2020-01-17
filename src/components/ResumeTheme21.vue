@@ -414,7 +414,7 @@
         }
 
         &.hold_theme21{
-
+            padding: 0px;
 
             .showOnlyOnmd{
                 justify-content: center;
@@ -461,8 +461,9 @@
         align-items: center;
         padding-top: 74px;
         padding-bottom: 40px;
-        max-width: $max_wTheme;
+        max-width: 93.25%;
         justify-content: space-between;
+        flex-flow: row;
 
         @media screen and (max-width: 769px) {
             max-width: 90%;
@@ -687,8 +688,9 @@
         align-items: center;
         justify-content: center;
         display: flex;
-        max-width: 190px;
+        max-width: 156px;
         flex-flow: column;
+
 
         .profile-img{
             width: 156px;
@@ -741,7 +743,7 @@
             box-shadow: -6px -6px 16px #FFFFFF, 
             6px 6px 16px rgba(209, 205, 199, 0.4);
             border-radius: 15px;
-            margin: 0px 12px;
+            margin: 0 14px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -753,6 +755,7 @@
                 inset -6px -4px 12px #FFFFFF;
                 border: 1px solid #fff;
             }
+            
 
         }
     }
@@ -776,7 +779,7 @@
         inset 6px 4px 12px rgba(0, 0, 0, 0.25), 
         inset -6px -4px 12px #FFFFFF;
         border-radius: 15px;
-        min-width: 784px;
+        max-width: 43.8%;
         
         .shareOption{
             width: 56px;
@@ -1045,7 +1048,7 @@
         justify-content: space-around;
 
         .col-12{
-            max-width: 766px;
+            max-width: 42.8%;
             margin-bottom: 30px;
         }
         .item-work{
@@ -1150,7 +1153,7 @@
                 text-transform: capitalize;
                 min-height: 30px;
                 padding: 0px;
-                margin: 0px 65px;
+                margin: 0px 5%;
 
                 &.v-tab--active{
 
@@ -1282,7 +1285,7 @@
         justify-content: space-evenly;
 
         .col-12{
-            max-width: 766px;
+            max-width: 42.8%;;
             background: #F8F8F8;
             margin-bottom: 75px;
         }
