@@ -801,7 +801,7 @@
             border: 2px solid #fff;
 
             .col-4{
-                max-width: 235px;
+                max-width: 31.68%;
                 justify-content: center;
                 display: flex;
                 flex-flow: column;
@@ -1154,7 +1154,7 @@
                 text-transform: capitalize;
                 min-height: 30px;
                 padding: 0px;
-                margin: 0px 5%;
+                margin: 0px 5% !important;
 
                 &.v-tab--active{
 
@@ -1259,7 +1259,7 @@
     }
     .btn-action{
         display: block;
-        min-width: 209px;
+        min-width: 89%;
         min-height: 80px;
         text-align: center;
         background: #1900B4;
