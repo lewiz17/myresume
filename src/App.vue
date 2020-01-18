@@ -13398,6 +13398,7 @@ html {
 }
 
 
+
 /*Theme 21*/
 .main-tabs_theme21>.v-tabs-bar{
   height: 100%;
@@ -13416,6 +13417,59 @@ html {
   height: 72px;
   background: transparent !important;
 }
+
+#freelancerResumeTheme21 .v-dialog.v-dialog--active{
+  box-shadow: none;   
+}
+#freelancerResumeTheme21 .v-dialog.modal__rt{
+  right: 0;
+  position: absolute;
+  top:0px;
+}
+#freelancerResumeTheme21 .hold-payment .pay-method,#freelancerResumeTheme21 .hold-payment .pay-method .v-input__control{
+  width: 100%;
+}
+
+#freelancerResumeTheme21 .hold-payment .pay-method .v-radio i{
+  font-size: 0px;
+}
+#freelancerResumeTheme21 .hold-payment .pay-method .v-radio .v-input--selection-controls__input{
+  width: 100%;
+  height: 100%;
+}
+#freelancerResumeTheme21 .hold-payment .pay-method .v-input--radio-group__input{
+  justify-content: space-between;
+}
+
+/*** Form with inputs shadows inset */
+.form-wrap .inset-style .v-text-field > .v-input__control > .v-input__slot > .v-text-field__slot{
+  background: #F9F9F9;
+  box-shadow: -6px -6px 16px #FFFFFF,
+  inset 6px 4px 12px rgba(0, 0, 0, 0.25),
+  inset -6px -4px 12px #FFFFFF;
+  border-radius: 15px;
+  height: 100%;
+}
+.form-wrap .inset-style .v-text-field > .v-input__control > .v-input__slot:before,.form-wrap .inset-style .v-text-field > .v-input__control > .v-input__slot:after{
+  border:0px;
+}
+.form-wrap .inset-style .v-text-field input[type=text],.form-wrap .inset-style .v-text-field textarea{
+  min-height: 109px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 30px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(87, 87, 87, 0.15) !important;
+  padding: 40px;
+}
+.form-wrap .inset-style .v-text-field .v-messages{
+  font-size: 18px;
+}
+
+
 
 @media screen and (max-width: 769px) {
   .main-tabs_theme3 .v-slide-group__content{
@@ -13453,6 +13507,9 @@ html {
   .form-wrap .v-text-field.v-textarea > .v-input__control > .v-input__slot:before{
     border-width: 0px;
   }
+  #freelancerResumeTheme21 .hold-payment .pay-method .v-input--radio-group__input{
+    justify-content: center;
+  }
 
   .hold-payment .pay-method.v-input--radio-group--row .v-input--radio-group__input{
     flex-wrap: wrap;
@@ -13465,6 +13522,31 @@ html {
     height: 26px;
   }
 
+  /** Mobile theme 21 generic */
+  .main-tabs_theme21>.v-tabs-bar .v-slide-group__prev{
+    display: none !important;
+  }
+
+  .form-wrap .inset-style .v-text-field input[type=text], .form-wrap .inset-style .v-text-field textarea{
+    min-height: 60px;
+    font-size: 18px;
+    line-height: 20px;
+    padding: 20px;
+  }
+  .form-wrap .inset-style .v-text-field{
+    margin: 0px 0px 20px 0px;
+  }
+
+
+}
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+  .main-tabs_theme21>.v-tabs-bar{
+    min-height: 150px;
+  }
 }
 
 

@@ -11,16 +11,17 @@
                                 </span> 
                                 <a href="#" @click.prevent="dialogMessage = true">Tap to chat</a>
                             </v-col>
-                            <v-col lg="2" md="2" sm="2" cols="4" class="profileCol">
+                            <v-col lg="2" md="9" sm="9" cols="4" class="profileCol">
                                <div class="head-name">{{freelancer.user_data.first_name}}</div>
                                <div class="head-profile">{{freelancer.user_data.job_title}}</div>
+                               <a href="#" @click.prevent="dialogMessage = true" class="showOnProfile">Tap to chat</a>
                                <div class="option-wrap">
                                     <a href="#" @click.prevent="dialogAudio = true"><img src="@/assets/icons/resume21/headphones.png" alt=""></a>
                                     <a href="#" @click.prevent="dialogVideo = true"><img src="@/assets/icons/resume21/video-player.png" alt=""></a>
                                 </div>
                                
                             </v-col>
-                            <v-col lg="3" md="3" sm="3" cols="5" class="interviewSection">
+                            <v-col lg="3" md="12" sm="12" cols="5" class="interviewSection">
                                 <div class="social-wrap">
                                     <a href="" alt="Behance" title="Behance">
                                         <img src="@/assets/icons/resume21/behance.png" alt="">
@@ -41,7 +42,7 @@
                                </div>
                                 
                             </v-col>
-                            <v-col lg="5" md="5" sm="5" class="rateSection">
+                            <v-col lg="5" md="12" sm="12" class="rateSection">
                                 <a href="#" @click.prevent="dialogShare = true" class="shareOption"><img src="@/assets/icons/resume21/share.png" alt=""></a>
                                 <v-row class="rate-wrap">
                                     <v-col lg="4" sm="4" cols="4">
@@ -264,25 +265,28 @@
                 </v-col>
             </v-row>
         </v-container>
-        <v-dialog v-model="dialogMessage" persistent max-width="850" overlay-opacity="0.5" overlay-color="#202124">
+        <v-dialog attach="#freelancerResumeTheme21" v-model="dialogMessage" persistent max-width="1269" overlay-opacity="0.9" overlay-color="#f8f8f8">
             <v-card class="form-wrap">
-                <v-form ref="formMessages" class="form-messages">
+                <v-card-actions>
+                    <v-icon class="close-icon" @click="cancelForm">mdi-close</v-icon>
+                </v-card-actions>
+                <v-form ref="formMessages" class="form-messages inset-style" v-show="!formSent" v-model="isValid">
                     <v-container>
                         <v-row>
-                            <v-col lg="12" sm="12" cols="12">
+                            <v-col lg="6" sm="12" cols="12">
                                 <v-text-field
                                     v-model="formMessage.name"
                                     :rules="formMessage.nameRules"
-                                    label="Name"
+                                    placeholder="Your Name"
                                     required
                                     color="#202124"
                                 ></v-text-field>
                             </v-col>
-                            <v-col lg="12" sm="12" cols="12">
+                            <v-col lg="6" sm="12" cols="12">
                                 <v-text-field
                                     v-model="formMessage.email"
                                     :rules="formMessage.emailRules"
-                                    label="E-mail"
+                                    placeholder="Your Email"
                                     required
                                     color="#202124"
                                 ></v-text-field>
@@ -290,45 +294,51 @@
                             <v-col lg="12" sm="12" cols="12">
                                 <v-textarea
                                     v-model="formMessage.message"
-                                    filled
-                                    height="162"
+                                    height="280"
                                     :no-resize="true"
                                     color="#202124"
-                                    label="Message"
+                                    placeholder="Your Messages Here"
                                 ></v-textarea>
                             </v-col>
                         </v-row>
                         <v-row>
-                            <v-btn depressed small @click="submitForm" class="btn-send"><v-icon>mdi-message-text</v-icon>Send Message</v-btn>
-                            <v-btn text small @click="cancelForm">Cancel</v-btn>
+                            <v-col lg="12" sm="12" cols="12" class="actions-wrap">
+                                <a href="#" @click.prevent="submitForm" class="btn-action">Sent</a>
+                            </v-col>
                         </v-row>                        
                     </v-container>                    
                 </v-form>
+                <div class="message-sent" v-show="formSent">
+                    <v-icon>mdi-check-circle</v-icon>
+                    <span>Successfully Sent</span>
+                </div>
             </v-card>
         </v-dialog>
-        <v-dialog v-model="dialogAudio" persistent max-width="850" overlay-opacity="0.5" overlay-color="#202124">
+        <v-dialog attach="#freelancerResumeTheme21" v-model="dialogAudio" persistent max-width="1269" overlay-opacity="0.9" overlay-color="#f8f8f8">
              <v-card>
                 <v-card-actions>
                     <v-icon class="close-icon" @click="dialogAudio = false || pauseAudio()">mdi-close</v-icon>
                 </v-card-actions>
                 <div class="player">
-                    <div class="hold-spectre" @click.prevent="!playing ? playAudio() : pauseAudio()">
-                        <img src="@/assets/icons/resume3/spectre.png" alt="">
-                    </div>
+                    <span>play audio</span>
                     <a @click.prevent="!playing ? playAudio() : pauseAudio()" title="Play/Pause" href="#">
                         <v-icon v-if="!playing">mdi-play-circle</v-icon>
                         <v-icon v-else>mdi-pause-circle</v-icon>
                     </a>
+                    <div class="hold-spectre" @click.prevent="!playing ? playAudio() : pauseAudio()">
+                        <img src="@/assets/icons/resume21/audio-wave.png" alt="">
+                    </div>
                     <audio style="display:none" ref="audioElem" id="audioElem" :src="require('@/'+freelancer.user_data.audio_transcription)" @ended="playing = !playing"></audio>
                 </div>
             </v-card>
         </v-dialog>
-        <v-dialog v-model="dialogVideo" persistent max-width="850" overlay-opacity="0.5" overlay-color="#202124">
+        <v-dialog attach="#freelancerResumeTheme21" v-model="dialogVideo" persistent max-width="1269" overlay-opacity="0.9" overlay-color="#f8f8f8">
             <v-card>
                 <v-card-actions>
                     <v-icon class="close-icon" @click="dialogVideo = false">mdi-close</v-icon>
                 </v-card-actions>
                 <div class="hold-video">
+                    <span>play video</span>
                     <div class="poster-video" ref="videoPoster">
                         <a href="#" @click.prevent="playVideo()">
                             <v-icon>mdi-play-circle</v-icon>
@@ -338,13 +348,49 @@
                 </div>
             </v-card>
         </v-dialog>
-        <v-dialog v-model="dialogHireme" persistent max-width="850" overlay-opacity="0.5" overlay-color="#202124">
+        <v-dialog attach="#freelancerResumeTheme21" content-class="modal__rt" v-model="dialogShare" persistent max-width="1269" overlay-opacity="0.9" overlay-color="#f8f8f8">
+            <v-card>
+                <v-card-actions>
+                    <v-icon class="close-icon" @click="dialogShare = false">mdi-close</v-icon>
+                    <img src="@/assets/icons/resume21/share-active.png" alt="">
+                </v-card-actions>
+                <div class="hold-share">
+                    <v-row class="share-wrap">
+                        <v-col lg="6">
+                            <span>Share url</span>
+                            <div class="social-wrap">
+                                <a href="" alt="Behance" title="Behance">
+                                    <img src="@/assets/icons/resume21/behance.png" alt="">
+                                </a>
+                                <a href="" alt="dribbble" title="dribbble">
+                                    <img src="@/assets/icons/resume21/dribbble.png" alt="">
+                                </a>
+                                <a href="" alt="Instagram" title="Instagram">
+                                    <img src="@/assets/icons/resume21/instagram.png" alt="">
+                                </a>
+                                <a href="" alt="Linkedin" title="Linkedin">
+                                    <img src="@/assets/icons/resume21/linkedin.png" alt="">
+                                </a>
+                                <a href="" alt="Google" title="Google">
+                                    <img src="@/assets/icons/resume21/google.png" alt="">
+                                </a>
+                            </div>
+                        </v-col>
+                        <v-col lg="6">
+                            <span>Download pdf</span>
+                            <a href="#" class="dl-pdf"><v-icon>mdi-arrow-down-bold-circle</v-icon></a>
+                        </v-col>
+                    </v-row>
+                    
+                </div>
+            </v-card>
+        </v-dialog>
+        <v-dialog attach="#freelancerResumeTheme21" v-model="dialogHireme" persistent max-width="1269" overlay-opacity="0.9" overlay-color="#f8f8f8">
             <v-card class="payment-wrap">
                 <v-card-actions>
                     <v-icon class="close-icon" @click="dialogHireme = false">mdi-close</v-icon>
                 </v-card-actions>
                 <v-container>
-                    <h3>Select Payment Method :</h3>
                     <v-row class="hold-payment">
                         <v-col cols="12" lg="12">
                             <v-radio-group v-model="radioGroup" :row="true" class="pay-method">
@@ -352,25 +398,21 @@
                                     <v-radio
                                         color="#d8d8d8"
                                         value="1"
-                                        name="opt-paypal"
-                                        off-icon="mdi-checkbox-blank-circle"
+                                        name="opt-stripe"
                                         :ripple="false"
                                     >
-                                        
                                     </v-radio>
-                                    <img src="@/assets/icons/resume3/icon-paypal.png" alt="">
+                                    <img src="@/assets/icons/resume21/stripe.png" alt="">
                                 </span>
                                 <span class="item-pay">
                                     <v-radio
                                         color="#d8d8d8"
                                         value="2"
-                                        name="opt-payonner"
-                                        off-icon="mdi-checkbox-blank-circle"
+                                        name="opt-paypal"
                                         :ripple="false"
                                     >  
-                                        
                                     </v-radio>
-                                    <img src="@/assets/icons/resume3/icon-payonner.png" alt="">
+                                    <img src="@/assets/icons/resume21/paypal.png" alt="">
                                 </span>
                             </v-radio-group>
                             
@@ -401,9 +443,17 @@
     $tab_ThreeColor : #F4B400;
     $tab_FourColor : #4285F4;
 
+    .showOnProfile{
+        display: none !important;
+    }
+
     /** Removing default padding on cols vuetify */
     .col-xl, .col-xl-auto, .col-xl-12, .col-xl-11, .col-xl-10, .col-xl-9, .col-xl-8, .col-xl-7, .col-xl-6, .col-xl-5, .col-xl-4, .col-xl-3, .col-xl-2, .col-xl-1, .col-lg, .col-lg-auto, .col-lg-12, .col-lg-11, .col-lg-10, .col-lg-9, .col-lg-8, .col-lg-7, .col-lg-6, .col-lg-5, .col-lg-4, .col-lg-3, .col-lg-2, .col-lg-1, .col-md, .col-md-auto, .col-md-12, .col-md-11, .col-md-10, .col-md-9, .col-md-8, .col-md-7, .col-md-6, .col-md-5, .col-md-4, .col-md-3, .col-md-2, .col-md-1, .col-sm, .col-sm-auto, .col-sm-12, .col-sm-11, .col-sm-10, .col-sm-9, .col-sm-8, .col-sm-7, .col-sm-6, .col-sm-5, .col-sm-4, .col-sm-3, .col-sm-2, .col-sm-1, .col, .col-auto, .col-12, .col-11, .col-10, .col-9, .col-8, .col-7, .col-6, .col-5, .col-4, .col-3, .col-2, .col-1{
         padding: 0;
+    }
+
+    #freelancerResumeTheme21{
+        position: relative;
     }
     .container{
         margin: 0 auto !important;
@@ -427,7 +477,7 @@
 
                 .showOnlyOnmd{
                     border: 0;
-                    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.07);
+                    box-shadow: none;
                     margin-bottom: 10px;
                 }
             }
@@ -448,12 +498,19 @@
         }
         @media screen and (max-width: 769px) {
             min-height: auto;
-            padding: 0px 0px 110px 0px;
+            padding: 80px 0px 110px 0px;
 
             .portfolio-section,.work-section,.education-section,.skills-section{
-                max-width: 90%;
+                max-width: 96%;
                 margin: 0px auto;
             }
+        }
+
+        @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 480px)
+        and (-webkit-min-device-pixel-ratio: 2) {
+            padding-top: 50px;
         }
 
     }
@@ -466,16 +523,27 @@
         flex-flow: row;
 
         @media screen and (max-width: 769px) {
-            max-width: 90%;
-            padding-top: 55px;
+            max-width: 98%;
+            padding-top: 40px;
             padding-bottom: 0;
+            flex-wrap: wrap;
+            justify-content: space-around;
+
+            .showOnProfile{
+                display: block !important;
+            }
 
             .imageCol{
 
 
                 .profile-img{
-                    max-width: 79px;
-                    max-height: 79px;
+                    max-width: 133px;
+                    max-height: 128px;
+
+                    >img{
+                        max-width: 113px;
+                        max-height: 109px;
+                    }
                 }
                 .chat-option{
                     max-width: 34px;
@@ -488,13 +556,19 @@
                         font-size: 15px;
                     }
                 }
+                >a{
+                    display: none;
+                }
             }
             .profileCol{
-                margin-left: 5%;
+                margin-left: 0;
+                position: relative;
+                min-height: 120px;
 
                 
                 .head-profile{
-                    font-size: 12px;
+                    font-size: 12px !important;
+                    padding-top: 0px !important;
                 }
                 .social-wrap{
                     a{
@@ -507,12 +581,40 @@
                         margin: 0px 2%;
                     }
                 }
+
+                .option-wrap{
+                    position: absolute;
+                    right: 5%;
+                    top: 5%;
+                    margin-top: 0px !important;
+                    min-width: 168px;
+                    justify-content: space-between !important;
+                    display: flex;
+
+                    a{
+                        margin-right: 2% !important;
+                    }
+                }
+                a.showOnProfile{
+                    font-family: "Montserrat";
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 14px;
+                    line-height: 14px;
+                    letter-spacing: 0.1em;
+                    text-transform: uppercase;
+                    text-decoration: none;
+                    color: #2410A4;
+                    margin-top: 40px;
+                }
+
+
             }
 
             .interviewSection{
                 border: 0;
-                align-items: flex-start;
-                margin-top: 0;
+                align-items: center;
+                margin: 75px auto;
 
                 .title-medium{
                     font-size: 0;
@@ -543,9 +645,15 @@
             }
             .rateSection{
                 border-top: 1px solid #E5E5E5;
-                margin-top: 15px;
+                margin: 0px;
                 flex-flow: nowrap;
                 min-height: 69px;
+                max-height: 147px;
+                max-width: 98%;
+
+                .shareOption{
+                    display: none;
+                }
 
                 .rate-wrap{
 
@@ -603,19 +711,120 @@
                 }
 
                 .btn-action{
-                    min-width: 95px;
-                    min-height: 29px;
-                    line-height: 29px;
-                    font-size: 10px;
+                    line-height: 77px;
+                    font-size: 18px;
                 }
             }
         }
 
-        @media screen and (max-width: 375px) {
+        @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 480px)
+        and (-webkit-min-device-pixel-ratio: 2) {
+
+            padding-top: 35px;
+            justify-content: center;
+            white-space: nowrap;
+
+            
+
             .profileCol{
-                max-width: 132px;
-                margin-left: 3%;
+                max-width: 100%;
+                margin-left: 5%;
+
+                .head-name{
+                    font-size: 18px !important;
+                }
+                .option-wrap{
+                    position: relative;
+                    right: auto;
+                    top: auto;
+                    margin-top: 10px !important;
+                    justify-content: flex-start !important;
+
+                    a{
+                        width: 44px !important;
+                        height: 44px !important;
+                        margin-right: 20px !important;
+
+                        img{
+                            max-width: 21px;
+                        }
+                    }
+                }
+                .showOnProfile{
+                    display: none !important;
+                }
             }
+
+            .imageCol{
+
+                .profile-img{
+                    max-width: 117px;
+                    max-height: 113px;
+
+                    >img{
+                        max-width: 99px;
+                        max-height: 96px;
+                    }
+                }
+                >a{
+                    display: block;
+                    font-size: 12px;
+                }
+            }
+
+            .interviewSection{
+                margin: 45px auto 30px auto;
+                max-width: 100%;
+            }
+
+            .social-wrap{
+                min-width: 320px;
+
+                a{
+                    margin: 0px 2%;
+                    width: 55px;
+                    height: 55px;
+
+                    img{
+                        max-width: 24px;
+                        max-height: 24px;
+                    }
+                }
+            }
+
+            .rateSection{
+                max-height: 100%;
+               
+
+                .rate-wrap{
+                    padding: 20px 0px;
+
+                    .col-4{
+                        min-width: 50%;
+                        max-height: 60px;
+                        min-height: 60px !important;
+                    }
+
+                    .btn-action{
+                        min-height: 50px;
+                        font-size: 12px;
+                        line-height: 50px;
+                        border-radius: 15px;
+                    }
+
+                    .price,.hours{
+                        font-size: 13px;
+                        line-height: 24px;
+                    }
+                    .text_price,.text_hours{
+                        font-size: 10px;
+                    }
+                }
+            } 
+
+            
         }
 
         .profileCol{
@@ -677,6 +886,13 @@
                     }
                 }
             }
+            @media screen and (max-width: 769px) {
+                .head-name{
+                    font-size: 24px;
+                }
+            }
+
+
         }
 
 
@@ -880,7 +1096,7 @@
             font-style: normal;
             font-weight: 500;
             font-size: 24px;
-            line-height: 0px;
+            line-height: 24px;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: rgba(84, 84, 84, 0.2) !important;
@@ -945,10 +1161,11 @@
                 flex-flow: column;
                 min-width: 80px;
                 max-height: 77px;
-                margin: 0 5px;
-                font-size: 10px;
-                font-family: "Roboto";
-                font-style: normal;
+                margin: 0 10px;
+                font-weight: bold;
+                font-size: 20px;
+                line-height: 20px;
+                color: #474747;
 
 
                 i{
@@ -957,6 +1174,17 @@
                 }
             }
 
+        }
+
+        @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 480px)
+        and (-webkit-min-device-pixel-ratio: 2) {
+            .v-tab{
+                max-width: 241px;
+                max-height: 57px;
+                font-size: 14px;
+            }
         }
     }
 
@@ -1139,6 +1367,50 @@
             }
 
         }
+
+        @media screen and (max-width: 769px) {
+            .col-12{
+                max-width: 96%;
+            }
+            .item-work{
+                max-height: 100%;
+                padding: 60px 10%;
+            }
+        }
+
+        @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 480px)
+        and (-webkit-min-device-pixel-ratio: 2) {
+            .col-12{
+                max-width: 96%;
+            }
+
+            .item-work{
+                padding: 55px 20px;
+
+                .v-card__title{
+                    font-size: 18px;
+                    padding-left: 36px;
+                }
+
+                .v-card__text{
+                    margin-top: 20px;
+                    padding-left: 36px;
+
+                    p{
+                        font-size: 16px;
+                        line-height: 20px;
+                    }   
+                }
+                .v-card__subtitle{
+
+                    &::before{
+                        margin-right: 16px;
+                    }
+                }
+            }
+        }
     }
 
     .skills-wrap{
@@ -1225,6 +1497,19 @@
             }
            
         }
+        @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 480px)
+        and (-webkit-min-device-pixel-ratio: 2) {
+            .mc-subtabs_skills{
+                .item-skill{
+                    height: 57px;
+                    padding: 0px;
+                    margin: 0px 3%;
+                }
+            }
+        }
+
     }
 
     .title-medium{
@@ -1322,19 +1607,39 @@
                 max-width: 100%;
             }
         }
-        @media screen and (max-width: 960px) {
+        @media screen and (max-width: 769px) {
             .col-12{
                 max-width: 100%;
+                margin-bottom: 40px;
             }
 
             .box-photo{
                 margin-bottom: 10px;
-                max-height: 372px;
-                padding: 10px;
+                padding: 0px 0px 50px 0px;
+                max-height: 100%;
 
                 img{
                     width: 100%;
                 }
+
+                .title-photo{
+                    font-size: 16px;
+                    padding-left: 5%;
+                }
+            }
+        }
+
+        @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 480px)
+        and (-webkit-min-device-pixel-ratio: 2) {
+
+            .col-12{
+                margin-bottom: 20px;
+            }
+
+            .box-photo{
+                padding: 0px 0px 20px 0px;
             }
         }
     }
@@ -1445,11 +1750,43 @@
 
     /** Modals styles */
     .v-dialog{
+        
+        &.modal__rt{
+
+            .v-card{
+                padding-bottom: 60px;
+
+                .v-card__actions{
+                    justify-content: space-between;
+                }
+            }
+
+        }
+        
         .v-card{
-            padding-bottom: 80px;
+            background: #F9F9F9;
+            box-shadow: -6px -6px 16px #FFFFFF, 
+            inset 6px 4px 12px rgba(0, 0, 0, 0.25),
+             inset -6px -4px 12px #FFFFFF;
+            border-radius: 15px;   
+            padding-bottom: 65px;
+            border: 2px solid #fff;
 
             &.form-wrap{
-                padding: 0;
+                padding: 0 0 100px 0;
+                
+                .container{
+                    max-width: 926px !important;
+                    padding: 0px;
+
+                    >.row{
+                        justify-content: space-between;
+                    }
+                }
+
+                .col-lg-6{
+                    max-width: 420px;
+                }
 
                 .v-btn{
                     &.btn-send{
@@ -1480,16 +1817,76 @@
 
                 }
 
+                .actions-wrap{
+                    justify-content: center;
+                    align-items: center;
+                    display: flex;
+                    background: #F8F8F8;
+                    box-shadow: inset 6px 4px 10px rgba(185, 185, 185, 0.6), 
+                    inset -6px -4px 16px #FFFFFF;
+                    border-radius: 20px;
+                    max-width: 378px;
+                    min-height: 139px;
+                    margin: 50px auto 0 auto;
+
+                    .btn-action{
+                        min-width: 336px;
+                        min-height: 106px;
+                        line-height: 106px;
+                    }
+                }
+
+                .message-sent{
+                    justify-content: center;
+                    display: flex;
+                    align-items: center;
+
+                    i{
+                        width: 76px;
+                        height: 76px;
+                        font-size: 48px;
+                        padding: 28px;
+                        background: #F9F9F9;
+                        box-shadow: -6px -6px 16px #FFFFFF,
+                         6px 6px 16px rgba(209, 205, 199, 0.4);
+                        border-radius: 40px;
+                        color: #1900B4;
+                    }
+
+                    span{
+                        font-family: "Montserrat";
+                        font-style: normal;
+                        font-weight: bold;
+                        font-size: 24px;
+                        line-height: 24px;
+                        letter-spacing: 0.2em;
+                        text-transform: uppercase;
+                        color: #575757;
+                        margin-left: 4%;
+                    }
+                }
+
+
+
+                
+
             }
 
             .v-card__actions{
-                padding: 30px;
+                padding: 34px 37px 0px 37px;                
                 display: flex;
                 justify-content: flex-end;
             }
             .close-icon{
-                color: #D93025;
-                font-size: 46px;
+                color: #2310A0;
+                font-size: 30px;
+                font-weight: bold;
+                background: #F9F9F9;
+                box-shadow: -6px -6px 16px #FFFFFF, 
+                6px 6px 16px rgba(209, 205, 199, 0.4);
+                border-radius: 40px;
+                width: 62px;
+                height: 62px;
             }
 
             .container{
@@ -1528,6 +1925,34 @@
                             }
                         }
                     }
+
+                    .col-sm-12{
+                        max-width: 90%;
+                    }
+
+                    .container{
+                        padding: 20px 0px; 
+                    }
+
+                    .container > .row{
+                        justify-content: center;
+                    }
+
+                    .actions-wrap{
+                        margin-top: 0;
+                        max-width: 35%;
+                        min-height: 110px;
+
+                        .btn-action{
+                            min-width: 220px;
+                            min-height: 80px;
+                            line-height: 80px;
+                        }
+                    }
+                    .message-sent{
+                        margin-bottom: 50px;
+                    }
+
                 }
                 .close-icon{
                     font-size: 22.5px;
@@ -1544,32 +1969,68 @@
     .player{
         justify-content: center;
         align-items:center;
-        flex-direction: column;
+        flex-flow: row;
         display: flex;
 
         .hold-spectre{
-            background: #F5F7F7;
-            padding: 15px 22px;
-            margin-bottom: 50px;
+            padding: 0px 0px 0px 70px;
+            
+
+            img{
+                background: url('../assets/icons/resume21/audio-wave-shadow.png') no-repeat;
+                background-position: 0px 8px;
+            }
+
             &:hover{
                 cursor: pointer;
             }
         }
 
+        >span{
+            font-family: "Montserrat";
+            font-style: normal;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 24px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #575757;
+        }
+
         a{
+            width: 76px;
+            height: 76px;
+            background: #F9F9F9;
+            box-shadow: -6px -6px 16px #FFFFFF,
+             6px 6px 16px rgba(209, 205, 199, 0.4);
+            border-radius: 40px;
             text-decoration: none;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            margin-left: 2%;
         }
 
         i{
-            font-size: 76px;
-            color: #202124;
+            font-size: 39px;
+            color: #2410A4;
         }
 
         @media screen and (max-width: 769px) {
+            justify-content: flex-start;
+            flex-flow: column;
+            align-items: center;
+
+            a{
+                margin: 20px 0 0 0;
+            }
+
+
             .hold-spectre{
-                max-width: 334px;
+                max-width: 100%;
+                margin-top: 10px;
                 max-height: 205px;
-                margin-bottom: 30px;
+                padding: 0px;
 
                 img{
                     max-width: 100%;
@@ -1584,24 +2045,43 @@
     }
     .hold-video{
         position: relative;
-        max-width: 613px;
-        max-height: 373px;
+        max-width: 1086px;
+        height: 100%;
+        max-height: 830px;
         margin: 0 auto;
+
+        >span{
+            font-family: "Montserrat";
+            font-style: normal;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 24px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #575757;
+            margin-top: 65px;
+            display: inline-block;
+            margin-bottom: 102px;
+        }
 
         .poster-video{
             position: absolute;
             z-index: 2;
             width: 100%;
             height: 100%;
-            background: #000;
+            max-height: 624px;
+            background: url('../assets/imgs/resume21/poster.jpg') no-repeat;
+            background-size: 100%;
             justify-content: center;
             align-items: center;
             display: flex;
+            border-radius: 20px;
+
             a{
                 text-decoration: none;
                 i{
-                    font-size: 65px;
-                    color: #D8D8D8;
+                    font-size: 97px;
+                    color: #2410A4;
                 }
             }
         }
@@ -1610,10 +2090,83 @@
             position: relative;
             z-index: 1;
             max-width: 100%;
+            width: 100%;
+            border-radius: 20px;
         }
 
         @media screen and (max-width: 769px) {
-            max-width: 334px;
+            max-width: 90%;
+
+            >span{
+                margin: 3% 0px;
+            }
+
+            .poster-video{
+                max-height: 370px;
+            }
+        }
+    }
+
+    .hold-share{
+        .social-wrap{
+            width: auto;
+            max-width: 100%;
+            margin-top: 70px;
+        }
+        .dl-pdf{
+            margin-top: 70px;
+            width: 67px;
+            height: 67px;
+            background: #F8F8F8;
+            box-shadow: -6px -6px 16px #FFFFFF, 
+            6px 6px 16px rgba(209, 205, 199, 0.4);
+            border-radius: 15px;
+            margin: 0 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            margin-top: 70px;
+
+            &:hover{
+                box-shadow: -6px -6px 16px #FFFFFF, 
+                6px 6px 16px rgba(209, 205, 199, 0.4), 
+                inset 6px 4px 12px rgba(0, 0, 0, 0.25),
+                inset -6px -4px 12px #FFFFFF;
+                border: 1px solid #fff;
+            }
+
+            i{
+                color: #16009F;
+                font-size: 34px;
+            }
+        }
+
+        .share-wrap{
+
+            .col,.col-6,.col-12{
+                justify-content: flex-start;
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                padding-top: 80px;
+                padding-bottom: 75px;
+            }
+
+            .col+.col,.col-6+.col-6,.col-12+.col-12{
+                border-left: 5px solid #F3F3F3;
+            }
+
+            span{
+                font-family: "Montserrat";
+                font-style: normal;
+                font-weight: bold;
+                font-size: 24px;
+                line-height: 24px;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: #575757;
+            }
         }
     }
 
@@ -1631,21 +2184,47 @@
         }
 
         .hold-payment{
-            margin-top: 20px;
-            background: #F5F7F7;
-            max-width: 710px;
+
+            max-width: 1020px;
             min-height: 160px;
+            margin: 20px auto !important;
 
             .pay-method{
 
                 .item-pay{
                     display: flex;
-                    margin-left: 15%;
-                }
+                    position: relative;
+                    min-width: 475px;
+                    min-height: 216px;
+                    justify-content: center;
+                    align-items: center;
 
+                    img{
+                        position: absolute;
+                    }
+                }
                 .v-radio{
                     margin-right: 0px;
                     margin-left: 0;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    z-index: 1;
+                    opacity: 1;
+                    cursor: pointer;
+                    
+
+                    &.v-item--active{
+                        box-shadow: -6px -6px 16px #FFFFFF, 
+                        6px 6px 16px rgba(209, 205, 199, 0.4);
+                        border-radius: 15px;
+                    }
+
+                    .v-input--selection-controls__input{
+                        width: 100%;
+                        height: 100%;
+                    }
+
                 }
             }
 
@@ -1664,7 +2243,7 @@
             }
 
             .hold-payment{
-                margin-top: 10px;
+                margin: 0px auto !important;
                 height: 147px;
                 min-height: 100%;
 
@@ -1672,8 +2251,9 @@
                     .item-pay{
                         flex-flow: row;
                         display: flex;
-                        margin-left: 30px;
-                        margin-bottom: 20px;
+                        min-width: 200px;
+                        min-height: 80px;
+
 
                         .v-radio{
                             margin-left: 0px;
@@ -1715,19 +2295,21 @@
                 currentTab: 'portfolio',
                 colorTab: '',
                 formMessage: {
-                    name: '',
+                    name: null,
                     nameRules: [
                         v => !!v || 'Name is required',
                         v => (v && v.length <= 10) || 'Name must be less than 10 characters',
                     ],
-                    email: '',
+                    email: null,
                     emailRules: [
                         v => !!v || 'E-mail is required',
                         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
                     ],
-                    message: ''
+                    message: null
                 },
                 formHasErrors: false,
+                formSent: false,
+                isValid: false,
                 // --Timeline
                 reverseTimeline: true,
                 smallTimeline: true,
@@ -1736,6 +2318,7 @@
                 dialogAudio: false,
                 dialogVideo: false,
                 dialogHireme: false,
+                dialogShare: false,
                 // --Player
                 playing: false,
                 radioGroup: 1
@@ -1803,10 +2386,17 @@
             },
             submitForm() {
                 /** Logic data send */
+                this.$refs.formMessages.validate();
+                if(this.isValid){
+                    this.formSent = true;
+                }                
             },
             cancelForm() {
                 this.dialogMessage = false;
                 this.$refs.formMessages.reset();
+                setTimeout(()=>{
+                    this.formSent = false;
+                },1000)                
             }
         },
         beforeMount(){},
