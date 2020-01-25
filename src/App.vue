@@ -22,7 +22,8 @@ export default {
       routes: [
         {"name":"Theme2", "path":"/"},
         {"name":"Theme3", "path":"/theme3"},
-        {"name":"Theme21","path":"/theme21"}
+        {"name":"Theme21","path":"/theme21"},
+        {"name":"Theme24","path":"/theme24"}
       ],
       dataFreelancer: freelancer
     }
@@ -13467,6 +13468,17 @@ html {
 }
 .form-wrap .inset-style .v-text-field .v-messages{
   font-size: 18px;
+}
+
+
+/** Styles Theme 24 */
+.main-tabs_theme24 .v-tabs-bar{
+  height: 188px;
+  align-items: center;
+  background-color: transparent !important;
+}
+.main-tabs_theme24 .v-slide-group__content{
+  justify-content: center;
 }
 
 
