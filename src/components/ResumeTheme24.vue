@@ -897,7 +897,7 @@
 
                 i.item-dot{
                     background: #d7d7d7;
-                    border-radius: 30px;
+                    border-radius: 100%;
                     width: 15px;
                     height: 15px;
                     display: inline-block;
@@ -914,34 +914,48 @@
 
                     i{
                         background: #2874d5;
+                    }
+                    &.style__ai{
+                        i{
+                            background: #F4A835;
 
-                        &:nth-last-child(-n+1){
-                            opacity: .2;
+                            &:nth-last-child(-n+1){
+                                background: #FFEDD2;
+                            }
+                            &:nth-last-child(-2n+2){
+                                background: #FFE4BB;
+                            }
+                            &:nth-last-child(-3n+3){
+                                background: #FFDAA3;
+                            }
+                            &:nth-last-child(-4n+4){
+                                background: #FFCF88;
+                            }
+                            &:nth-last-child(-5n+5){
+                                background: #FDC46F;
+                            }
                         }
-                        &:nth-last-child(-2n+2){
-                            opacity: .3;
-                        }
-                        &:nth-last-child(-3n+3){
-                            opacity: .5;
-                        }
-                        &:nth-last-child(-4n+4){
-                            opacity: .7;
-                        }
+                    }
+                    &.style__ps{
+                        i{
+                            background: #2874D5;
 
-                    }
-                    &.style__red{
-                        i{
-                            background: #E64A10;
-                        }
-                    }
-                    &.style__blue{
-                        i{
-                             background: #2874d5;
-                        }           
-                    }
-                    &.style__black{
-                        i{
-                             background: #000;
+                            &:nth-last-child(-n+1){
+                                background: #A6BDDA;
+                            }
+                            &:nth-last-child(-2n+2){
+                                background: #94AFD2;
+                            }
+                            &:nth-last-child(-3n+3){
+                                background: #7AA2D6;
+                            }
+                            &:nth-last-child(-4n+4){
+                                background: #538DD8;
+                            }
+                            &:nth-last-child(-5n+5){
+                                background: #4887D7;
+                            }
+
                         }           
                     }
                     
@@ -1520,7 +1534,7 @@
                 playing: false,
                 radioGroup: 1,
                 dotsProgress: 24,
-                styleProgress: ['style__red','style__blue','style__black']
+                styleProgress: ['style__ps','style__ai']
             }
         },
         computed: {
