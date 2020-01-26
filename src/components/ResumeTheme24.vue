@@ -98,7 +98,7 @@
                             </v-col>
                             <v-col sm="12" cols="12" class="rateSection">
                                 <v-row class="social-wrap">
-                                    <v-col lg="12">
+                                    <v-col sm="12">
                                         <a href="" alt="Behance" title="Behance">
                                             <img src="@/assets/icons/resume24/icon-behance.png" alt="">
                                         </a>
@@ -117,7 +117,7 @@
                                     </v-col>
                                 </v-row>
                                 <v-row class="rate-wrap">
-                                    <v-col lg="4" sm="4" cols="4">
+                                    <v-col sm="12">
                                         <a href="#" class="btn-circle" @click.prevent="dialogHireme = true">Hire Me</a>
                                     </v-col>
                                 </v-row>                     
@@ -672,6 +672,7 @@
                 font-weight: normal;
                 font-size: 36px;
                 color: #1B7BF5;
+
             }
 
             
@@ -1586,7 +1587,7 @@
             flex-flow: row;
             align-items: center;
             justify-content: space-between;
-            margin-top: 40px;
+            margin-top: 5%;
 
             .social-wrap{
 
@@ -1608,11 +1609,17 @@
             .rate-wrap{
                 margin-top: 0px;
 
+                .col{
+                    display: flex;
+                    justify-content: flex-end;
+                }
+
                 .btn-circle{
                     min-width: 169px;
                     min-height: 60px;
                     line-height: 60px;
                     font-size: 24px;
+                    display: block;
                 }
             }
         }
