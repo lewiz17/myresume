@@ -5,12 +5,12 @@
                 <v-col lg="12" md="12" cols="12" class="resumeCardRight">
                     <div class="showOnlyOnmd">
                         <v-row class="head-section">
-                            <v-col lg="2" class="imageCol">
+                            <v-col lg="2" sm="3" cols="12" class="imageCol">
                                 <span class="profile-img">
                                     <img :src="freelancer.user_data.profile_picture" alt="">    
                                 </span> 
                             </v-col>
-                            <v-col lg="4" class="profileCol">
+                            <v-col lg="4" sm="8" cols="12" class="profileCol">
                                <div class="head-name">{{freelancer.user_data.first_name}}</div>
                                <div class="head-profile">User interface designer</div>
                                
@@ -21,7 +21,7 @@
                                 </div>
                                
                             </v-col>
-                            <v-col lg="6" class="rateSection">
+                            <v-col lg="6" sm="12" cols="12" class="rateSection">
                                 <v-row class="social-wrap">
                                     <v-col lg="12">
                                         <a href="" alt="Behance" title="Behance">
@@ -60,6 +60,63 @@
                                            {{Math.ceil(freelancer.user_data.available_hours_per_week)}} hours
                                         </span>
                                     </v-col>
+                                    <v-col lg="4" sm="4" cols="4">
+                                        <a href="#" class="btn-circle" @click.prevent="dialogHireme = true">Hire Me</a>
+                                    </v-col>
+                                </v-row>                     
+                            </v-col>
+                        </v-row>
+                        <v-row class="head-section showOnlyTab">
+                            <v-col sm="2" cols="12" class="imageCol">
+                                <span class="profile-img">
+                                    <img :src="freelancer.user_data.profile_picture" alt="">    
+                                </span> 
+                            </v-col>
+                            <v-col sm="6" cols="12" class="profileCol">
+                               <div class="head-name">{{freelancer.user_data.first_name}}</div>
+                               <div class="head-profile">User interface designer</div>
+                               
+                                <div class="option-wrap">
+                                    <a href="#" @click.prevent="dialogMessage = true" class="btn-circle">Message</a>
+                                    <a href="#" @click.prevent="dialogAudio = true" class="btn-circle">Video</a>
+                                    <a href="#" @click.prevent="dialogVideo = true" class="btn-circle">Audio</a>
+                                </div>                               
+                            </v-col>
+                            <v-col sm="3" cols="12" class="pricesCol">
+                                <span class="text_price">
+                                    Hourly rate
+                                </span>
+                                <span class="price">
+                                    &#36; {{Math.ceil(freelancer.agent.hourly_rate)}} USD
+                                </span>
+                                <span class="text_hours">
+                                    Available for
+                                </span>
+                                <span class="hours">
+                                    {{Math.ceil(freelancer.user_data.available_hours_per_week)}} hours
+                                </span>
+                            </v-col>
+                            <v-col sm="12" cols="12" class="rateSection">
+                                <v-row class="social-wrap">
+                                    <v-col lg="12">
+                                        <a href="" alt="Behance" title="Behance">
+                                            <img src="@/assets/icons/resume24/icon-behance.png" alt="">
+                                        </a>
+                                        <a href="" alt="dribbble" title="dribbble">
+                                            <img src="@/assets/icons/resume24/icon-dribble.png" alt="">
+                                        </a>
+                                        <a href="" alt="Linkedin" title="Linkedin">
+                                            <img src="@/assets/icons/resume24/icon-linkedin.png" alt="">
+                                        </a>
+                                        <a href="" alt="Instagram" title="Instagram">
+                                            <img src="@/assets/icons/resume24/icon-instagram.png" alt="">
+                                        </a>                                        
+                                        <a href="" alt="Google" title="Google">
+                                            <img src="@/assets/icons/resume24/icon-google.png" alt="">
+                                        </a>
+                                    </v-col>
+                                </v-row>
+                                <v-row class="rate-wrap">
                                     <v-col lg="4" sm="4" cols="4">
                                         <a href="#" class="btn-circle" @click.prevent="dialogHireme = true">Hire Me</a>
                                     </v-col>
@@ -163,17 +220,18 @@
                             <v-tab-item class="skills-section" value="tab-3" transition="fade-transition" reverse-transition="fade-transition">
                                 <v-row class="skills-wrap">
                                     <v-col v-for="(skill,index) in skills" :key="index + 'S'" lg="6" sm="12" cols="12" >
-                                        <div class="box-skill">
+                                        <div class="box-skill" :class="getClassProgress(index)">
                                             <span class="name_skill">{{skill.skill_title}}</span>
                                             <div class="hold-vskill">
                                                 <span class="back_pskill">
                                                     <i class="item-dot" v-for="i in dotsProgress" :key="i"></i>
                                                 </span>
-                                                <span class="front_pskill" :class="getClassProgress(index)">
+                                                <span class="front_pskill">
                                                     <i class="item-dot"  v-for="i in getPercent(skill.percentage)" :key="i" ></i>
-                                                </span>                                                
+                                                </span>
+                                                <span class="percentage">{{skill.percentage}}%</span>                                                   
                                             </div>  
-                                            <span class="percentage">{{skill.percentage}}</span>                                          
+                                                                                   
                                         </div>
                                     </v-col>
                                 </v-row>
@@ -369,7 +427,7 @@
     $tab_FourColor : #4285F4;
 
 
-    .showOnProfile{
+    .showOnlyTab{
         display: none !important;
     }
 
@@ -420,7 +478,6 @@
         padding-top: 58px;
         padding-bottom: 40px;
         max-width: 93.25%;
-        justify-content: space-between;
         flex-flow: row;
 
         .btn-circle{
@@ -434,6 +491,7 @@
         .profileCol{
             display: flex;
             flex-flow: column;
+            margin-left: 3%;
 
             .head-name{
                 font-family: "TextStyle 2019";
@@ -616,26 +674,28 @@
                 color: #1B7BF5;
             }
 
-            .price,.hours{
-                font-family: "TextStyle 2019";
-                font-style: normal;
-                font-weight: normal;
-                font-size: 48px;
-                line-height: 48px;
-                color: #005BD1;
-                letter-spacing: normal;                
-            }
-            .text_price,.text_hours{
-                font-family: "TextStyle 2019";
-                font-style: normal;
-                font-weight: normal;
-                font-size: 36px;
-                line-height: 36px;
-                color: #5C5C5C;
-                letter-spacing: normal;   
-                
-            }
+            
         }
+    }
+
+    .price,.hours{
+        font-family: "TextStyle 2019";
+        font-style: normal;
+        font-weight: normal;
+        font-size: 48px;
+        line-height: 48px;
+        color: #005BD1;
+        letter-spacing: normal;                
+    }
+    .text_price,.text_hours{
+        font-family: "TextStyle 2019";
+        font-style: normal;
+        font-weight: normal;
+        font-size: 2rem;
+        line-height: 36px;
+        color: #5C5C5C;
+        letter-spacing: normal;   
+        
     }
 
     
@@ -644,7 +704,7 @@
         max-width: 95%;
         margin: 0px auto;
         border-top: 8px dotted #ddd;
-        border-bottom: 8px dotted #ddd;
+        border-bottom: 6px dotted #ddd;
         background: transparent;
         
 
@@ -697,58 +757,7 @@
 
 
     }
-
-    .v-timeline{
-        padding-top: 0;
-
-        &::before{
-            background: #d8d8d8 !important;
-        }
-        .v-timeline-item{
-            .v-card{
-
-                padding: 30px;
-
-                .headline{
-                    padding: 0;
-                    font-size: 18px;
-
-                    .title-mob{
-                        display: none;
-                    }
-
-                    &::before{
-                        content: "";
-                        width: 40px;
-                        height: 40px;
-                        border: 3px solid #d8d8d8;
-                        border-radius: 100%;
-                        margin-right: 25px;
-                        
-                    }
-                }
-                .v-card__text{
-                    font-size: 12px;
-                    color: rgba(32, 33, 36, 0.5);
-                }
-                &::before{
-                    border: 0;
-                }
-                &::after{
-                    border: 0;
-                }
-            }
-
-            .v-timeline-item__opposite{
-                >span,span+span{
-                    font-size: 20px;
-                    color: #202124;
-                    opacity: .5;
-                }
-            }
-        }
-
-    }  
+ 
     /** Items tab work */
     .work-wrap{
         justify-content: space-around;
@@ -762,11 +771,19 @@
         }
 
         .col-12{
-            max-width: 42.8%;
             margin-bottom: 0px;
+            justify-content: center;
+            display: flex;
+
+            .item-work{
+                max-width: 680px;
+            }
 
             &:nth-child(-n+3){
                 .item-work{
+
+                    
+
                     .v-card__text{
                         &::after{
                             border-top: 8px dotted #ddd;
@@ -879,21 +896,38 @@
 
     .skills-wrap{
 
+        vertical-align: top;
+
+        .col-12{
+            justify-content: center;
+            display: flex;
+        }
+
         .box-skill{
 
             display: flex;
-            justify-content: space-between;
-            flex-flow: column;
             align-items: center;
+            flex-flow: column;
+            padding-bottom: 50px;
+            max-width: 90%;
 
             .name_skill{
-                
+                align-self: flex-start;
+                font-family: "TextStyle 2019";
+                font-style: normal;
+                font-weight: normal;
+                font-size: 32px;
+                line-height: 32px;
+                color: #2874D5;
             }
             .hold-vskill{
-                width: 500px;
-                height: 15px;
-                display: block;
+                width: auto;
+                height: auto;
+                display: inline-block;
                 position: relative;
+                vertical-align: middle;
+                line-height: 48px;
+                margin-top: 10px;
 
                 i.item-dot{
                     background: #d7d7d7;
@@ -901,66 +935,105 @@
                     width: 15px;
                     height: 15px;
                     display: inline-block;
-                    margin-right: 5px;
+                    margin-right: 6px;
+
+                    &:last-child{
+                        margin-right: 0;
+                    }
                 }
 
                 .back_pskill{
-                    position: absolute;
-                    z-index: 1;
+                    height: 100%;
+                    display: inline-block;
+                    vertical-align: top;
+                    max-width: 498px;
                 }
                 .front_pskill{
                     position: absolute;
                     z-index: 2;
+                    left: 0;
 
                     i{
-                        background: #2874d5;
-                    }
-                    &.style__ai{
-                        i{
-                            background: #F4A835;
-
-                            &:nth-last-child(-n+1){
-                                background: #FFEDD2;
-                            }
-                            &:nth-last-child(-2n+2){
-                                background: #FFE4BB;
-                            }
-                            &:nth-last-child(-3n+3){
-                                background: #FFDAA3;
-                            }
-                            &:nth-last-child(-4n+4){
-                                background: #FFCF88;
-                            }
-                            &:nth-last-child(-5n+5){
-                                background: #FDC46F;
-                            }
-                        }
-                    }
-                    &.style__ps{
-                        i{
-                            background: #2874D5;
-
-                            &:nth-last-child(-n+1){
-                                background: #A6BDDA;
-                            }
-                            &:nth-last-child(-2n+2){
-                                background: #94AFD2;
-                            }
-                            &:nth-last-child(-3n+3){
-                                background: #7AA2D6;
-                            }
-                            &:nth-last-child(-4n+4){
-                                background: #538DD8;
-                            }
-                            &:nth-last-child(-5n+5){
-                                background: #4887D7;
-                            }
-
-                        }           
+                        background: #ccc;
                     }
                     
                 }
+
+                .percentage{
+                    font-family: "TextStyle 2019";
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 2.5rem;
+                    line-height: 40px;
+                    color: #d7d7d7;
+                    margin-left: 2rem;
+                }
             }
+
+            
+            &.style__ps{
+                .name_skill{
+                    color: #2874D5;
+                }
+
+                .front_pskill{
+                    i{
+                        background: #2874D5;
+                        &:nth-last-child(-n+1){
+                            background: #A6BDDA;
+                        }
+                        &:nth-last-child(-2n+2){
+                            background: #94AFD2;
+                        }
+                        &:nth-last-child(-3n+3){
+                            background: #7AA2D6;
+                        }
+                        &:nth-last-child(-4n+4){
+                            background: #538DD8;
+                        }
+                        &:nth-last-child(-5n+5){
+                            background: #4887D7;
+                        }
+                    }
+                }
+
+                .percentage{
+                    color: #2874D5;
+                }
+            }
+
+            &.style__ai{
+                .name_skill{
+                    color: #F4A835;
+                }
+
+                .front_pskill{
+                    i{
+                        background: #F4A835;
+
+                        &:nth-last-child(-n+1){
+                            background: #FFEDD2;
+                        }
+                        &:nth-last-child(-2n+2){
+                            background: #FFE4BB;
+                        }
+                        &:nth-last-child(-3n+3){
+                            background: #FFDAA3;
+                        }
+                        &:nth-last-child(-4n+4){
+                            background: #FFCF88;
+                        }
+                        &:nth-last-child(-5n+5){
+                            background: #FDC46F;
+                        }
+                    }
+                }
+                .percentage{
+                    color: #F4A835;
+                }
+            }
+
+
         }
         
         
@@ -998,28 +1071,7 @@
             margin-right: 10px;
         }
     }
-    .btn-action{
-        display: block;
-        min-width: 89%;
-        min-height: 80px;
-        text-align: center;
-        background: #1900B4;
 
-        border-radius: 20px;
-        font-family: "TextStyle 2019";
-        font-style: normal;
-        font-weight: bold;
-        font-size: 18px;
-        line-height: 80px;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: #FFFFFF;
-        text-decoration: none;
-
-        &:hover{
-            opacity: 0.8;
-        }
-    }
     .portfolio-wrap{
 
         justify-content: space-evenly;
@@ -1052,72 +1104,7 @@
 
     }
 
-    
 
-    .skills-wrap{
-        
-        justify-content: space-between;
-
-        .box-skill{
-            display: flex;
-            background: #ffffff;
-
-            padding: 25px 0px 25px 50px;
-            margin-bottom: 2%;
-            align-self: stretch;
-            max-width: 460px;
-
-            .logo-skill{
-                width: 63px;
-                height: 63px;
-                border-radius: 100%;
-                background: #D8D8D8;
-                color: #fff;
-                text-align: center;
-                font-size: 24px;
-                line-height: 54px;
-                font-family: 'Roboto-Bold';
-                border: 5px solid #D8D8D8;
-
-                &.icon_ps{
-                    background: #242B74;
-                    border-color: #2E9EF5;
-                }
-                &.icon_ai{
-                    background: #202124;
-                    border-color: #F4B400;
-                }
-                &.icon_xd{
-                    background: #202124;
-                    border-color: #E535AB;
-                }
-                &.icon_id{
-                    background: #242B74;
-                    border-color: #FF00AB;
-                }
-            }
-
-            .info-skill{
-                margin-left: 30px;
-                width: 277px;
-                .head-skill{
-
-                    width: 100%;
-                    justify-content: space-between;
-                    display: flex;
-                    margin-bottom: 25px;
-
-                    >span{
-                        font-size: 20px;
-                        font-family: "Roboto";
-                        color: #202124;
-                    }
-                }
-            }
-
-        }
-
-    }
 
     /** Modals styles */
     .v-dialog{
@@ -1487,6 +1474,205 @@
         }
     }
 
+    /** Standar tablet version */
+    @media screen and (max-width: 768px) {
+
+        .showOnlyTab{
+            display: flex !important;
+        }
+
+        .container{
+            &.hold_theme24{
+                background-image: none;
+            }
+        }
+
+        .imageCol{
+            .profile-img{
+                width: 149px;
+                height: 147px;
+                background-size: cover;
+                background-repeat: no-repeat;
+
+                img{
+                    width: 126.1px;
+                    height: 126.1px;
+                }
+            }
+        } 
+
+        .head-section{
+            display: none;
+
+            &.showOnlyTab{
+                flex-flow: wrap;
+                padding-top: 0px;
+                max-width: 92%;
+            }
+
+
+            .profileCol{
+                .head-name{
+                    font-size: 36px;
+                    line-height: 25px;
+                    -webkit-text-stroke:transparent;
+                }
+                .head-profile{
+                    font-size: 18px;
+                    line-height: 20px;
+                }
+
+                .option-wrap{
+                    a{
+                        width: 105px;
+                        height: 36px;
+                        font-size: 18px;
+                        line-height: 20px;
+                        margin: 0px 3px;
+                    }
+                } 
+            }
+
+        }
+
+
+        .main-tabs_theme24{
+
+            max-width: 100%;
+
+            .v-tab{
+                margin: 0 23.5px;
+                font-size: 36px;
+                line-height: 39px;
+            }
+        }
+
+        .work-wrap{
+
+            .line-dots{
+                display: none;
+            }
+
+            .col-12{
+                .item-work{
+                    max-width: 100%;
+                    padding: 70px 30px 0px 30px;
+                    border-bottom: 8px dotted #ddd;
+
+                    .v-card__text{
+                        &::after{
+                            max-width: 100%;
+                            
+                        }
+                    }
+                }
+
+                &:nth-child(-n+3){
+                    .item-work{
+                        .v-card__text{
+                            &::after{
+                                border-top: 0px;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            
+        } 
+        
+        .rateSection{
+            flex-flow: row;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 40px;
+
+            .social-wrap{
+
+                .col,.col-12{
+                    text-align: left;
+                }
+
+                a{
+
+                    margin: 0px 19.5px;
+
+                    img{
+                        max-width: 45px;
+                    }
+                }
+                
+            }
+
+            .rate-wrap{
+                margin-top: 0px;
+
+                .btn-circle{
+                    min-width: 169px;
+                    min-height: 60px;
+                    line-height: 60px;
+                    font-size: 24px;
+                }
+            }
+        }
+
+        .pricesCol{
+            justify-content: flex-start;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            max-height: 215px;
+            border-left: 6px dotted#ddd;
+            padding-top: 50px;
+        }
+
+        .text_price,.text_hours{
+            font-size: 24px;
+            line-height: 26px;
+        }
+        .price,.hours{
+            font-size: 18px;
+            line-height: 20px;
+            padding-bottom: 30px;
+        }
+
+        
+
+        .skills-wrap{
+            .box-skill{
+                max-width: 100%;
+                width: 100%;
+                border-bottom: 8px dotted #ddd;
+                padding: 60px 30px;
+                align-items: flex-start;
+
+                .name_skill{
+                    font-size: 48px;
+                    line-height: 52px;
+                }
+
+                .hold-vskill{
+
+                    .back_pskill{
+                        max-width: 100%;
+                    }
+
+                    i.item-dot{
+                        width: 18px;
+                        height: 18px;
+                    }
+                    .percentage{
+                        font-size: 48px;
+                        line-height: 42px;
+                    }
+                }
+                
+            }
+        } 
+
+    }
+
     
     
     
@@ -1607,7 +1793,7 @@
                 },1000)                
             },
             getPercent(v) {
-                return Math.ceil((v*this.dotsProgress)/100);
+                return Math.floor((v*this.dotsProgress)/100);
             }
         },
         beforeMount(){},

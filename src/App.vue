@@ -13550,6 +13550,11 @@ html {
   }
 
 
+  /** Mobile Theme 24 */
+  .main-tabs_theme24 .v-tabs-bar{
+    height: 130px;
+  }
+
 }
 
 @media only screen 
