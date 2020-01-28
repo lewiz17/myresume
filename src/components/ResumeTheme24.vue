@@ -5,22 +5,26 @@
                 <v-col lg="12" md="12" cols="12" class="resumeCardRight">
                     <div class="showOnlyOnmd">
                         <v-row class="head-section">
-                            <v-col lg="2" sm="3" cols="12" class="imageCol">
-                                <span class="profile-img">
-                                    <img :src="freelancer.user_data.profile_picture" alt="">    
-                                </span> 
+                            <v-col lg="6" sm="12" cols="12">
+                                <v-row class="profile-wrap">
+                                    <v-col lg="2" sm="3" class="imageCol">
+                                        <span class="profile-img">
+                                            <img :src="freelancer.user_data.profile_picture" alt="">    
+                                        </span> 
+                                    </v-col>
+                                    <v-col lg="4" sm="8" class="profileCol">
+                                        <div class="head-name">{{freelancer.user_data.first_name}}</div>
+                                        <div class="head-profile">User interface designer</div>
+                                        
+                                        <div class="option-wrap">
+                                            <a href="#" @click.prevent="dialogMessage = true" class="btn-circle">Message</a>
+                                            <a href="#" @click.prevent="dialogAudio = true" class="btn-circle">Video</a>
+                                            <a href="#" @click.prevent="dialogVideo = true" class="btn-circle">Audio</a>
+                                        </div>
+                                    </v-col>
+                                </v-row>                                
                             </v-col>
-                            <v-col lg="4" sm="8" cols="12" class="profileCol">
-                               <div class="head-name">{{freelancer.user_data.first_name}}</div>
-                               <div class="head-profile">User interface designer</div>
-                               
-                               <div class="option-wrap">
-                                    <a href="#" @click.prevent="dialogMessage = true" class="btn-circle">Message</a>
-                                    <a href="#" @click.prevent="dialogAudio = true" class="btn-circle">Video</a>
-                                    <a href="#" @click.prevent="dialogVideo = true" class="btn-circle">Audio</a>
-                                </div>
-                               
-                            </v-col>
+                            
                             <v-col lg="6" sm="12" cols="12" class="rateSection">
                                 <v-row class="social-wrap">
                                     <v-col lg="12">
@@ -42,7 +46,7 @@
                                     </v-col>
                                 </v-row>
                                 <v-row class="rate-wrap">
-                                    <v-col lg="4" sm="4" cols="4">
+                                    <v-col lg="4" sm="6">
                                         
                                         <span class="text_price">
                                             Hourly rate
@@ -51,7 +55,7 @@
                                             &#36; {{Math.ceil(freelancer.agent.hourly_rate)}} USD
                                         </span>
                                     </v-col>
-                                    <v-col lg="4" sm="4" cols="4">
+                                    <v-col lg="4" sm="6">
                                         
                                         <span class="text_hours">
                                             Available for
@@ -60,7 +64,7 @@
                                            {{Math.ceil(freelancer.user_data.available_hours_per_week)}} hours
                                         </span>
                                     </v-col>
-                                    <v-col lg="4" sm="4" cols="4">
+                                    <v-col lg="4" sm="12" cols="12">
                                         <a href="#" class="btn-circle" @click.prevent="dialogHireme = true">Hire Me</a>
                                     </v-col>
                                 </v-row>                     
@@ -1678,6 +1682,199 @@
             }
         } 
 
+    }
+
+    @media only screen 
+    and (min-device-width: 320px) 
+    and (max-device-width: 480px)
+    and (-webkit-min-device-pixel-ratio: 2) {
+        .head-section{
+            display: flex;
+            flex-flow: column;
+            padding-top: 20px;
+
+            &.showOnlyTab{
+                display: none !important;
+            }
+
+            .profile-wrap{
+                flex-flow: row;
+            }
+
+            .profileCol{
+                align-items: flex-start;
+                justify-content: center;
+
+
+                .head-name{
+                    font-size: 24px;
+                    line-height: 26px;
+                }
+                .head-profile{
+                    padding-top: 0;
+                    font-size: 14px;
+                    line-height: 15px;
+                }
+
+                .option-wrap{
+
+                    margin-top: 15px;
+                    a{
+                        width: 67px;
+                        height: 23px;
+                        font-size: 12px;
+                        line-height: 13px;
+                    }
+                }
+            }
+        }
+
+        .imageCol{
+            max-width: 30%;
+
+            .profile-img{
+                width: 94px;
+                height: 93px;
+
+                img{
+                    width: 79.5px;
+                    height: 79.5px;
+                }
+            }
+        } 
+
+        .rateSection{
+            flex-wrap: wrap;
+            .rate-wrap{
+                margin-top: 28px;
+
+                .col{
+                    justify-content: center;
+                    flex-flow: column;
+                    align-items: center;
+                }
+                .btn-circle{
+                    margin-top: 20px;
+                }
+            }
+            .social-wrap{
+
+                .col,.col-12{
+                    text-align: center;
+                }
+                a{
+                    margin: 0px 15px;
+                    img{
+                        max-width: 32px;
+                    }
+
+                    &:last-child{
+                        margin: 0px 15px;
+                    }
+                }
+            }
+        }
+        .price,.hours{
+            padding-bottom: 0;
+        }
+
+        .main-tabs_theme24{
+
+            .v-tab{
+                margin: 0 17px;
+            }
+        }
+        .hold-contents{
+            padding: 45px 0;
+        }
+
+        .portfolio-wrap{
+            .box-photo{
+                min-width: 100%;
+                min-height: auto;
+
+                img{
+                    max-width: 95%;
+                }
+            }
+        }
+
+        .work-wrap{
+            .col-12{
+
+                &:nth-child(2){
+
+                    .item-work{
+                        padding-top: 0;
+                    }
+                }
+
+                .item-work{
+                    padding: 50px 30px 0 30px;
+
+                    .v-card__title{
+                        font-size: 36px;
+                        line-height: 39px;
+                    }
+                    .v-card__subtitle,.v-card__text{
+                        font-size: 24px;
+                        line-height: 26px;
+                    }
+                    .v-card__text{
+                        p{
+                            font-size: 18px;
+                            line-height: 20px;
+                            margin-bottom: 45px;
+                        }
+                    }
+
+                    
+                }
+            }
+        }
+        .skills-wrap{
+            .col-12{
+                &:nth-child(1){
+                    .box-skill{
+                        padding-top: 0px;
+                    }
+                }
+            }
+
+            .box-skill{
+                padding: 60px 18px;
+
+                .name_skill{
+                    font-size: 32px;
+                    line-height: 35px;
+                }
+                .hold-vskill{
+
+                    width: 100%;
+
+                    i.item-dot{
+                        width: 9px;
+                        height: 9px;
+                        margin-right: 3px;
+                    }
+                    .percentage{
+                        font-size: 24px;
+                        margin-left: 0px;
+                        float: right;
+                    }
+                }
+            }
+        }
+    }
+    @media only screen 
+    and (min-device-width: 768px) 
+    and (max-device-width: 1024px) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+        .work-wrap{
+            .line-dots{
+                display: none;
+            }
+        }
     }
 
     

@@ -13564,6 +13564,14 @@ html {
   .main-tabs_theme21>.v-tabs-bar{
     min-height: 150px;
   }
+
+  .main-tabs_theme24 .v-tabs-bar{
+    height: 120px;
+  }
+  .main-tabs_theme24 .v-slide-group__next,
+  .main-tabs_theme24 .v-slide-group__prev{
+    display: none !important;
+  }
 }
 
 
