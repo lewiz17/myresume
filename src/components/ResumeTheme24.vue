@@ -12,7 +12,7 @@
                                             <img :src="freelancer.user_data.profile_picture" alt="">    
                                         </span> 
                                     </v-col>
-                                    <v-col lg="8" sm="8" class="profileCol">
+                                    <v-col lg="6" sm="8" class="profileCol">
                                         <div class="head-name">{{freelancer.user_data.first_name}}</div>
                                         <div class="head-profile">User interface designer</div>
                                         
