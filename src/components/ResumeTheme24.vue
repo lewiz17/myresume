@@ -12,14 +12,14 @@
                                             <img :src="freelancer.user_data.profile_picture" alt="">    
                                         </span> 
                                     </v-col>
-                                    <v-col lg="4" sm="8" class="profileCol">
+                                    <v-col lg="8" sm="8" class="profileCol">
                                         <div class="head-name">{{freelancer.user_data.first_name}}</div>
                                         <div class="head-profile">User interface designer</div>
                                         
                                         <div class="option-wrap">
                                             <a href="#" @click.prevent="dialogMessage = true" class="btn-circle">Message</a>
-                                            <a href="#" @click.prevent="dialogAudio = true" class="btn-circle">Video</a>
-                                            <a href="#" @click.prevent="dialogVideo = true" class="btn-circle">Audio</a>
+                                            <a href="#"  @click.prevent="dialogVideo = true" class="btn-circle">Video</a>
+                                            <a href="#" @click.prevent="dialogAudio = true" class="btn-circle">Audio</a>
                                         </div>
                                     </v-col>
                                 </v-row>                                
@@ -82,8 +82,8 @@
                                
                                 <div class="option-wrap">
                                     <a href="#" @click.prevent="dialogMessage = true" class="btn-circle">Message</a>
-                                    <a href="#" @click.prevent="dialogAudio = true" class="btn-circle">Video</a>
-                                    <a href="#" @click.prevent="dialogVideo = true" class="btn-circle">Audio</a>
+                                    <a href="#" @click.prevent="dialogVideo = true" class="btn-circle">Video</a>
+                                    <a href="#" @click.prevent="dialogAudio = true" class="btn-circle">Audio</a>
                                 </div>                               
                             </v-col>
                             <v-col sm="3" cols="12" class="pricesCol">
@@ -245,12 +245,12 @@
                 </v-col>
             </v-row>
         </v-container>
-        <!-- <v-dialog attach="#freelancerResumeTheme24" v-model="dialogMessage" persistent max-width="1269" overlay-opacity="0.9" overlay-color="#f8f8f8">
+        <v-dialog attach="#freelancerResumeTheme24" v-model="dialogMessage" persistent max-width="1660" overlay-opacity="0.7" overlay-color="#c4c4c4">
             <v-card class="form-wrap">
                 <v-card-actions>
-                    <v-icon class="close-icon" @click="cancelForm">mdi-close</v-icon>
+                    <img src="@/assets/icons/resume24/icon-close.png" alt="" class="close-icon" @click="cancelForm">
                 </v-card-actions>
-                <v-form ref="formMessages" class="form-messages inset-style" v-show="!formSent" v-model="isValid">
+                <v-form ref="formMessages" class="form-messages dotted-style" v-show="!formSent" v-model="isValid">
                     <v-container>
                         <v-row>
                             <v-col lg="6" sm="12" cols="12">
@@ -274,101 +274,63 @@
                             <v-col lg="12" sm="12" cols="12">
                                 <v-textarea
                                     v-model="formMessage.message"
-                                    height="280"
+                                    height="160"
+                                    rows="2"
                                     :no-resize="true"
                                     color="#202124"
-                                    placeholder="Your Messages Here"
+                                    placeholder="Your Message"
                                 ></v-textarea>
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col lg="12" sm="12" cols="12" class="actions-wrap">
-                                <a href="#" @click.prevent="submitForm" class="btn-action">Sent</a>
+                                <a href="#" @click.prevent="submitForm" class="btn-action">Sent Message</a>
                             </v-col>
                         </v-row>                        
                     </v-container>                    
                 </v-form>
                 <div class="message-sent" v-show="formSent">
-                    <v-icon>mdi-check-circle</v-icon>
+                    <img src="@/assets/icons/resume24/icon-check.png" alt="">
                     <span>Successfully Sent</span>
                 </div>
             </v-card>
         </v-dialog>
-        <v-dialog attach="#freelancerResumeTheme24" v-model="dialogAudio" persistent max-width="1269" overlay-opacity="0.9" overlay-color="#f8f8f8">
+        <v-dialog attach="#freelancerResumeTheme24" v-model="dialogAudio" persistent max-width="1660" overlay-opacity="0.7" overlay-color="#c4c4c4">
              <v-card>
                 <v-card-actions>
-                    <v-icon class="close-icon" @click="dialogAudio = false || pauseAudio()">mdi-close</v-icon>
+                    <img src="@/assets/icons/resume24/icon-close.png" alt="" class="close-icon" @click="dialogAudio = false || pauseAudio()">
                 </v-card-actions>
                 <div class="player">
-                    <span>play audio</span>
                     <a @click.prevent="!playing ? playAudio() : pauseAudio()" title="Play/Pause" href="#">
-                        <v-icon v-if="!playing">mdi-play-circle</v-icon>
+                        <img v-if="!playing" src="@/assets/icons/resume24/play-btn.png" alt="">
                         <v-icon v-else>mdi-pause-circle</v-icon>
                     </a>
                     <div class="hold-spectre" @click.prevent="!playing ? playAudio() : pauseAudio()">
-                        <img src="@/assets/icons/resume21/audio-wave.png" alt="">
+                        <img src="@/assets/icons/resume24/spectre.png" alt="">
                     </div>
                     <audio style="display:none" ref="audioElem" id="audioElem" :src="require('@/'+freelancer.user_data.audio_transcription)" @ended="playing = !playing"></audio>
                 </div>
             </v-card>
         </v-dialog>
-        <v-dialog attach="#freelancerResumeTheme24" v-model="dialogVideo" persistent max-width="1269" overlay-opacity="0.9" overlay-color="#f8f8f8">
+        <v-dialog attach="#freelancerResumeTheme24" v-model="dialogVideo" persistent max-width="1660" overlay-opacity="0.7" overlay-color="#c4c4c4">
             <v-card>
                 <v-card-actions>
-                    <v-icon class="close-icon" @click="dialogVideo = false">mdi-close</v-icon>
+                    <img src="@/assets/icons/resume24/icon-close.png" alt="" class="close-icon" @click="dialogVideo = false">
                 </v-card-actions>
                 <div class="hold-video">
-                    <span>play video</span>
                     <div class="poster-video" ref="videoPoster">
                         <a href="#" @click.prevent="playVideo()">
-                            <v-icon>mdi-play-circle</v-icon>
+                            <img src="@/assets/icons/resume24/play-btn.png" alt="">
                         </a>                        
                     </div>
                     <video ref="videoElem" controls :src="require('@/'+freelancer.user_data.video_url)"></video>
                 </div>
             </v-card>
         </v-dialog>
-        <v-dialog attach="#freelancerResumeTheme24" content-class="modal__rt" v-model="dialogShare" persistent max-width="1269" overlay-opacity="0.9" overlay-color="#f8f8f8">
-            <v-card>
-                <v-card-actions>
-                    <v-icon class="close-icon" @click="dialogShare = false">mdi-close</v-icon>
-                    <img src="@/assets/icons/resume21/share-active.png" alt="">
-                </v-card-actions>
-                <div class="hold-share">
-                    <v-row class="share-wrap">
-                        <v-col lg="6">
-                            <span>Share url</span>
-                            <div class="social-wrap">
-                                <a href="" alt="Behance" title="Behance">
-                                    <img src="@/assets/icons/resume21/behance.png" alt="">
-                                </a>
-                                <a href="" alt="dribbble" title="dribbble">
-                                    <img src="@/assets/icons/resume21/dribbble.png" alt="">
-                                </a>
-                                <a href="" alt="Instagram" title="Instagram">
-                                    <img src="@/assets/icons/resume21/instagram.png" alt="">
-                                </a>
-                                <a href="" alt="Linkedin" title="Linkedin">
-                                    <img src="@/assets/icons/resume21/linkedin.png" alt="">
-                                </a>
-                                <a href="" alt="Google" title="Google">
-                                    <img src="@/assets/icons/resume21/google.png" alt="">
-                                </a>
-                            </div>
-                        </v-col>
-                        <v-col lg="6">
-                            <span>Download pdf</span>
-                            <a href="#" class="dl-pdf"><v-icon>mdi-arrow-down-bold-circle</v-icon></a>
-                        </v-col>
-                    </v-row>
-                    
-                </div>
-            </v-card>
-        </v-dialog>
-        <v-dialog attach="#freelancerResumeTheme24" v-model="dialogHireme" persistent max-width="1269" overlay-opacity="0.9" overlay-color="#f8f8f8">
+        <v-dialog attach="#freelancerResumeTheme24" v-model="dialogHireme" persistent max-width="1660" overlay-opacity="0.7" overlay-color="#c4c4c4">
             <v-card class="payment-wrap">
                 <v-card-actions>
-                    <v-icon class="close-icon" @click="dialogHireme = false">mdi-close</v-icon>
+                    <img src="@/assets/icons/resume24/icon-close.png" alt="" class="close-icon" @click="dialogHireme = false">
                 </v-card-actions>
                 <v-container>
                     <v-row class="hold-payment">
@@ -401,7 +363,7 @@
                 </v-container>                         
                 
             </v-card>
-        </v-dialog> -->
+        </v-dialog>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -496,6 +458,8 @@
             display: flex;
             flex-flow: column;
             margin-left: 3%;
+            align-items: flex-start;
+            justify-content: center;
 
             .head-name{
                 font-family: "TextStyle 2019";
@@ -531,12 +495,11 @@
                 }
                 
                 a{
-                    width: 134px;
+                    min-width: 134px;
                     height: 49px;
-                    display: block;
                     justify-content: center;
                     align-items: center;
-                    display: flex;
+                    display: inline-flex;
                     text-decoration: none;
                     font-family: "TextStyle 2019";
                     font-style: normal;
@@ -657,7 +620,7 @@
             align-items: center;
             margin-top: 25px;
 
-            .col-4{
+            .col{
                 justify-content: center;
                 display: flex;
                 flex-flow: column;
@@ -668,7 +631,6 @@
                 min-width: 240px;
                 min-height: 86px;
                 line-height: 86px;
-                vertical-align: middle;
                 text-align: center;
                 text-decoration: none;
                 font-family: "TextStyle 2019";
@@ -676,7 +638,7 @@
                 font-weight: normal;
                 font-size: 36px;
                 color: #1B7BF5;
-
+                display: block;
             }
 
             
@@ -1114,39 +1076,27 @@
     /** Modals styles */
     .v-dialog{
         
-        &.modal__rt{
-
-            .v-card{
-                padding-bottom: 60px;
-
-                .v-card__actions{
-                    justify-content: space-between;
-                }
-            }
-
-        }
-        
         .v-card{
-            background: #F9F9F9;
-
+            background: #fff;
             border-radius: 15px;   
-            padding-bottom: 65px;
+            padding-bottom: 40px;
             border: 2px solid #fff;
 
             &.form-wrap{
                 padding: 0 0 100px 0;
                 
                 .container{
-                    max-width: 926px !important;
+                    max-width: 1300px !important;
                     padding: 0px;
 
                     >.row{
-                        justify-content: space-between;
+                        justify-content: flex-start;
                     }
                 }
 
                 .col-lg-6{
-                    max-width: 420px;
+                    max-width: 385px;
+                    margin-right: 11%;
                 }
 
                 .v-btn{
@@ -1179,20 +1129,25 @@
                 }
 
                 .actions-wrap{
-                    justify-content: center;
+                    justify-content: flex-end;
                     align-items: center;
-                    display: flex;
-                    background: #F8F8F8;
- 
+                    display: flex; 
                     border-radius: 20px;
-                    max-width: 378px;
-                    min-height: 139px;
-                    margin: 50px auto 0 auto;
 
                     .btn-action{
-                        min-width: 336px;
-                        min-height: 106px;
-                        line-height: 106px;
+                        min-width: 262px;
+                        min-height: 93px;
+                        line-height: 93px;
+                        background: url('../assets/icons/resume24/bgcircle-btn.png');
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        text-align: center;
+                        font-family: "TextStyle 2019";
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 30px;
+                        color: #1B7BF5;
+                        text-decoration: none;
                     }
                 }
 
@@ -1201,27 +1156,17 @@
                     display: flex;
                     align-items: center;
 
-                    i{
-                        width: 76px;
-                        height: 76px;
-                        font-size: 48px;
-                        padding: 28px;
-                        background: #F9F9F9;
-            
-                        border-radius: 40px;
-                        color: #1900B4;
-                    }
-
                     span{
                         font-family: "TextStyle 2019";
                         font-style: normal;
-                        font-weight: bold;
-                        font-size: 24px;
-                        line-height: 24px;
+                        font-weight: normal;
+                        font-size: 48px;
+                        line-height: 48px;
                         letter-spacing: 0.2em;
                         text-transform: uppercase;
-                        color: #575757;
-                        margin-left: 4%;
+                        color: #367BFD;
+                        margin-left: 2%;
+
                     }
                 }
 
@@ -1237,19 +1182,8 @@
                 justify-content: flex-end;
             }
             .close-icon{
-                color: #2310A0;
-                font-size: 30px;
-                font-weight: bold;
-                background: #F9F9F9;
-
-                border-radius: 40px;
-                width: 62px;
-                height: 62px;
-            }
-
-            .container{
-                padding: 70px;
-
+                width: 46.4px;
+                height: 49px;
             }
         }
 
@@ -1264,11 +1198,9 @@
         display: flex;
 
         .hold-spectre{
-            padding: 0px 0px 0px 70px;
-            
+            padding: 0px 0px 0px 30px;
 
             img{
-                background: url('../assets/icons/resume21/audio-wave-shadow.png') no-repeat;
                 background-position: 0px 8px;
             }
 
@@ -1291,14 +1223,11 @@
         a{
             width: 76px;
             height: 76px;
-            background: #F9F9F9;
-
             border-radius: 40px;
             text-decoration: none;
             align-items: center;
             justify-content: center;
             display: flex;
-            margin-left: 2%;
         }
 
         i{
@@ -1309,10 +1238,10 @@
     }
     .hold-video{
         position: relative;
-        max-width: 1086px;
+        max-width: 1207px;
         height: 100%;
-        max-height: 830px;
-        margin: 0 auto;
+        max-height: 640px;
+        margin: 0 auto 100px auto;
 
         >span{
             font-family: "TextStyle 2019";
@@ -1333,7 +1262,7 @@
             z-index: 2;
             width: 100%;
             height: 100%;
-            max-height: 624px;
+            max-height: 640px;
             background: url('../assets/imgs/resume21/poster.jpg') no-repeat;
             background-size: 100%;
             justify-content: center;
@@ -1356,6 +1285,7 @@
             max-width: 100%;
             width: 100%;
             border-radius: 20px;
+            max-height: 640px;
         }
 
     }
@@ -1529,6 +1459,7 @@
 
                 .option-wrap{
                     a{
+                        min-width: auto;
                         width: 105px;
                         height: 36px;
                         font-size: 18px;
@@ -1680,7 +1611,48 @@
                 }
                 
             }
+        }
+
+        /** Dialogs mobile */
+        .v-dialog{
+            .v-card{
+                &.form-wrap{
+                    padding-bottom: 70px;
+
+                    .col-lg-6{
+                        max-width: 90%;
+                        margin: 0px auto;
+                    }
+
+                    .actions-wrap{
+                        justify-content: center;
+                    }
+                }
+            }
         } 
+
+
+        .hold-video{
+            max-width: 95%;
+            margin-bottom: 0;
+        }
+
+        .player{
+            max-width: 100%;
+
+            .hold-spectre{
+                max-width: 50%;
+                img{
+                    max-width: 100%;
+                }
+            }
+
+            a{
+                img{
+                    max-width: 60px;
+                }
+            }
+        }
 
     }
 
@@ -1724,6 +1696,7 @@
                         height: 23px;
                         font-size: 12px;
                         line-height: 13px;
+                        min-width:auto;
                     }
                 }
             }
@@ -1862,6 +1835,15 @@
                         margin-left: 0px;
                         float: right;
                     }
+                }
+            }
+        }
+
+        /** Dialogs mobile */
+        .v-dialog{
+            .v-card{
+                &.form-wrap{
+                    
                 }
             }
         }

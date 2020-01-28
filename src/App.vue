@@ -13379,6 +13379,34 @@ html {
   background: #F5F7F7 !important;
 }
 
+
+/** Form with inputs dotted */
+.form-wrap .dotted-style .v-text-field > .v-input__control > .v-input__slot:before{
+  border-bottom: 6px dotted #ddd;
+  border-top: 0px;
+}
+.form-wrap .dotted-style .v-textarea.v-text-field > .v-input__control > .v-input__slot{
+  border: 6px dotted #ddd;
+}
+.form-wrap .dotted-style .v-text-field > .v-input__control > .v-input__slot:after,
+.form-wrap .dotted-style .v-textarea.v-text-field > .v-input__control > .v-input__slot:before,
+.form-wrap .dotted-style .v-textarea.v-text-field > .v-input__control > .v-input__slot:after{
+  border-bottom: 0px;
+  border-top: 0px;
+}
+.form-wrap .dotted-style .v-text-field input[type=text],.form-wrap .dotted-style .v-text-field textarea{
+  font-family: "TextStyle 2019";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 52px;
+  min-height: 60px;
+  padding: 20px;
+}
+.form-wrap .dotted-style .v-text-field .v-messages{
+  font-size: 18px;
+}
+
 /** Payment options section */
 .hold-payment .pay-method.v-input--radio-group--row .v-input--radio-group__input{
   flex-wrap: nowrap;
@@ -13480,7 +13508,9 @@ html {
 .main-tabs_theme24 .v-slide-group__content{
   justify-content: center;
 }
-
+#freelancerResumeTheme24 .v-dialog.v-dialog--active{
+  box-shadow: none;   
+}
 
 
 @media screen and (max-width: 769px) {
@@ -13553,6 +13583,15 @@ html {
   /** Mobile Theme 24 */
   .main-tabs_theme24 .v-tabs-bar{
     height: 130px;
+  }
+
+  .form-wrap .dotted-style .v-text-field input[type=text], .form-wrap .dotted-style .v-text-field textarea{
+    font-size: 30px;
+  }
+
+  .form-wrap .dotted-style .v-textarea.v-text-field, .form-wrap .dotted-style .v-text-field{
+    max-width: 90%;
+    margin: 0px auto;
   }
 
 }
