@@ -303,7 +303,7 @@
                 <div class="player">
                     <a @click.prevent="!playing ? playAudio() : pauseAudio()" title="Play/Pause" href="#">
                         <img v-if="!playing" src="@/assets/icons/resume24/play-btn.png" alt="">
-                        <v-icon v-else>mdi-pause-circle</v-icon>
+                        <img src="@/assets/icons/resume24/icon-pause.png" v-else>
                     </a>
                     <div class="hold-spectre" @click.prevent="!playing ? playAudio() : pauseAudio()">
                         <img src="@/assets/icons/resume24/spectre.png" alt="">
