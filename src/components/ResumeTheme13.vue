@@ -179,80 +179,69 @@
                                         </v-tabs>
                                         <v-tabs-items v-model="activeTabSkill" class="mc-subtabs_skills">
                                             <v-tab-item value="skill_tab-0">
-                                                <v-row>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/illustrator.png" alt="">
-                                                    </v-col>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/photoshop.png" alt="">
-                                                    </v-col>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/sketch.png" alt="">
-                                                    </v-col>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/icon-ui.png" alt="">
-                                                    </v-col>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/icon-ux.png" alt="">
-                                                    </v-col>
-                                                </v-row>
+                                                <div class="hold-skills">
+                                                    <v-row>
+                                                        <v-col class="item-skill" v-for="(item,index) in freelancer.skills" :key="index">
+                                                            <v-progress-circular
+                                                                :size="100"
+                                                                :width="15"
+                                                                :value="item.percentage"
+                                                                color="primary"
+                                                                >
+                                                                {{ item.percentage }}
+                                                            </v-progress-circular>
+                                                        </v-col>
+                                                    </v-row>
+                                                </div>
+                                               
                                             </v-tab-item>
                                             <v-tab-item value="skill_tab-1">
-                                                <v-row>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/illustrator.png" alt="">
-                                                    </v-col>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/photoshop.png" alt="">
-                                                    </v-col>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/sketch.png" alt="">
-                                                    </v-col>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/icon-ui.png" alt="">
-                                                    </v-col>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/icon-ux.png" alt="">
-                                                    </v-col>
-                                                </v-row>
+                                                <div class="hold-skills">
+                                                    <v-row>
+                                                        <v-col class="item-skill" v-for="(item,index) in freelancer.skills" :key="index">
+                                                            <v-progress-circular
+                                                                :size="100"
+                                                                :width="15"
+                                                                :value="item.percentage"
+                                                                color="primary"
+                                                                >
+                                                                {{ item.percentage }}
+                                                            </v-progress-circular>
+                                                        </v-col>
+                                                    </v-row>
+                                                </div>
                                             </v-tab-item>
                                             <v-tab-item value="skill_tab-2">
-                                                <v-row>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/illustrator.png" alt="">
-                                                    </v-col>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/photoshop.png" alt="">
-                                                    </v-col>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/sketch.png" alt="">
-                                                    </v-col>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/icon-ui.png" alt="">
-                                                    </v-col>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/icon-ux.png" alt="">
-                                                    </v-col>
-                                                </v-row>
+                                                <div class="hold-skills">
+                                                    <v-row>
+                                                        <v-col class="item-skill" v-for="(item,index) in freelancer.skills" :key="index">
+                                                            <v-progress-circular
+                                                                :size="100"
+                                                                :width="15"
+                                                                :value="item.percentage"
+                                                                color="primary"
+                                                                >
+                                                                {{ item.percentage }}
+                                                            </v-progress-circular>
+                                                        </v-col>
+                                                    </v-row>
+                                                </div>
                                             </v-tab-item>
                                             <v-tab-item value="skill_tab-3">
-                                               <v-row>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/illustrator.png" alt="">
-                                                    </v-col>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/photoshop.png" alt="">
-                                                    </v-col>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/sketch.png" alt="">
-                                                    </v-col>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/icon-ui.png" alt="">
-                                                    </v-col>
-                                                    <v-col class="item-skill">
-                                                        <img src="@/assets/icons/resume21/icon-ux.png" alt="">
-                                                    </v-col>
-                                                </v-row>
+                                               <div class="hold-skills">
+                                                    <v-row>
+                                                        <v-col class="item-skill" v-for="(item,index) in freelancer.skills" :key="index">
+                                                            <v-progress-circular
+                                                                :size="100"
+                                                                :width="15"
+                                                                :value="item.percentage"
+                                                                color="primary"
+                                                                >
+                                                                {{ item.percentage }}
+                                                            </v-progress-circular>
+                                                        </v-col>
+                                                    </v-row>
+                                                </div>
                                             </v-tab-item>
                                         </v-tabs-items>
                                     </v-col>                    
@@ -893,53 +882,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-
             width: 100%;
             margin: 66px auto 0 auto;
 
-            .item-skill{
-                width: 76px;
-                height: 76px;
-                margin: 0px 17px;
 
-                background: #F8F8F8;
-                border: 2px solid #fff;
-                box-shadow: -6px -6px 16px #FFFFFF, 
-                6px 6px 16px rgba(209, 205, 199, 0.4);
-                border-radius: 15px;
-        
-                justify-content: center;
-                align-items: center;
-                display: flex;
-
-                &:hover{
-                    
-                    box-shadow: -6px -6px 16px #FFFFFF, 
-                    6px 6px 16px rgba(209, 205, 199, 0.4), 
-                    inset 6px 4px 12px rgba(0, 0, 0, 0.25), inset -6px -4px 12px #FFFFFF;
-                }
-
-
-
-                img{
-                    width: 42.8px;
-                    height: 42.8px;
-                }
-            }
            
         }
-        @media only screen 
-        and (min-device-width: 320px) 
-        and (max-device-width: 480px)
-        and (-webkit-min-device-pixel-ratio: 2) {
-            .mc-subtabs_skills{
-                .item-skill{
-                    height: 57px;
-                    padding: 0px;
-                    margin: 0px 3%;
-                }
-            }
-        }
+
 
     }
 
