@@ -7,6 +7,7 @@ import Theme2 from '@/components/ResumeTheme2';
 import Theme3 from '@/components/ResumeTheme3';
 import Theme21 from '@/components/ResumeTheme21';
 import Theme24 from '@/components/ResumeTheme24';
+import Theme13 from '@/components/ResumeTheme13';
 
 const routes = [
   {
@@ -31,6 +32,12 @@ const routes = [
     path: '/theme24',
     name: 'Theme24',
     component: Theme24,
+    props: true
+  },
+  {
+    path: '/theme13',
+    name: 'Theme13',
+    component: Theme13,
     props: true
   }
 

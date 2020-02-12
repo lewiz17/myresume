@@ -23,7 +23,8 @@ export default {
         {"name":"Theme2", "path":"/"},
         {"name":"Theme3", "path":"/theme3"},
         {"name":"Theme21","path":"/theme21"},
-        {"name":"Theme24","path":"/theme24"}
+        {"name":"Theme24","path":"/theme24"},
+        {"name":"Theme13","path":"/theme13"}
       ],
       dataFreelancer: freelancer
     }
@@ -13614,6 +13615,19 @@ html {
 }
 
 
+
+/** Tabs fix on theme13 */
+.hold-tabs .v-slide-group__content{
+  justify-content: center;
+}
+.skills-wrap .v-slide-group__content::after{
+  content: "";
+  height: 1px;
+  background: rgba(16, 78, 251, 0.12);
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+}
 
 
 
