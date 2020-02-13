@@ -13,7 +13,7 @@
                                     <div class="head-name">{{freelancer.user_data.first_name}}</div>
                                     <div class="head-profile">{{freelancer.user_data.job_title}}</div>
                                 </v-col>
-                                <v-col lg="4" class="actionsSection">
+                                <v-col lg="4" sm="7" class="actionsSection">
                                     <a href="" @click.prevent="dialogMessage = true" class="send-message">
                                         <img src="@/assets/imgs/resume13/icon-message.png" alt="">
                                     </a>
@@ -25,9 +25,9 @@
                                     </a>
 
                                 </v-col>
-                                <v-col lg="4" class="rateSection">
+                                <v-col lg="4" sm="8" class="rateSection">
                                     <v-row class="rate-wrap">
-                                        <v-col lg="4">
+                                        <v-col lg="4" sm="4">
                                             <span class="price">
                                                 ${{Math.ceil(freelancer.agent.hourly_rate)}}
                                             </span>
@@ -35,7 +35,7 @@
                                                 Hourly rate
                                             </span>
                                         </v-col>
-                                        <v-col lg="6">
+                                        <v-col lg="6" sm="7">
                                             <span class="hours">
                                              {{Math.ceil(freelancer.user_data.available_hours_per_week)}} hours
                                             </span>
@@ -57,19 +57,19 @@
                             <v-row>
                                 <v-col class="social-hold">
                                     <a href="" @click.prevent="">
-                                        <img src="@/assets/imgs/resume13/icon-behance.png" alt="">
+                                        <img src="@/assets/imgs/resume13/icon-behance.svg" alt="">
                                     </a>
                                     <a href="" @click.prevent="">
-                                        <img src="@/assets/imgs/resume13/icon-dribble.png" alt="">
+                                        <img src="@/assets/imgs/resume13/icon-dribble.svg" alt="">
                                     </a>
                                     <a href="" @click.prevent="">
-                                        <img src="@/assets/imgs/resume13/icon-pinterest.png" alt="">
+                                        <img src="@/assets/imgs/resume13/icon-pinterest.svg" alt="">
                                     </a>
                                     <a href="" @click.prevent="">
-                                        <img src="@/assets/imgs/resume13/icon-instagram.png" alt="">
+                                        <img src="@/assets/imgs/resume13/icon-instagram.svg" alt="">
                                     </a>
                                     <a href="" @click.prevent="">
-                                        <img src="@/assets/imgs/resume13/icon-linkedin.png" alt="">
+                                        <img src="@/assets/imgs/resume13/icon-linkedin.svg" alt="">
                                     </a>
                                 </v-col>
                             </v-row>
@@ -449,6 +449,10 @@
         align-items: center;
         padding: 40px 50px 30px;
         justify-content: space-between;
+
+        @media screen and (max-width: 768px) {
+            padding: 30px 40px 20px 30px;
+        }
     }
 
     .imageCol{
@@ -505,6 +509,10 @@
             &:last-child{
                 margin: 0;
             }
+        }
+
+        @media screen and (max-width: 768px) {
+            justify-content: center;
         }
     }
 
@@ -594,6 +602,22 @@
             &:last-child{
                 margin: 0;
             }
+
+            img{
+                width: 24px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            min-height: 120px;
+
+            a{
+                margin-right: 75px;
+
+                img{
+                    width: 38px;
+                }
+            }
         }
     }
 
@@ -614,6 +638,7 @@
             font-weight: 300;
             font-size: 24px;
             line-height: 28px;
+            letter-spacing: 0px;
             padding: 0px;
             min-width: 333px;
             color: $colorBlue !important;
