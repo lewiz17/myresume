@@ -25,9 +25,9 @@
                                     </a>
 
                                 </v-col>
-                                <v-col lg="3" md="3" class="rateSection">
+                                <v-col lg="4" class="rateSection">
                                     <v-row class="rate-wrap">
-                                        <v-col lg="6">
+                                        <v-col lg="4">
                                             <span class="price">
                                                 ${{Math.ceil(freelancer.agent.hourly_rate)}}
                                             </span>
@@ -98,17 +98,30 @@
                     <div class="hold-contents">
                         <v-tabs-items v-model="activeTab">
                             <v-tab-item class="portfolio-section" value="tab-0">
-                               <div class="hold-slider">
+                               <div class="hold-slider content-wrap">
                                     <slick ref="slick" :options="slickOptions">
+                                        <div class="slide-item">
+                                            <img src="@/assets/imgs/resume13/slide.png" alt=""/>
+                                        </div>
+                                        <div class="slide-item">
+                                            <img src="@/assets/imgs/resume13/slide.png" alt=""/>
+                                        </div>
+                                        <div class="slide-item">
+                                            <img src="@/assets/imgs/resume13/slide.png" alt=""/>
+                                        </div>
                                         
-                                        <img src="@/assets/imgs/resume13/slide.png" alt=""/>
-                                    
-                                        <img src="@/assets/imgs/resume13/slide.png" alt=""/>
-                                    
-                                        <img src="@/assets/imgs/resume13/slide.png" alt=""/>
-                                    
-                                        <img src="@/assets/imgs/resume13/slide.png" alt=""/>
+                                        <div class="slide-item">
+                                            <img src="@/assets/imgs/resume13/slide.png" alt=""/>
+                                        </div>
+                                        <div class="slide-item">
+                                            <img src="@/assets/imgs/resume13/slide.png" alt=""/>
+                                        </div>
+                                        <div class="slide-item">
+                                            <img src="@/assets/imgs/resume13/slide.png" alt=""/>
+                                        </div>
                                         
+                        
+                                 
                                     </slick>
                                     <div class="nav-slider">
                                         <a href="#" @click.prevent="prevSlide"><img src="@/assets/imgs/resume13/arrow-left.png" alt=""/></a>
@@ -231,16 +244,16 @@
                 </v-col>
             </v-row>
         </v-container>
-        <v-dialog v-model="dialogMessage" persistent max-width="850" overlay-opacity="0.5" overlay-color="#202124">
-            <v-card class="form-wrap">
-                <v-form ref="formMessages" class="form-messages">
+        <v-dialog v-model="dialogMessage" persistent max-width="1220" overlay-opacity="0.87" overlay-color="#656565">
+            <v-card class="form-wrap bg-gray">
+                <v-form ref="formMessages" class="form-messages sky-style">
                     <v-container>
                         <v-row>
                             <v-col lg="12" sm="12" cols="12">
                                 <v-text-field
                                     v-model="formMessage.name"
                                     :rules="formMessage.nameRules"
-                                    label="Name"
+                                    placeholder="Name"
                                     required
                                     color="#202124"
                                 ></v-text-field>
@@ -249,7 +262,7 @@
                                 <v-text-field
                                     v-model="formMessage.email"
                                     :rules="formMessage.emailRules"
-                                    label="E-mail"
+                                    placeholder="E-mail"
                                     required
                                     color="#202124"
                                 ></v-text-field>
@@ -258,15 +271,15 @@
                                 <v-textarea
                                     v-model="formMessage.message"
                                     filled
-                                    height="162"
+                                    height="256"
                                     :no-resize="true"
                                     color="#202124"
-                                    label="Message"
+                                    placeholder="Message"
                                 ></v-textarea>
                             </v-col>
                         </v-row>
-                        <v-row>
-                            <v-btn depressed small @click="submitForm" class="btn-send"><v-icon>mdi-message-text</v-icon>Send Message</v-btn>
+                        <v-row class="form-actions">
+                            <v-btn depressed small @click="submitForm" class="btn-send">Send Message</v-btn>
                             <v-btn text small @click="cancelForm">Cancel</v-btn>
                         </v-row>                        
                     </v-container>                    
@@ -413,6 +426,25 @@
 
 
     }
+
+
+    .content-wrap{
+        position: relative;
+
+        >div{
+            /** Position scroll content */
+            &:nth-child(2){
+                position: absolute;
+                bottom: 8%;
+                z-index: 2;
+                right: 28%;
+                padding: 5px;
+                border-radius: 100px;
+                background: #fff;
+            }
+        }
+    }
+
     .head-section{
         align-items: center;
         padding: 40px 50px 30px;
@@ -520,6 +552,8 @@
             font-style: normal;
             text-align: center;
             color:$colorBlue;
+            display: flex;
+            justify-content: flex-end;
 
             .col{
                 justify-content: center;
@@ -529,10 +563,18 @@
                 .price,.hours{
                     font-weight: bold;
                     text-transform: uppercase;
+                    font-family: "Gotham Pro";
+                    margin-right: 5px;
+                    font-size: 18px;
                 }
                 .text_price,.text_hours{
                     font-size: 18px;
                     line-height: 21px;
+                    text-transform: lowercase;
+                }
+
+                &:nth-child(2){
+                    border-left: 1px solid rgba(16, 78, 251, 0.2);
                 }
             }
         }
@@ -879,6 +921,14 @@
                     justify-content: center;
                     flex-flow: column;
                 }
+
+                >div{
+                    &:nth-child(2){
+                        margin-top: 286px;
+                        justify-content: flex-end;
+                        padding-right: 10%;
+                    }
+                }
             }
            
         }
@@ -901,33 +951,38 @@
             &.form-wrap{
                 padding: 0;
 
+                .form-actions{
+                    justify-content: center;
+                    margin-top: 10px;
+                }
+
                 .v-btn{
                     &.btn-send{
-                        max-width: 207px;
-                        max-height: 48px;
-                        height: 48px;
-                        padding: 0 30px;
-                        background: #D93025;
-                        color: #fff;
-                        text-transform: capitalize;
-                        font-size: 16px;
-                        font-family: "Roboto";
 
-                        i{
-                            font-size: 26px;
-                            color: #fff;
-                            margin-right: 20px;
-                        }
+                        max-width: 255px;
+                        text-align: center;
+                        border: 2px solid $colorBlue;
+                        font-family: "Raleway";
+                        font-size: 24px;
+                        line-height: 28px;
+                        color: $colorBlue;
+                        text-decoration: none;
+                        background: #fff;
+                        outline: none;                        
                     }
 
-                    padding: 0 30px;
-                    max-height: 48px;
-                    height: 48px;
-                    color: #5F6368;
+                    min-width: 255px;
+                    font-family: "Raleway";
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 24px;
+                    line-height: 28px;
+                    color: #104EFB;
+                    min-height: 75px;
                     text-transform: capitalize;
-                    font-size: 16px;
-                    font-family: "Roboto";
-
+                    letter-spacing: normal;
+                    text-indent: 0px;
+                    border-radius: 0px;
                 }
 
             }
@@ -1088,20 +1143,13 @@
                 slickOptions: {
                     slidesToShow: 3,
                     slidesToScroll: 1,
+                    variableWidth: true,
+                    infinite: false,
                     arrows: false,
                     dots: true,
                     swipe: true,
                     speed: 500,
-                    appendDots: '.navDots',
-                    responsive: [
-                        {
-                        breakpoint: 767,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 1
-                            }
-                        }
-                    ]
+                    appendDots: '.navDots'
                 },
                 slickContents: {
                     slidesToShow: 4,

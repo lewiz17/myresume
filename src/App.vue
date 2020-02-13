@@ -13646,5 +13646,60 @@ html {
   stroke-linecap: round;
 }
 
+/* Form theme13 **/
+.form-wrap .sky-style .v-text-field{
+  padding: 0;
+  margin-bottom: 0px;
+  margin-top: 0;
+}
+.form-wrap .sky-style .v-text-field.v-text-field--enclosed{
+  margin-top: 0px;
+}
+.form-wrap .sky-style .v-text-field .v-label{
+  display: none;       
+}
+
+
+.form-wrap .sky-style .v-text-field > .v-input__control > .v-input__slot{
+  background: rgba(16, 78, 251, 0.06) !important;
+  
+}
+
+.form-wrap .sky-style .v-input input{
+  min-height: 138px;
+  max-height: 100%;
+  padding: 25px 35px;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 72px;
+  line-height: 85px;
+  color: #104EFB !important;
+}
+
+.form-wrap .sky-style .v-text-field > .v-input__control > .v-input__slot:before{
+  border-color: #e5e5e5 !important;
+}
+
+.form-wrap .sky-style .v-text-field--filled > .v-input__control > .v-input__slot{
+  background: rgba(16, 78, 251, 0.06) !important;
+}
+
+.form-wrap .sky-style .v-textarea textarea{
+  padding:35px;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 30px;
+  color: #104EFB !important;
+}
+
+.form-wrap .sky-style .v-messages{
+  font-size: 30px;
+}
+
+
+
 
 </style>
