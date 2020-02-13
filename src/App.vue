@@ -13616,7 +13616,7 @@ html {
 
 
 
-/** Tabs fix on theme13 */
+/** fixes on theme13 */
 .hold-tabs .v-slide-group__content{
   justify-content: center;
 }
@@ -13629,6 +13629,22 @@ html {
   bottom: 0px;
 }
 
+/** Custom progress bar circular */
+.item-skill .v-progress-circular__info{
+  font-family: "Actor";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 29px;
+  color: #104EFB;
+}
+
+.item-skill .v-progress-circular__underlay{
+  stroke: rgba(76, 113, 240, 0.02);
+}
+.item-skill .v-progress-circular__overlay{
+  stroke-linecap: round;
+}
 
 
 </style>

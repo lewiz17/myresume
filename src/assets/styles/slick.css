@@ -196,3 +196,43 @@
     transform: scale(1);
     max-width: initial;
 }
+
+/*** Slider on Tabs skills **/
+.hold-skills .nav-slider{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.hold-skills .nav-slider .navDotsContents{
+    margin: 0px 30px;
+}
+
+.hold-skills .nav-slider .navDotsContents ul{
+    padding-top: 0 !important;
+}
+.hold-skills .nav-slider .navDotsContents ul li{
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+}
+.hold-skills .nav-slider .navDotsContents ul li.slick-active{
+    border: 1px solid #1B33F2;
+}
+
+.hold-skills .nav-slider .navDotsContents ul li button{
+    width: 18px;
+    height: 18px;
+    background: #1B33F2;
+    border: 0;
+    outline: none;
+    opacity: .4;
+}
+.hold-skills .nav-slider .navDotsContents ul li.slick-active button{
+    opacity: 1;
+}
+

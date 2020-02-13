@@ -69,6 +69,15 @@
         "telegram": null
     },
     "skills": [{
+        "id": 1,
+        "user_id": 4,
+        "skill_title": "Php",
+        "type": "programming",
+        "icon": null,
+        "percentage": "80",
+        "created_at": "2019-12-02 14:19:51",
+        "updated_at": "2019-12-02 14:19:51"
+    },{
         "id": 30,
         "user_id": 4,
         "skill_title": "Illustrator",
@@ -266,15 +275,6 @@
         "percentage": "70",
         "created_at": "2019-12-02 14:20:34",
         "updated_at": "2019-12-02 14:20:34"
-    }, {
-        "id": 1,
-        "user_id": 4,
-        "skill_title": "Php",
-        "type": "programming",
-        "icon": null,
-        "percentage": "80",
-        "created_at": "2019-12-02 14:19:51",
-        "updated_at": "2019-12-02 14:19:51"
     }],
     "agent": {
         "id": 2,

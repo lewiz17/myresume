@@ -173,6 +173,7 @@
                                                 :key="index"
                                                 :href="`#skill_tab-${index}`"
                                                 :ripple="false"
+                                                @click="setTabSkill(index)"
                                             >
                                                 {{skill}}                                   
                                             </v-tab>                       
@@ -180,67 +181,43 @@
                                         <v-tabs-items v-model="activeTabSkill" class="mc-subtabs_skills">
                                             <v-tab-item value="skill_tab-0">
                                                 <div class="hold-skills">
-                                                    <v-row>
-                                                        <v-col class="item-skill" v-for="(item,index) in freelancer.skills" :key="index">
+                                                    
+                                                    <slick ref="contentSlides" :options="slickContents" lg="12">
+                                                        <div class="item-skill" v-for="(item,ix) in skillFiltered" :key="ix" >
                                                             <v-progress-circular
-                                                                :size="100"
-                                                                :width="15"
+                                                                :size="93"
+                                                                :width="10"
                                                                 :value="item.percentage"
-                                                                color="primary"
+                                                                color="#4C71F0"
                                                                 >
-                                                                {{ item.percentage }}
+                                                                {{ item.percentage }}%
                                                             </v-progress-circular>
-                                                        </v-col>
-                                                    </v-row>
+                                                            <img :src="getIconUrl(item.skill_title)" alt="">
+                                                        </div>
+                                                    </slick>                                                     
+                                                    
+                                                    
+                                                    <div class="nav-slider">
+                                                        <a href="#" @click.prevent="prevSlide('contentSlides')"><img src="@/assets/imgs/resume13/arrow-left.png" alt=""/></a>
+                                                        <span class="navDotsContents"></span>
+                                                        <a href="#" @click.prevent="nextSlide('contentSlides')"><img src="@/assets/imgs/resume13/arrow-right.png" alt=""/></a>
+                                                    </div>
                                                 </div>
                                                
                                             </v-tab-item>
                                             <v-tab-item value="skill_tab-1">
                                                 <div class="hold-skills">
-                                                    <v-row>
-                                                        <v-col class="item-skill" v-for="(item,index) in freelancer.skills" :key="index">
-                                                            <v-progress-circular
-                                                                :size="100"
-                                                                :width="15"
-                                                                :value="item.percentage"
-                                                                color="primary"
-                                                                >
-                                                                {{ item.percentage }}
-                                                            </v-progress-circular>
-                                                        </v-col>
-                                                    </v-row>
+                                                    
                                                 </div>
                                             </v-tab-item>
                                             <v-tab-item value="skill_tab-2">
                                                 <div class="hold-skills">
-                                                    <v-row>
-                                                        <v-col class="item-skill" v-for="(item,index) in freelancer.skills" :key="index">
-                                                            <v-progress-circular
-                                                                :size="100"
-                                                                :width="15"
-                                                                :value="item.percentage"
-                                                                color="primary"
-                                                                >
-                                                                {{ item.percentage }}
-                                                            </v-progress-circular>
-                                                        </v-col>
-                                                    </v-row>
+                                                    
                                                 </div>
                                             </v-tab-item>
                                             <v-tab-item value="skill_tab-3">
                                                <div class="hold-skills">
-                                                    <v-row>
-                                                        <v-col class="item-skill" v-for="(item,index) in freelancer.skills" :key="index">
-                                                            <v-progress-circular
-                                                                :size="100"
-                                                                :width="15"
-                                                                :value="item.percentage"
-                                                                color="primary"
-                                                                >
-                                                                {{ item.percentage }}
-                                                            </v-progress-circular>
-                                                        </v-col>
-                                                    </v-row>
+                                                    
                                                 </div>
                                             </v-tab-item>
                                         </v-tabs-items>
@@ -683,14 +660,14 @@
             flex-flow: column
         }
         .hold-titles{
-            min-width: 195px;
+            min-width: 22%;
             justify-content: space-between;
             align-items: flex-start;
             height: 100%;
             padding-top: 15px;
         }
         .hold-text{
-            width: 545px;
+            width: 60%;
         }
 
         .title-work{
@@ -885,7 +862,24 @@
             width: 100%;
             margin: 66px auto 0 auto;
 
+            .hold-skills{
 
+                width: 1200px;
+                margin: 0 auto;
+
+                .row{
+                    justify-content: center;
+                    display: flex !important;
+                }
+
+                .item-skill{
+                    margin: 0;
+                    display: flex !important;
+                    align-items: center;
+                    justify-content: center;
+                    flex-flow: column;
+                }
+            }
            
         }
 
@@ -1073,6 +1067,10 @@
         data() {
             return {
                 skills: this.freelancer.skills,
+                typeSkill: '',
+                itemsPerRow: 4,
+                skillFiltered: [],
+                currentTab: null,
                 projects: this.freelancer.projects,
                 worksHistory: this.freelancer.works_history,
                 educationsHistory: this.freelancer.educations_history,
@@ -1104,6 +1102,16 @@
                             }
                         }
                     ]
+                },
+                slickContents: {
+                    slidesToShow: 4,
+                    slidesToScroll:4,
+                    arrows: false,
+                    infinite: false,
+                    dots: true,
+                    swipe: true,
+                    speed: 500,
+                    appendDots: '.navDotsContents'
                 },
                 formMessage: {
                     name: '',
@@ -1141,14 +1149,37 @@
             
         },
         methods: {
-            nextSlide() {
-                this.$refs.slick.next();
+            nextSlide(name) {
+
+                switch (name) {
+                    case 'contentSlides':
+                        this.$refs.contentSlides.next();
+                        break;
+                    default:
+                        this.$refs.slick.next();
+                        break;
+                }                
+            
             },
-            prevSlide() {
-                this.$refs.slick.prev();
+            prevSlide(name) {
+                switch (name) {
+                    case 'contentSlides':
+                        this.$refs.contentSlides.prev();
+                        break;
+                    default:
+                        this.$refs.slick.prev();
+                        break;
+                }  
             },
-            reInit() {
-                this.$refs.slick.reSlick()
+            reInit(name) {
+                switch (name) {
+                    case 'contentSlides':
+                        this.$refs.contentSlides.reSlick();
+                        break;
+                    default:
+                        this.$refs.slick.reSlick();
+                        break;
+                }  
             },
             getFullYear(date){
                 let newDate = new Date(date);
@@ -1177,9 +1208,24 @@
                     return arrayIcons[name.toLowerCase()];
                 }
             },
+            getIconUrl(name) {
+                let arrayIcons = {
+                    'php': 'icon-php.png',
+                }
+                if (arrayIcons.hasOwnProperty(name.toLowerCase())) {
+                    return require('@/assets/imgs/resume13/'+arrayIcons[name.toLowerCase()]);
+                }
+            },
             setTab(tabName) {
                 this.currentTab = tabName;
 
+                if(this.currentTab.name == 'portfolio' && this.currentTab.name == 'skills'){
+                    this.reInit();
+                }
+            },
+            setTabSkill(i) {
+                this.typeSkill = i;
+                        
             },
             isMobile() {
                 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -1206,16 +1252,33 @@
             cancelForm() {
                 this.dialogMessage = false;
                 this.$refs.formMessages.reset();
+            },
+            filteredSkillsByType(name) {
+                const skillsFiltered = this.skills.reduce((acc, cur) => ((cur.type == name && acc.push({'id': cur.id,'skill_title': cur.skill_title,'percentage': cur.percentage})), acc), []);
+                this.skillFiltered = skillsFiltered;
+            },
+            itemCountInRow(index){
+                return this.skillFiltered.slice((index - 1) * this.itemsPerRow,index * this.itemsPerRow);
+            },
+            countSlide(){
+                return this.slideCount;
+            }
+            
+        },
+        computed: {
+
+            slideCount(){   
+                return Math.ceil(this.skillFiltered.length / this.itemsPerRow);
             }
         },
         beforeMount(){},
         mounted() {
-            
+
+            this.filteredSkillsByType('programming');
+
             if(this.freelancer.agent.resume_tabs.length > 0){
                 this.setTab(this.freelancer.agent.resume_tabs[0]);
             }
-            
         }
     }
 </script>
-
