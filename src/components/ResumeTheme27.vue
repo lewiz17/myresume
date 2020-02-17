@@ -34,7 +34,7 @@
                             </a>
                         </div>
                     </v-col>
-                    <v-col lg="3">
+                    <v-col lg="auto">
                         <div class="rate">
                             <span>Hourly rate </span>
                             <span>$ {{Math.ceil(freelancer.agent.hourly_rate)}} USD</span>
@@ -49,7 +49,7 @@
                     </v-col>
                 </v-row>
 
-                <v-row>
+                <v-row class="mainSection">
                     <v-col class="hold-menu">
                         <v-tabs
                             class="main-tabs_theme13"
@@ -64,6 +64,7 @@
                                 @click="setTab(tab)"
                                 :ripple="false"
                             >
+                                <img :src="getIconSrc(tab.name)">
                                 {{getTabName(tab.label)}}                                   
                             </v-tab>                       
                         </v-tabs>
@@ -103,7 +104,9 @@
                                                 <v-col class="item work-item" v-for="(work, index) in worksHistory" :key="index+'W'" lg="6">
                                                     <div class="hold-titles">
                                                         <span class="title-work">{{work.job_title}}</span>
+                                                                                                               
                                                         <span class="years-work">
+                                                            <span class="title-refer">Duration:</span> 
                                                             {{getFullYear(work.date_from)}}
                                                             <span v-if="work.is_currently_working">- Present</span>
                                                             <span v-else>&nbsp;-&nbsp;{{getFullYear(work.date_to)}}</span>
@@ -120,31 +123,81 @@
                                     </div>
                                 </v-tab-item>
                                 <v-tab-item class="education-section" value="tab-2">
-                                    <div class="item" v-for="(education, index) in educationsHistory" :key="index+'W'">
-                                            <div class="hold-titles">
-                                                <span class="title-work">{{education.school_title}}</span>
-                                                <span class="years-work">
-                                                    {{getFullYear(education.date_from)}}
-                                                    <span v-if="education.is_currently_learning">- Present</span>
-                                                    <span v-else>&nbsp;-&nbsp;{{getFullYear(education.date_to)}}</span>
-                                                </span>
-                                            </div>
-                                            <div class="hold-text">
-                                                 <span class="title-company">{{education.school_title}}</span>
-                                                <span class="list-tasks">{{education.description}}</span>
-                                            </div>
-                                        </div>
+                                    <div class="hold-items">
+                                        <v-container>
+                                            <v-row>
+                                                <v-col class="item edu-item" v-for="(education, index) in educationsHistory" :key="index+'W'">
+                                                    <div class="hold-titles">
+                                                        <span class="title-refer">University</span>
+                                                        <span class="title-work">{{education.school_title}}</span>
+                                                        
+                                                    </div>
+                                                    <div class="hold-text">
+                                                        <span class="title-company">{{education.school_title}}</span>
+                                                        <span class="years-work">
+                                                            
+                                                            {{getFullYear(education.date_from)}}
+                                                            <span v-if="education.is_currently_learning">- Present</span>
+                                                            <span v-else>&nbsp;-&nbsp;{{getFullYear(education.date_to)}}</span>
+                                                        </span>
+                                                        <span class="list-tasks">{{education.description}}</span>
+                                                    </div>
+                                                </v-col>
+                                            </v-row>
+                                        </v-container>
+                                    </div>
                                 </v-tab-item>
                                 <v-tab-item class="skills-section" value="tab-3">
                                     <div class="hold-items">
-                                        <div class="item-skill">
-                                            <v-progress-linear
-                                                color="color1 color2"
-                                                rounded
-                                                value="100"
-                                            ></v-progress-linear>
-                                        </div>
-                                       
+                                        <v-container>
+                                            <v-row>
+                                                <v-col lg="12">
+                                                    <div class="item-skill">
+                                                        <span class="name-skill">Photoshop</span>
+                                                        <v-progress-linear
+                                                            color="red"
+                                                            rounded
+                                                            value="100"
+                                                        ></v-progress-linear>
+                                                        <span class="percent">90%</span>
+                                                    </div> 
+                                                </v-col>
+                                                <v-col lg="12">
+                                                    <div class="item-skill">
+                                                        <span class="name-skill">Photoshop</span>
+                                                        <v-progress-linear
+                                                            color="red"
+                                                            rounded
+                                                            value="100"
+                                                        ></v-progress-linear>
+                                                        <span class="percent">90%</span>
+                                                    </div> 
+                                                </v-col>
+                                                <v-col lg="12">
+                                                    <div class="item-skill">
+                                                        <span class="name-skill">Photoshop</span>
+                                                        <v-progress-linear
+                                                            color="red"
+                                                            rounded
+                                                            value="100"
+                                                        ></v-progress-linear>
+                                                        <span class="percent">90%</span>
+                                                    </div> 
+                                                </v-col>
+                                                <v-col lg="12">
+                                                    <div class="item-skill">
+                                                        <span class="name-skill">Photoshop</span>
+                                                        <v-progress-linear
+                                                            color="red"
+                                                            rounded
+                                                            value="100"
+                                                        ></v-progress-linear>
+                                                        <span class="percent">90%</span>
+                                                    </div> 
+                                                </v-col>
+                                            </v-row>
+                                        </v-container>
+                                                                              
                                     </div>
                                     
                                 </v-tab-item>
@@ -160,9 +213,18 @@
 
     
     @import url('https://fonts.googleapis.com/css?family=Lato:100,400,700&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap');
 
     .theme-wrapper{
-        background-image: linear-gradient(to right bottom, #1a0552, #200554, #250556, #2a0557, #2f0559);
+        background: linear-gradient(to right bottom, #1a0552, #200554, #250556, #2a0557, #2f0559);
+        background-repeat: no-repeat;
+        background-position: top center;
+
+    }
+    .hold-theme27{
+        background-image: url('../assets/imgs/resume27/bg-theme.png');
+        background-repeat: no-repeat;
+        background-position: top center;
     }
 
     .profile{
@@ -219,16 +281,42 @@
         text-transform: capitalize;
         letter-spacing: 0px;
         line-height: 58px;
-        color: rgba(255, 255, 255, 0.2);
         text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+        color: rgba(255, 255, 255, 0.21) !important;
+        padding: 0px;
+        margin: 0px 3%;
+
+        img{
+            opacity: 0.4;
+            margin-right: 10px;
+        }
 
         &.v-tab--active{        
             color: #C10FA0 !important;
+
+            img{
+                opacity: 1;
+            }
         }
+
+        &:hover,&:focus{
+            &::before,&::after{
+                opacity: 0 !important;
+            }
+        }
+
     }
 
     .hold-items{
         display: flex;
+        justify-content: center;
+
+        .container{
+            padding: 120px 0px 0px 0px;
+            border-top: 4px solid rgba(255, 255, 255, 0.05);
+            max-width: 1806px !important;
+
+        }
 
         .row{
             justify-content: center;
@@ -236,63 +324,121 @@
 
         .item{
             display: flex;
-            max-width: 778px;
+            justify-content: center;
+            padding: 0;
+            margin-bottom: 50px;
+            
 
             &.work-item{
                 background: #3B0463;
                 box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
                 border-radius: 30px;
-                margin-bottom: 71px;
+                max-width: 778px;
+                margin: 0px 38.5px 70px 38.5px;
             }
         }
 
         .hold-titles,.hold-text{
             display: flex;
-            flex-flow: column
+            flex-flow: column;
+            min-height: 388px;
+            
         }
         .hold-titles{
             min-width: 22%;
             justify-content: space-between;
             align-items: flex-start;
             height: 100%;
-            padding-top: 15px;
+            padding: 100px 0px 100px 90px;
         }
         .hold-text{
             width: 60%;
+            padding: 100px 90px 100px 0px;
         }
 
         .title-work{
             font-family: "Lato";
             font-style: normal;
-            font-weight: 300;
-            font-size: 16px;
-            line-height: 15px;
-            text-transform: capitalize;
-            max-width: 140px;
+            font-weight: 900;
+            font-size: 36px;
+            line-height: 43px;
+            color: #C10FA0;
         }
 
         .title-company{
-            font-family: "Lato";
+            font-family: "Open Sans";
             font-style: normal;
-            font-weight: 500;
-            font-size: 30px;
-            line-height: 35px;
+            font-weight: normal;
+            font-size: 22px;
+            line-height: 30px;
+            color: #FFFFFF;
         }
 
         .list-tasks{
             font-family: "Lato";
             font-style: normal;
-            font-weight: normal;
-            font-size: 20px;
-            line-height: 28px;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 23px;
+            color: #FFFFFF;
+            max-height: 70px;
+            overflow: hidden;
+            margin-top: 60px;
         }
 
         .years-work{
             font-family: "Lato";
             font-style: normal;
-            font-weight: normal;
-            font-size: 16px;
-            line-height: 19px;
+            font-weight: bold;
+            font-size: 19px;
+            line-height: 30px;
+            color: #C10FA0;
+
+              
+
+        }
+        .title-refer{
+            color: #FFFFFF;
+            display: block;
+        } 
+
+        .edu-item{
+            background: #3B0463;
+            box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+            max-width: 778px;
+            margin: 0px 38.5px 70px 38.5px;
+            flex-flow: row;
+            flex-wrap: wrap;
+            padding: 65px 150px;
+
+            .hold-titles,.hold-text{
+                height: auto;
+                justify-content: flex-start;
+                min-height: auto;
+                width: 100%;
+            }
+
+            .hold-titles{
+                padding: 0px;
+                min-width: auto;
+
+                .title-work{
+                    margin-top: 30px;
+                }
+            }
+            .hold-text{
+                padding: 0;
+                margin-top: 30px;
+
+                .years-work{
+                    color: #fff;
+                }
+            }
+
+            .list-tasks{
+                margin-top: 40px;
+            }
         }
     }
 
@@ -375,6 +521,18 @@
             
         },
         methods: {
+            getIconSrc(title) {
+                let arrayIcons = {
+                    'portfolio': 'imgs/resume27/icon-tab1.png',
+                    'work': 'imgs/resume27/icon-tab2.png',
+                    'education': 'imgs/resume27/icon-tab3.png',
+                    'skills': 'imgs/resume27/icon-tab4.png',
+
+                }
+                if (arrayIcons.hasOwnProperty(title.toLowerCase())) {
+                    return require('@/assets/'+arrayIcons[title.toLowerCase()]);
+                }
+            },
             getClassProgress(d) {
                 return this.styleProgress[d % this.styleProgress.length];
             },

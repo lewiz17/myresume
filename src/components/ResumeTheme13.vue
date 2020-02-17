@@ -991,14 +991,16 @@
 
                         &:focus,&:hover{
                             &::before{
-                                opacity: 0;
+                                opacity: 0 !important;
                             }
                         }
                     }
 
-                    &:hover{
-                        &::before{
-                            opacity: 0;
+        
+                    &:focus,&:hover{
+                        
+                        &::before, &::after{
+                            opacity: 0 !important;
                         }
                     }
 
