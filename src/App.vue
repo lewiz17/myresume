@@ -13705,6 +13705,15 @@ html {
 }
 
 
+/** Theme 27 */
+.hold-menu .theme--light.v-tabs > .v-tabs-bar,.hold-menu .theme--light.v-tabs-items{
+  background: transparent;
+}
 
+.hold-menu .v-slide-group__content{
+  justify-content: center;
+  display: flex;
+
+}
 
 </style>

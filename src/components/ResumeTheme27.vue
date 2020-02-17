@@ -1,9 +1,328 @@
 <template>
-    
-</template>
-<style lang="stylus" scoped>
+    <div class="theme-wrapper">
+        <div class="hold-theme27">
+            <v-container>
+                <v-row class="headSection">
+                    <v-col lg="auto">
+                        <div class="profile">
+                            <img :src="freelancer.user_data.profile_picture" alt=""> 
+                        </div>
+                    </v-col>
+                    <v-col lg="auto" class="hold-profile">
+                        <div class="head-name">{{freelancer.user_data.first_name}}</div>
+                        <div class="head-profile">User interface designer</div>
+                        <div class="actions-wrap">
+                            <a href=""><img src="@/assets/imgs/resume27/icon-mail.svg" alt=""></a> 
+                            <a href=""><img src="@/assets/imgs/resume27/icon-videoplayer.svg" alt=""></a>
+                            <a href=""><img src="@/assets/imgs/resume27/icon-headphone.svg" alt=""></a>
+                        </div>
+                    </v-col>
+                    <v-col lg="5" class="hold-social">
+                        <span>Links to my profiles:</span>
+                        <div class="social-wrap">
+                            <a href="">
+                                <img src="@/assets/imgs/resume27/icon-instagram.svg" alt="">
+                            </a>
+                            <a href="">
+                                <img src="@/assets/imgs/resume27/icon-linkedin.svg" alt="">
+                            </a>
+                            <a href="">
+                                <img src="@/assets/imgs/resume27/icon-facebook.svg" alt="">
+                            </a>
+                            <a href="">
+                                <img src="@/assets/imgs/resume27/icon-behance.svg" alt="">
+                            </a>
+                        </div>
+                    </v-col>
+                    <v-col lg="3">
+                        <div class="rate">
+                            <span>Hourly rate </span>
+                            <span>$ {{Math.ceil(freelancer.agent.hourly_rate)}} USD</span>
+                        </div>
+                        <div class="hours">
+                            <span>Available for </span>
+                            <span>{{Math.ceil(freelancer.user_data.available_hours_per_week)}} hours</span>
+                        </div>
+                        <div class="hireme">
+                            <a href="" class="btn-hire">Hire me</a>
+                        </div>
+                    </v-col>
+                </v-row>
 
+                <v-row>
+                    <v-col class="hold-menu">
+                        <v-tabs
+                            class="main-tabs_theme13"
+                            v-model="activeTab"
+                            height="85"
+                            hide-slider
+                        >
+                            <v-tab
+                                v-for="(tab,index) in freelancer.agent.resume_tabs"
+                                :key="index"
+                                :href="`#tab-${index}`"
+                                @click="setTab(tab)"
+                                :ripple="false"
+                            >
+                                {{getTabName(tab.label)}}                                   
+                            </v-tab>                       
+                        </v-tabs>
+                        <div class="hold-contents">
+                            <v-tabs-items v-model="activeTab">
+                                <v-tab-item class="portfolio-section" value="tab-0">
+                                    <div class="hold-items">
+                                        <v-container>
+                                            <v-row>
+                                                <v-col class="item">
+                                                    <img src="@/assets/imgs/resume27/item2.svg" alt="">
+                                                </v-col>
+                                                <v-col class="item">
+                                                    <img src="@/assets/imgs/resume27/item2.svg" alt="">
+                                                </v-col>
+                                                <v-col class="item">
+                                                    <img src="@/assets/imgs/resume27/item2.svg" alt="">
+                                                </v-col>
+                                                <v-col class="item">
+                                                    <img src="@/assets/imgs/resume27/item2.svg" alt="">
+                                                </v-col>
+                                                <v-col class="item">
+                                                    <img src="@/assets/imgs/resume27/item2.svg" alt="">
+                                                </v-col>
+                                                <v-col class="item">
+                                                    <img src="@/assets/imgs/resume27/item2.svg" alt="">
+                                                </v-col>
+                                            </v-row>
+                                        </v-container>
+                                     
+                                    </div>
+                                </v-tab-item>
+                                <v-tab-item class="work-section" value="tab-1">
+                                    <div class="hold-items">
+                                        <v-container>
+                                            <v-row>
+                                                <v-col class="item work-item" v-for="(work, index) in worksHistory" :key="index+'W'" lg="6">
+                                                    <div class="hold-titles">
+                                                        <span class="title-work">{{work.job_title}}</span>
+                                                        <span class="years-work">
+                                                            {{getFullYear(work.date_from)}}
+                                                            <span v-if="work.is_currently_working">- Present</span>
+                                                            <span v-else>&nbsp;-&nbsp;{{getFullYear(work.date_to)}}</span>
+                                                        </span>
+                                                    </div>
+                                                    <div class="hold-text">
+                                                        <span class="title-company">{{work.company}}</span>
+                                                        <span class="list-tasks">{{work.job_description}}</span>
+                                                    </div>
+                                                </v-col>
+                                            </v-row>
+                                        </v-container>
+                                       
+                                    </div>
+                                </v-tab-item>
+                                <v-tab-item class="education-section" value="tab-2">
+                                    <div class="item" v-for="(education, index) in educationsHistory" :key="index+'W'">
+                                            <div class="hold-titles">
+                                                <span class="title-work">{{education.school_title}}</span>
+                                                <span class="years-work">
+                                                    {{getFullYear(education.date_from)}}
+                                                    <span v-if="education.is_currently_learning">- Present</span>
+                                                    <span v-else>&nbsp;-&nbsp;{{getFullYear(education.date_to)}}</span>
+                                                </span>
+                                            </div>
+                                            <div class="hold-text">
+                                                 <span class="title-company">{{education.school_title}}</span>
+                                                <span class="list-tasks">{{education.description}}</span>
+                                            </div>
+                                        </div>
+                                </v-tab-item>
+                                <v-tab-item class="skills-section" value="tab-3">
+                                    <div class="hold-items">
+                                        <div class="item-skill">
+                                            <v-progress-linear
+                                                color="color1 color2"
+                                                rounded
+                                                value="100"
+                                            ></v-progress-linear>
+                                        </div>
+                                       
+                                    </div>
+                                    
+                                </v-tab-item>
+                            </v-tabs-items>
+                        </div>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </div>
+    </div>
+</template>
+<style lang="scss" scoped>
+
+    
+    @import url('https://fonts.googleapis.com/css?family=Lato:100,400,700&display=swap');
+
+    .theme-wrapper{
+        background-image: linear-gradient(to right bottom, #1a0552, #200554, #250556, #2a0557, #2f0559);
+    }
+
+    .profile{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 217px;
+        height: 217px;
+        border-radius: 200px;
+        background-image: linear-gradient(to right bottom, #c10fa0, #980e91, #710c7f, #4b096c, #270556);
+
+        img{
+            width: 201px;
+            height: 201px;
+            border-radius: 100%;
+        }
+    }
+    .hold-profile{
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-flow: column;
+
+        .head-name{
+            font-family: "Lato";
+            font-weight: 900;
+            font-size: 40px;
+            line-height: 48px;
+            color: #C10FA0;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        .head-profile{
+            font-family: "Lato";
+            font-weight: normal;
+            font-size: 21px;
+            line-height: 25px;
+            color: #FFFFFF;
+        }
+    }
+
+    .hold-social{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column;
+    }
+
+    .v-tab{
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 900;
+        font-size: 48px;
+        text-transform: capitalize;
+        letter-spacing: 0px;
+        line-height: 58px;
+        color: rgba(255, 255, 255, 0.2);
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+
+        &.v-tab--active{        
+            color: #C10FA0 !important;
+        }
+    }
+
+    .hold-items{
+        display: flex;
+
+        .row{
+            justify-content: center;
+        }
+
+        .item{
+            display: flex;
+            max-width: 778px;
+
+            &.work-item{
+                background: #3B0463;
+                box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+                border-radius: 30px;
+                margin-bottom: 71px;
+            }
+        }
+
+        .hold-titles,.hold-text{
+            display: flex;
+            flex-flow: column
+        }
+        .hold-titles{
+            min-width: 22%;
+            justify-content: space-between;
+            align-items: flex-start;
+            height: 100%;
+            padding-top: 15px;
+        }
+        .hold-text{
+            width: 60%;
+        }
+
+        .title-work{
+            font-family: "Lato";
+            font-style: normal;
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 15px;
+            text-transform: capitalize;
+            max-width: 140px;
+        }
+
+        .title-company{
+            font-family: "Lato";
+            font-style: normal;
+            font-weight: 500;
+            font-size: 30px;
+            line-height: 35px;
+        }
+
+        .list-tasks{
+            font-family: "Lato";
+            font-style: normal;
+            font-weight: normal;
+            font-size: 20px;
+            line-height: 28px;
+        }
+
+        .years-work{
+            font-family: "Lato";
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 19px;
+        }
+    }
+
+    .actions-wrap{
+
+        a{
+            width: 57px;
+            height: 57px;
+            text-align: center;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100%;
+            border: 2px solid #C10FA0;
+
+            img{
+                width: 28px;
+            }
+            
+        }
+    }
+
+    .colo1{
+        color: #C210A0;
+    }
+    .color2{
+        color: #C200C6;
+    }
 </style>
+
 <script>
     export default {
         name: 'Theme27',
@@ -14,6 +333,7 @@
                 worksHistory: this.freelancer.works_history,
                 educationsHistory: this.freelancer.educations_history,
                 skills: this.freelancer.skills,
+                activeTab: null,
                 formMessage: {
                     name: null,
                     nameRules: [
