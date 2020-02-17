@@ -6,52 +6,45 @@
                     <div class="showOnlyOnmd">
                         <v-container>
                             <v-row class="head-section">
-                                <v-col lg="auto" class="imageCol">
-                                    <span class="profile-img" /> 
+                                <v-col class="hold-profile" lg="auto">
+                                    <div class="imageCol">
+                                        <span class="profile-img" /> 
+                                    </div>
+                                    <div class="profileCol">
+                                        <span class="head-name">{{freelancer.user_data.first_name}}</span>
+                                        <span class="head-profile">{{freelancer.user_data.job_title}}</span>
+                                    </div>
+                                    <div class="actionsSection">
+                                        <a href="" @click.prevent="dialogMessage = true" class="send-message">
+                                            <img src="@/assets/imgs/resume13/icon-message.svg" alt="">
+                                        </a>
+                                        <a href="" @click.prevent="dialogAudio = true" class="audio">
+                                            <img src="@/assets/imgs/resume13/icon-audio.svg" alt="">
+                                        </a>
+                                        <a href="" @click.prevent="dialogVideo = true" class="video">
+                                            <img src="@/assets/imgs/resume13/icon-video.svg" alt="">
+                                        </a>
+                                    </div>
                                 </v-col>
-                                <v-col lg="auto" class="profileCol">
-                                    <div class="head-name">{{freelancer.user_data.first_name}}</div>
-                                    <div class="head-profile">{{freelancer.user_data.job_title}}</div>
-                                </v-col>
-                                <v-col lg="4" sm="7" class="actionsSection">
-                                    <a href="" @click.prevent="dialogMessage = true" class="send-message">
-                                        <img src="@/assets/imgs/resume13/icon-message.png" alt="">
-                                    </a>
-                                    <a href="" @click.prevent="dialogAudio = true" class="audio">
-                                        <img src="@/assets/imgs/resume13/icon-audio.png" alt="">
-                                    </a>
-                                    <a href="" @click.prevent="dialogVideo = true" class="video">
-                                        <img src="@/assets/imgs/resume13/icon-video.png" alt="">
-                                    </a>
-
-                                </v-col>
-                                <v-col lg="4" sm="8" class="rateSection">
-                                    <v-row class="rate-wrap">
-                                        <v-col lg="4" sm="4">
-                                            <span class="price">
-                                                ${{Math.ceil(freelancer.agent.hourly_rate)}}
-                                            </span>
-                                            <span class="text_price">
-                                                Hourly rate
-                                            </span>
-                                        </v-col>
-                                        <v-col lg="6" sm="7">
-                                            <span class="hours">
-                                             {{Math.ceil(freelancer.user_data.available_hours_per_week)}} hours
-                                            </span>
-                                            <span class="text_hours">
-                                                Weekly Availability
-                                            </span>
-                                        </v-col>
-                                    </v-row>
-                                                    
-                                </v-col>
-                                <v-col lg="auto">
-                                    <v-row class="hire-wrap">
-                                        <v-col lg="10" sm="12" cols="12">
-                                            <a href="#" class="btn-outline" @click.prevent="dialogHireme = true">Hire Me</a>
-                                        </v-col>    
-                                    </v-row>    
+                                <v-col class="hold-hireme" lg="auto">
+                                    <div class="rateSection">
+                                        <span class="price">
+                                            ${{Math.ceil(freelancer.agent.hourly_rate)}}
+                                        </span>
+                                        <span class="text_price">
+                                            Hourly rate
+                                        </span>
+                                    
+                                        <span class="hours">
+                                            {{Math.ceil(freelancer.user_data.available_hours_per_week)}} hours
+                                        </span>
+                                        <span class="text_hours">
+                                            Weekly Availability
+                                        </span>                                                
+                                    </div>
+                                    <div class="hireSection">
+                                        <a href="#" class="btn-outline" @click.prevent="dialogHireme = true">Hire Me</a>
+                                    </div>
                                 </v-col>
                             </v-row>
                             <v-row>
@@ -80,7 +73,6 @@
                         <v-tabs
                             class="main-tabs_theme13"
                             v-model="activeTab"
-            
                             height="85"
                             hide-slider
                         >
@@ -424,6 +416,16 @@
             background: transparent;
         }
 
+        @media screen and (max-width: 768px) {
+            padding-top: 55px;
+
+            .hold-slider{
+                margin-top: 0;
+            }
+        }
+
+
+
 
     }
 
@@ -447,11 +449,19 @@
 
     .head-section{
         align-items: center;
-        padding: 40px 50px 30px;
+        padding: 0px;
+        min-height: 180px;
+        padding: 0px 2%;
         justify-content: space-between;
 
+        .col{
+            display: flex;
+            align-items: center;
+        }
+
         @media screen and (max-width: 768px) {
-            padding: 30px 40px 20px 30px;
+            min-height: 319px;
+            padding: 0px 45px;
         }
     }
 
@@ -459,6 +469,7 @@
         position: relative;
         align-items: center;
         display: flex;
+        justify-content: center;
 
         .profile-img{
             width: 110px;
@@ -490,17 +501,33 @@
 
             }
         }
+        @media screen and (max-width: 768px) {
+            .profile-img{
+                width: 122px;
+                height: 122px;
+            }
+        }
     }
 
     .profileCol{
-       /** */
-       line-height: auto;
+       display: flex;
+       flex-flow: column;
+       margin-left: 30px;
+
+       @media screen and (max-width: 768px) {
+           margin-left: 35px;
+
+           .head-profile{
+               line-height: 20px;
+           }
+       }
     }
 
     .actionsSection{
         display: flex;
         align-items: center;
         justify-content: flex-start;
+        margin-left: 64px;
 
         a{
             display: inline-flex;
@@ -512,7 +539,18 @@
         }
 
         @media screen and (max-width: 768px) {
-            justify-content: center;
+
+            margin-left: 80px;
+
+            a{
+                margin-right: 70px;
+
+                img{
+                    width: 37px;
+                }
+                
+            }
+
         }
     }
 
@@ -550,43 +588,70 @@
     }
 
     .rateSection{
-        flex-wrap: wrap;
-        justify-content: center;
+        justify-content: flex-end;
         display: flex;
         align-items: center;
+        color:$colorBlue;
+        margin-right: 45px;
 
-        .rate-wrap{
+        .price,.hours{
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: "Gotham Pro";
+            font-size: 18px;
+            letter-spacing: 0px;
+        }
+
+        .text_price,.text_hours{
+            font-size: 18px;
+            line-height: 24px;
+            text-transform: lowercase;
             font-family: "Raleway";
             font-style: normal;
             text-align: center;
-            color:$colorBlue;
-            display: flex;
-            justify-content: flex-end;
+            margin: 0px 0px 0px 0px;
+            letter-spacing: 0px;
+        }
+        span{
+            &:nth-child(3){
+                padding-left: 38px;
+                border-left: 1px solid rgba(16, 78, 251, 0.2);
+                margin-left:38px;
+            }
+            &:nth-child(odd){
+                margin-right: 10px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            span{
+                &:nth-child(3){
+                    padding-left: 30px;
+                    margin-left:30px;
+                }
+                &:nth-child(odd){
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        
+
+    }
+
+    .hireSection{
+
+        justify-content: center;
+        display: flex;
+
+        .hire-wrap{
 
             .col{
                 justify-content: center;
                 align-items: center;
                 display: flex;
-
-                .price,.hours{
-                    font-weight: bold;
-                    text-transform: uppercase;
-                    font-family: "Gotham Pro";
-                    margin-right: 5px;
-                    font-size: 18px;
-                }
-                .text_price,.text_hours{
-                    font-size: 18px;
-                    line-height: 21px;
-                    text-transform: lowercase;
-                }
-
-                &:nth-child(2){
-                    border-left: 1px solid rgba(16, 78, 251, 0.2);
-                }
             }
         }
-
     }
 
     .social-hold{
@@ -625,6 +690,8 @@
     .hold-tabs{
         background: #fff;
         padding-top: 55px;
+
+
     }
     
     .main-tabs_theme13{
@@ -706,6 +773,18 @@
             
         }
 
+        @media screen and (max-width: 768px) {
+            .v-tab{
+                min-width: 130px;
+
+                &.v-tab--active{
+                    margin: 0px 1%;
+                }
+
+            }
+        }
+
+
     }
 
     .contentSection{
@@ -769,6 +848,10 @@
             font-weight: normal;
             font-size: 16px;
             line-height: 19px;
+        }
+
+        @media screen and (max-width: 768px) {
+            padding-top: 0px;
         }
         
     }
@@ -874,8 +957,8 @@
         }
     }
 
-        .skills-wrap{
-            .main-subtabs_skills{
+    .skills-wrap{
+        .main-subtabs_skills{
 
                 max-width: 1200px;
                 margin: 95px auto 0px auto;
@@ -956,6 +1039,14 @@
                 }
             }
            
+        }
+
+        @media screen and (max-width: 768px) {
+            .mc-subtabs_skills{
+                .hold-skills{
+                    width: 100%;
+                }
+            }
         }
 
 
@@ -1174,7 +1265,19 @@
                     dots: true,
                     swipe: true,
                     speed: 500,
-                    appendDots: '.navDots'
+                    appendDots: '.navDots',
+                    responsive: [
+                        {
+                            breakpoint: 786,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1,
+                                variableWidth: false,
+                                infinite: false,
+                                centerMode: true
+                            }
+                        }
+                    ]
                 },
                 slickContents: {
                     slidesToShow: 4,

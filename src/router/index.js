@@ -8,6 +8,7 @@ import Theme3 from '@/components/ResumeTheme3';
 import Theme21 from '@/components/ResumeTheme21';
 import Theme24 from '@/components/ResumeTheme24';
 import Theme13 from '@/components/ResumeTheme13';
+import Theme27 from '@/components/ResumeTheme27';
 
 const routes = [
   {
@@ -38,6 +39,12 @@ const routes = [
     path: '/theme13',
     name: 'Theme13',
     component: Theme13,
+    props: true
+  },
+  {
+    path: '/theme27',
+    name: 'Theme27',
+    component: Theme27,
     props: true
   }
 

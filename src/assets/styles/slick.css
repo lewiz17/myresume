@@ -198,32 +198,33 @@
     width: 936px !important;
 }
 
-/**
-.hold-slider .slick-slide{
-    transition: all 0.5s ease-in;
-    width: 539px;
-    height: 393.3px;
-    margin-left: 80px;
-}
-.hold-slider .slick-slide.slick-current{
-    padding-top: 0 !important;
-    height: 683px; 
-    margin-left: 0;
-}
 
-.hold-slider .slick-slide div{
-    transition: all 0.5s ease-in;
-    border-radius: 40px;
-    box-shadow: 0px 54px 49px -64px rgba(0,0,0,0.51);
-    width: 100%;
+@media screen and (max-width: 768px) {
+    .hold-slider .slick-list{
+        padding: 0 3% !important;
+        overflow: hidden;
+    }
+    .hold-slider .slick-slide{
+        max-width: 720px ;
+        width: 100% !important;
+        transition: none;
+        margin: 0px auto;
+        height: 635px;
+    }
+    .hold-slider .slick-slide.slick-current {
+        margin:0px auto;
+        width: 100% !important;
+    }
+    .hold-slider .slick-slider .slick-track{
+        transition: none;
+    }
+    .hold-slider .slick-slide .slide-item{
+        padding: 0 30px;
+    }
+    .hold-slider .slick-slide .slide-item img{
+        width: 100%;
+    }
 }
-.hold-slider .slick-slide .slide-portfolio img{
-    width: 100%;
-    transition: all 0.5s ease-in;
-}
-.hold-slider .slick-slide.slick-current div{
-    margin: 0;
-} */
 
 /*** Slider on Tabs skills **/
 .hold-skills .nav-slider,.hold-slider .nav-slider{

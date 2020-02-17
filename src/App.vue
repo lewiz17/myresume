@@ -24,7 +24,8 @@ export default {
         {"name":"Theme3", "path":"/theme3"},
         {"name":"Theme21","path":"/theme21"},
         {"name":"Theme24","path":"/theme24"},
-        {"name":"Theme13","path":"/theme13"}
+        {"name":"Theme13","path":"/theme13"},
+        {"name":"Theme27","path":"/theme27"}
       ],
       dataFreelancer: freelancer
     }
@@ -13616,7 +13617,7 @@ html {
 
 
 
-/** fixes on theme13 */
+/** FIXES on theme13 */
 .hold-tabs .v-slide-group__content{
   justify-content: center;
 }
@@ -13697,6 +13698,10 @@ html {
 
 .form-wrap .sky-style .v-messages{
   font-size: 30px;
+}
+
+.hold-tabs .v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev{
+  display: none;
 }
 
 
