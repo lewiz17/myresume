@@ -3,12 +3,12 @@
         <div class="hold-theme27">
             <v-container>
                 <v-row class="headSection">
-                    <v-col lg="auto">
+                    <v-col lg="2" class="cover-profile">
                         <div class="profile">
                             <img :src="freelancer.user_data.profile_picture" alt=""> 
                         </div>
                     </v-col>
-                    <v-col lg="auto" class="hold-profile">
+                    <v-col lg="3" class="hold-profile">
                         <div class="head-name">{{freelancer.user_data.first_name}}</div>
                         <div class="head-profile">User interface designer</div>
                         <div class="actions-wrap">
@@ -17,7 +17,7 @@
                             <a href=""><img src="@/assets/imgs/resume27/icon-headphone.svg" alt=""></a>
                         </div>
                     </v-col>
-                    <v-col lg="5" class="hold-social">
+                    <v-col lg="4" class="hold-social">
                         <span>Links to my profiles:</span>
                         <div class="social-wrap">
                             <a href="">
@@ -34,7 +34,7 @@
                             </a>
                         </div>
                     </v-col>
-                    <v-col lg="auto">
+                    <v-col lg="3" class="hold-hireme">
                         <div class="rate">
                             <span>Hourly rate </span>
                             <span>$ {{Math.ceil(freelancer.agent.hourly_rate)}} USD</span>
@@ -52,7 +52,7 @@
                 <v-row class="mainSection">
                     <v-col class="hold-menu">
                         <v-tabs
-                            class="main-tabs_theme13"
+                            class="main-tabs_theme27"
                             v-model="activeTab"
                             height="85"
                             hide-slider
@@ -155,9 +155,10 @@
                                                     <div class="item-skill">
                                                         <span class="name-skill">Photoshop</span>
                                                         <v-progress-linear
-                                                            color="red"
+                                                            color="#ddd"
                                                             rounded
-                                                            value="100"
+                                                            height="22"
+                                                            value="90"
                                                         ></v-progress-linear>
                                                         <span class="percent">90%</span>
                                                     </div> 
@@ -166,33 +167,36 @@
                                                     <div class="item-skill">
                                                         <span class="name-skill">Photoshop</span>
                                                         <v-progress-linear
-                                                            color="red"
+                                                            color="#ddd"
                                                             rounded
-                                                            value="100"
+                                                            height="22"
+                                                            value="80"
                                                         ></v-progress-linear>
-                                                        <span class="percent">90%</span>
+                                                        <span class="percent">80%</span>
                                                     </div> 
                                                 </v-col>
                                                 <v-col lg="12">
                                                     <div class="item-skill">
                                                         <span class="name-skill">Photoshop</span>
                                                         <v-progress-linear
-                                                            color="red"
+                                                            color="#ddd"
                                                             rounded
-                                                            value="100"
+                                                            height="22"
+                                                            value="95"
                                                         ></v-progress-linear>
-                                                        <span class="percent">90%</span>
+                                                        <span class="percent">95%</span>
                                                     </div> 
                                                 </v-col>
                                                 <v-col lg="12">
                                                     <div class="item-skill">
                                                         <span class="name-skill">Photoshop</span>
                                                         <v-progress-linear
-                                                            color="red"
+                                                            color="#ddd"
                                                             rounded
-                                                            value="100"
+                                                            height="22"
+                                                            value="60"
                                                         ></v-progress-linear>
-                                                        <span class="percent">90%</span>
+                                                        <span class="percent">60%</span>
                                                     </div> 
                                                 </v-col>
                                             </v-row>
@@ -216,16 +220,38 @@
     @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap');
 
     .theme-wrapper{
-        background: linear-gradient(to right bottom, #1a0552, #200554, #250556, #2a0557, #2f0559);
-        background-repeat: no-repeat;
-        background-position: top center;
+        // background: linear-gradient(to right bottom, #1a0552, #200554, #250556, #2a0557, #2f0559);
+        // background-repeat: no-repeat;
+        // background-position: top center;
 
     }
     .hold-theme27{
-        background-image: url('../assets/imgs/resume27/bg-theme.png');
+        background-image: url('../assets/imgs/resume27/bg-theme.svg');
         background-repeat: no-repeat;
         background-position: top center;
+        background-size: cover;
+
+        .container{
+            padding: 0;
+        }
+
+
+        .headSection{
+            padding: 2%;
+            display: flex;
+            justify-content: center;
+
+            .col{
+                padding: 0;
+            }
+        }
     }
+
+    .cover-profile{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }   
 
     .profile{
         display: flex;
@@ -264,13 +290,38 @@
             line-height: 25px;
             color: #FFFFFF;
         }
+
     }
 
     .hold-social{
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
         flex-flow: column;
+
+        span{
+            font-family: "Lato";
+            font-style: normal;
+            font-weight: normal;
+            font-size: 21px;
+            line-height: 25px;
+            color: #FFFFFF;
+            margin-bottom: 6%;
+        }
+
+        .social-wrap{
+            a{
+                margin: 0px 13px;
+            }
+        }
+    }
+
+    .hold-hireme{
+        display: flex;
+    }
+
+    .main-tabs_theme27{
+        margin-bottom: 30px;
     }
 
     .v-tab{
@@ -320,6 +371,11 @@
 
         .row{
             justify-content: center;
+
+            .col{
+                padding: 0;
+                margin-bottom: 68px;
+            }
         }
 
         .item{
@@ -337,6 +393,27 @@
                 margin: 0px 38.5px 70px 38.5px;
             }
         }
+        .item-skill{
+
+            span{
+                font-family: "Lato";
+                font-style: normal;
+                font-weight: bold;
+                font-size: 48px;
+                line-height: 58px;
+                
+
+                &.name-skill{
+                    color: #FFFFFF;
+                }
+                &.percent{
+                    color: #C10FA0;
+                }
+            }
+
+        }
+
+        
 
         .hold-titles,.hold-text{
             display: flex;
@@ -410,7 +487,7 @@
             margin: 0px 38.5px 70px 38.5px;
             flex-flow: row;
             flex-wrap: wrap;
-            padding: 65px 150px;
+            padding: 65px 150px !important;
 
             .hold-titles,.hold-text{
                 height: auto;
@@ -443,6 +520,7 @@
     }
 
     .actions-wrap{
+        margin-top: 35px;
 
         a{
             width: 57px;
@@ -453,9 +531,15 @@
             align-items: center;
             border-radius: 100%;
             border: 2px solid #C10FA0;
+            margin-right: 20px;
+
+            &:last-child{
+                margin: 0;
+            }
 
             img{
                 width: 28px;
+                margin-top: 4px;
             }
             
         }

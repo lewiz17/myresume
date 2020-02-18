@@ -13715,5 +13715,20 @@ html {
   display: flex;
 
 }
+.hold-items .item-skill{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hold-items .item-skill .v-progress-linear{
+  max-width: 600px;
+  margin: 0px 70px 0px 110px;  
+  border-radius: 100px;
+  box-shadow: 2px 5px 30px rgba(192, 18, 159, 0.37);
+}
+
+.hold-items .item-skill .v-progress-linear .v-progress-linear__determinate{
+  background: linear-gradient(127.8deg, #C210A0 12.14%, #C200C6 95.04%);
+}
 
 </style>
