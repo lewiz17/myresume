@@ -25,7 +25,8 @@ export default {
         {"name":"Theme21","path":"/theme21"},
         {"name":"Theme24","path":"/theme24"},
         {"name":"Theme13","path":"/theme13"},
-        {"name":"Theme27","path":"/theme27"}
+        {"name":"Theme27","path":"/theme27"},
+        {"name":"Theme19","path":"/theme19"}
       ],
       dataFreelancer: freelancer
     }

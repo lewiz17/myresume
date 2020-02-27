@@ -265,3 +265,170 @@
     opacity: 1;
 }
 
+/** Styles for Theme 19 **/
+.wraps-theme19 .hold-carousel{
+    display: flex;
+    flex-flow: column;
+    padding: 6% 0 4% 0;
+    overflow: hidden;
+}
+.wraps-theme19 .hold-carousel .slick-list{
+    overflow: visible;
+}
+.wraps-theme19 .hold-carousel .slick-slide{
+    margin: 0px 28px;
+}
+.wraps-theme19 .hold-carousel .slick-slide:first-child{
+    margin-left: 0px;
+}
+.wraps-theme19 .hold-carousel .slick-slide .slide-item{
+    width: 680px !important;
+    border-radius: 80px;
+    overflow: hidden;
+    background-color: #fff;
+}
+.wraps-theme19 .hold-carousel .slick-slide.slick-current .slide-item img{
+    border-color: #fff;
+}
+.wraps-theme19 .hold-carousel .slick-slide .slide-item img{
+    max-width: 100%;
+    border: 8px solid #00A9FF;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 80px;
+    transition: all .5s linear;
+}
+.wraps-theme19 .hold-carousel .nav-slider{
+    width: 374px;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 6px solid #FFFFFF;
+    box-sizing: border-box;
+    padding: 0px 24px;
+    box-shadow: 0px 4px 30px rgba(44, 37, 66, 0.08);
+    border-radius: 80px;
+    align-self: flex-end;
+    margin-top: 3%;
+}
+.wraps-theme19 .hold-carousel .nav-slider .slick-arrow{
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    display: inline-flex;
+}
+
+.wraps-theme19 .hold-carousel .nav-slider .slick-arrow.slick-prev{
+    background: url('../imgs/resume19/left-arrow.svg') center left no-repeat;
+    padding-left: 50px;
+}
+.wraps-theme19 .hold-carousel .nav-slider .slick-arrow.slick-next{
+    background: url('../imgs/resume19/right-arrow.svg') center right no-repeat;
+    padding-right: 50px;
+}
+.wraps-theme19 .hold-carousel .nav-slider a:first-child img{
+    margin-right: 10px;
+}
+.wraps-theme19 .hold-carousel .nav-slider a+a img{
+    margin-left: 10px;
+}
+
+/** **/
+
+.wraps-theme19 .hold-carousel.wrap-texts .slide-item{
+    background-color: #2C2542;
+    border: 8px solid #fff;
+    border-radius: 80px;
+    padding: 12% 80px;
+    min-height: 518px;
+}
+.wraps-theme19 .hold-carousel.wrap-texts .slide-item .hold-titles{
+    display: flex;
+    justify-content: space-between;
+}
+.wraps-theme19 .hold-carousel.wrap-texts .slide-item .hold-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+.wraps-theme19 .hold-carousel.wrap-texts .slide-item .hold-titles .title-work{
+    font-family: "Gotham Pro";
+    font-size: 24px;
+    line-height: 30px;
+    color: #FFFFFF;
+    max-width: 190px;
+}
+.wraps-theme19 .hold-carousel.wrap-texts .slide-item .hold-titles .years-work{
+    font-family: "Actor";
+    font-size: 24px;
+    line-height: 29px;
+    color: #FFFFFF;
+}
+
+.wraps-theme19 .hold-carousel.wrap-texts .slide-item .hold-text .title-company{
+    font-family: "Actor";
+    font-size: 24px;
+    line-height: 35px;
+    text-align: center;
+    color: #FFFFFF;
+}
+.wraps-theme19 .hold-carousel.wrap-texts .slide-item .hold-text .list-tasks{
+    font-family: "Actor";
+    font-size: 14px;
+    line-height: 35px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+/** carousel with skills **/
+.wraps-theme19 .hold-carousel.wrap-skills .slick-slide{
+    margin: 0;
+}
+.wraps-theme19 .hold-carousel.wrap-skills .slide-item{
+    background-color: transparent;
+    border-radius: 0;
+    width: 100% !important;
+
+}
+
+.wraps-theme19 .hold-carousel.wrap-skills .slide-item .item-skill{
+    max-width: 1123px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px auto 30px auto;
+}
+.wraps-theme19 .hold-carousel.wrap-skills .slide-item .item-skill .v-progress-linear{
+    max-width: 1011px;
+}
+
+
+.wraps-theme19 .hold-carousel.wrap-skills .slide-item .item-skill .skill-pic{
+    background: #fff;
+    width: 83px;
+    height: 83px;
+    border: 5px solid #1793D2;
+    margin-right: 2%;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wraps-theme19 .hold-carousel.wrap-skills .slide-item .item-skill .skill-pic img{
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}

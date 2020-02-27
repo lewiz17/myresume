@@ -8,7 +8,7 @@
                             <img :src="freelancer.user_data.profile_picture" alt=""> 
                         </div>
                     </v-col>
-                    <v-col lg="3" class="hold-profile">
+                    <v-col lg="2" class="hold-profile">
                         <div class="head-name">{{freelancer.user_data.first_name}}</div>
                         <div class="head-profile">User interface designer</div>
                         <div class="actions-wrap">
@@ -17,7 +17,7 @@
                             <a href=""><img src="@/assets/imgs/resume27/icon-headphone.svg" alt=""></a>
                         </div>
                     </v-col>
-                    <v-col lg="4" class="hold-social">
+                    <v-col lg="5" class="hold-social">
                         <span>Links to my profiles:</span>
                         <div class="social-wrap">
                             <a href="">
@@ -35,14 +35,17 @@
                         </div>
                     </v-col>
                     <v-col lg="3" class="hold-hireme">
-                        <div class="rate">
-                            <span>Hourly rate </span>
-                            <span>$ {{Math.ceil(freelancer.agent.hourly_rate)}} USD</span>
+                        <div class="info-hire">
+                            <div class="rate">
+                                <span>Hourly rate </span>
+                                <span class="valueThis">$ {{Math.ceil(freelancer.agent.hourly_rate)}} USD</span>
+                            </div>
+                            <div class="hours">
+                                <span>Available for </span>
+                                <span class="valueThis">{{Math.ceil(freelancer.user_data.available_hours_per_week)}} hours</span>
+                            </div>
                         </div>
-                        <div class="hours">
-                            <span>Available for </span>
-                            <span>{{Math.ceil(freelancer.user_data.available_hours_per_week)}} hours</span>
-                        </div>
+                        
                         <div class="hireme">
                             <a href="" class="btn-hire">Hire me</a>
                         </div>
@@ -74,27 +77,26 @@
                                     <div class="hold-items">
                                         <v-container>
                                             <v-row>
-                                                <v-col class="item">
+                                                <v-col class="item" lg="4">
                                                     <img src="@/assets/imgs/resume27/item2.svg" alt="">
                                                 </v-col>
-                                                <v-col class="item">
+                                                <v-col class="item" lg="4">
                                                     <img src="@/assets/imgs/resume27/item2.svg" alt="">
                                                 </v-col>
-                                                <v-col class="item">
+                                                <v-col class="item" lg="4">
                                                     <img src="@/assets/imgs/resume27/item2.svg" alt="">
                                                 </v-col>
-                                                <v-col class="item">
+                                                <v-col class="item" lg="4">
                                                     <img src="@/assets/imgs/resume27/item2.svg" alt="">
                                                 </v-col>
-                                                <v-col class="item">
+                                                <v-col class="item" lg="4">
                                                     <img src="@/assets/imgs/resume27/item2.svg" alt="">
                                                 </v-col>
-                                                <v-col class="item">
+                                                <v-col class="item" lg="4">
                                                     <img src="@/assets/imgs/resume27/item2.svg" alt="">
                                                 </v-col>
                                             </v-row>
-                                        </v-container>
-                                     
+                                        </v-container>                                     
                                     </div>
                                 </v-tab-item>
                                 <v-tab-item class="work-section" value="tab-1">
@@ -220,16 +222,16 @@
     @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap');
 
     .theme-wrapper{
-        // background: linear-gradient(to right bottom, #1a0552, #200554, #250556, #2a0557, #2f0559);
-        // background-repeat: no-repeat;
-        // background-position: top center;
-
+        display: flex;
+        justify-content: center;
     }
     .hold-theme27{
         background-image: url('../assets/imgs/resume27/bg-theme.svg');
         background-repeat: no-repeat;
         background-position: top center;
         background-size: cover;
+        max-width: 1920px;
+        min-height: 1600px;
 
         .container{
             padding: 0;
@@ -295,7 +297,7 @@
 
     .hold-social{
         display: flex;
-        justify-content: flex-end;
+        justify-content:center;
         align-items: center;
         flex-flow: column;
 
@@ -318,6 +320,68 @@
 
     .hold-hireme{
         display: flex;
+        flex-flow: column;
+        justify-content: center;
+
+        >div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .info-hire{
+            >div{
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+            }
+
+            span{
+                font-family: "Lato";
+                font-style: normal;
+                font-weight: normal;
+                font-size: 24px;
+                line-height: 29px;
+                color: #B70E9B;
+                margin: 0px 34.5px;
+
+                &.valueThis{
+                    font-weight: 900;
+                    font-size: 32px;
+                    line-height: 50px;
+                    color: #FFFFFF;
+                }
+            }
+
+            .hours{
+                
+                border-left: 1px solid rgba(255, 255, 255, 0.38);
+            }
+        }
+
+        .btn-hire{
+            background: linear-gradient(96.78deg, #C210A0 12.14%, #C200C6 95.04%);
+            box-shadow: 2px 5px 30px rgba(192, 18, 159, 0.37);
+            border-radius: 15px;
+            font-family: "Lato";
+            font-style: normal;
+            font-weight: 900;
+            font-size: 24px;
+            line-height: 29px;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            min-width: 293px;
+            min-height: 79px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            margin-top: 28px;
+
+            &:hover{
+                opacity: .8;
+            }
+        }
     }
 
     .main-tabs_theme27{
@@ -370,7 +434,8 @@
         }
 
         .row{
-            justify-content: center;
+            justify-content: space-around;
+            
 
             .col{
                 padding: 0;
@@ -383,6 +448,11 @@
             justify-content: center;
             padding: 0;
             margin-bottom: 50px;
+
+            img{
+                max-width: 100%;
+                padding: 0;
+            }
             
 
             &.work-item{
@@ -390,7 +460,7 @@
                 box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
                 border-radius: 30px;
                 max-width: 778px;
-                margin: 0px 38.5px 70px 38.5px;
+                margin-bottom: 70px;
             }
         }
         .item-skill{
@@ -399,7 +469,7 @@
                 font-family: "Lato";
                 font-style: normal;
                 font-weight: bold;
-                font-size: 48px;
+                font-size: 30px;
                 line-height: 58px;
                 
 
@@ -426,11 +496,11 @@
             justify-content: space-between;
             align-items: flex-start;
             height: 100%;
-            padding: 100px 0px 100px 90px;
+            padding: 10% 0 10% 9%;
         }
         .hold-text{
             width: 60%;
-            padding: 100px 90px 100px 0px;
+            padding: 10% 9% 10% 0;
         }
 
         .title-work{

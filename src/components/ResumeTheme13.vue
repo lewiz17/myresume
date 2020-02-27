@@ -111,9 +111,6 @@
                                         <div class="slide-item">
                                             <img src="@/assets/imgs/resume13/slide.png" alt=""/>
                                         </div>
-                                        
-                        
-                                 
                                     </slick>
                                     <div class="nav-slider">
                                         <a href="#" @click.prevent="prevSlide"><img src="@/assets/imgs/resume13/arrow-left.png" alt=""/></a>
