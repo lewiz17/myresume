@@ -128,7 +128,7 @@
                                     <div class="hold-items">
                                         <v-container>
                                             <v-row>
-                                                <v-col class="item edu-item" v-for="(education, index) in educationsHistory" :key="index+'W'">
+                                                <v-col class="item edu-item" v-for="(education, index) in educationsHistory" :key="index+'W'" lg="6">
                                                     <div class="hold-titles">
                                                         <span class="title-refer">University</span>
                                                         <span class="title-work">{{education.school_title}}</span>
@@ -462,6 +462,45 @@
                 max-width: 778px;
                 margin-bottom: 70px;
             }
+            &.edu-item{
+                background: #3B0463;
+                box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+                border-radius: 30px;
+                max-width: 778px;
+                margin-bottom: 70px;
+                flex-flow: row;
+                flex-wrap: wrap;
+                padding: 8%;
+
+                .hold-titles,.hold-text{
+                    height: auto;
+                    justify-content: flex-start;
+                    min-height: auto;
+                    width: 100%;
+                }
+
+                .hold-titles{
+                    padding: 0px;
+                    min-width: auto;
+
+                    .title-work{
+                        margin-top: 30px;
+                    }
+                }
+                .hold-text{
+                    padding: 0;
+                    margin-top: 30px;
+
+                    .years-work{
+                        color: #fff;
+                    }
+                }
+
+                .list-tasks{
+                    margin-top: 40px;
+                }
+            }
+            
         }
         .item-skill{
 
@@ -549,44 +588,7 @@
             display: block;
         } 
 
-        .edu-item{
-            background: #3B0463;
-            box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
-            border-radius: 30px;
-            max-width: 778px;
-            margin: 0px 38.5px 70px 38.5px;
-            flex-flow: row;
-            flex-wrap: wrap;
-            padding: 65px 150px !important;
-
-            .hold-titles,.hold-text{
-                height: auto;
-                justify-content: flex-start;
-                min-height: auto;
-                width: 100%;
-            }
-
-            .hold-titles{
-                padding: 0px;
-                min-width: auto;
-
-                .title-work{
-                    margin-top: 30px;
-                }
-            }
-            .hold-text{
-                padding: 0;
-                margin-top: 30px;
-
-                .years-work{
-                    color: #fff;
-                }
-            }
-
-            .list-tasks{
-                margin-top: 40px;
-            }
-        }
+        
     }
 
     .actions-wrap{

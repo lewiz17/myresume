@@ -156,9 +156,9 @@
 
 /*** Slider theme 13 ***/
 .hold-slider{
-    margin-top: 103px;
-    height: 750px;
-    overflow: hidden;
+    margin-top: 13vh;
+    height: 75vh;
+    overflow: visible;
 }
 .hold-slider .slick-list{
     overflow: visible;
@@ -167,21 +167,22 @@
     transition: all 0.5s ease-in;
 }
 .hold-slider .slick-slide{
-    height: 683px;
+    height: 54vh;
     margin: 0px 40px;
-    width: 583px !important;
+    width: 28vw !important;
     transition: all 0.5s ease-in;
 }
 .hold-slider .slick-slide>div{
     text-align: center;
 }
 .hold-slider .slick-slide .slide-item img{
-    width: 583px;
+    width: 100%;
     transition: all 0.5s ease-in;
+    border-radius: 40px;
 }
 .hold-slider .slick-slide .slide-item{
     transition: all 0.5s ease-in;
-    padding-top: 30%;
+    padding-top: 16vh;
     text-align: center;
     border-radius: 40px;
     box-shadow: 0px 54px 49px -64px rgba(0,0,0,0.51);
@@ -192,14 +193,37 @@
 }
 .hold-slider .slick-slide.slick-current .slide-item img{
     width: 100%;
+    max-height: 64vh;
 }
 .hold-slider .slick-slide.slick-current{
     margin-left: 0px;
-    width: 936px !important;
+    width: 48.45vw !important;
+    height: 64vh;
+}
+/** Fixes on vertical mode **/
+
+.hold-slider .slick-slider.slick-vertical .slick-slide{
+    width: 94vw !important;
+    height: 96.5vh;
+    margin-bottom: 18vh;
+}
+.hold-slider .slick-slider.slick-vertical .slick-slide .slide-item{
+    padding: 0;
+}
+.hold-slider .slick-slider.slick-vertical .slick-slide img{
+    max-height: 100%;
 }
 
 
 @media screen and (max-width: 768px) {
+    .hold-slider{
+        height: 245vh;
+        margin-bottom: 60px;
+    }
+    .hold-slider .nav-slider{
+        bottom: 0 !important;
+    }
+   
     .hold-slider .slick-list{
         padding: 0 3% !important;
         overflow: hidden;
@@ -218,15 +242,14 @@
     .hold-slider .slick-slider .slick-track{
         transition: none;
     }
-    .hold-slider .slick-slide .slide-item{
-        padding: 0 30px;
-    }
     .hold-slider .slick-slide .slide-item img{
         width: 100%;
     }
 }
 
 /*** Slider on Tabs skills **/
+
+
 .hold-skills .nav-slider,.hold-slider .nav-slider{
     display: flex;
     flex-flow: row;
@@ -263,6 +286,25 @@
 }
 .hold-skills .nav-slider .navDotsContents ul li.slick-active button, .hold-slider .nav-slider .navDots ul li.slick-active button{
     opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+    .mc-subtabs_skills .hold-skills .slick-slide{
+        width: 70px !important;
+        margin: 0 7.5vw;
+    }
+
+    .mc-subtabs_skills .hold-skills > div[data-v-7d195484]:nth-child(2){
+        margin-top: 0 !important;
+    }
+
+    .mc-subtabs_skills .hold-skills .slick-slide .item-skill .v-progress-circular{
+        max-width: 58px;
+    }
+
+    .mc-subtabs_skills .hold-skills .slick-slide .item-skill .v-progress-circular .v-progress-circular__info{
+        font-size: 18px;
+    }
 }
 
 /** Styles for Theme 19 **/

@@ -105,12 +105,7 @@
                                         <div class="slide-item">
                                             <img src="@/assets/imgs/resume13/slide.png" alt=""/>
                                         </div>
-                                        <div class="slide-item">
-                                            <img src="@/assets/imgs/resume13/slide.png" alt=""/>
-                                        </div>
-                                        <div class="slide-item">
-                                            <img src="@/assets/imgs/resume13/slide.png" alt=""/>
-                                        </div>
+                                        
                                     </slick>
                                     <div class="nav-slider">
                                         <a href="#" @click.prevent="prevSlide"><img src="@/assets/imgs/resume13/arrow-left.png" alt=""/></a>
@@ -122,7 +117,7 @@
                             <v-tab-item class="work-section" value="tab-1" >
                                 <v-container>
                                     <v-row class="contentSection">
-                                        <v-col lg="6" v-for="(work, index) in worksHistory" :key="index+'W'">
+                                        <v-col lg="6" md="12" sm="12" v-for="(work, index) in worksHistory" :key="index+'W'">
                                             <div class="hold-titles">
                                                 <span class="title-work">{{work.job_title}}</span>
                                                 <span class="years-work">
@@ -143,7 +138,7 @@
                             <v-tab-item class="education-section" value="tab-2" >
                                 <v-container>
                                     <v-row class="contentSection">
-                                        <v-col lg="6" v-for="(education, index) in educationsHistory" :key="index+'E'">
+                                        <v-col lg="6" md="12" sm="12" v-for="(education, index) in educationsHistory" :key="index+'E'">
                                             <div class="hold-titles">
                                                 <span class="title-work">{{education.school_title}}</span>
                                                 <span class="years-work">
@@ -163,12 +158,14 @@
                             </v-tab-item>
                             <v-tab-item class="skills-section" value="tab-3" >
                                 <v-row class="skills-wrap">
-                                    <v-col lg="12">
+                                    <v-col lg="12" md="12" sm="12">
                                         <v-tabs
                                             class="main-subtabs_skills"
                                             v-model="activeTabSkill"
-                                            centered
                                             hide-slider
+                                            centered
+                                            :center-active="true"
+                                            :show-arrows="true"
                                         >
                                             <v-tab
                                                 v-for="(skill,index) in skillsItems"
@@ -176,6 +173,7 @@
                                                 :href="`#skill_tab-${index}`"
                                                 :ripple="false"
                                                 @click="setTabSkill(index)"
+                                                
                                             >
                                                 {{skill}}                                   
                                             </v-tab>                       
@@ -184,7 +182,7 @@
                                             <v-tab-item value="skill_tab-0">
                                                 <div class="hold-skills">
                                                     
-                                                    <slick ref="contentSlides" :options="slickContents" lg="12">
+                                                    <slick ref="contentSlides" :options="slickContents">
                                                         <div class="item-skill" v-for="(item,ix) in skillFiltered" :key="ix" >
                                                             <v-progress-circular
                                                                 :size="93"
@@ -409,7 +407,7 @@
 
         .v-tabs-items{
             max-width: 1800px;
-            margin: 0px auto;
+            margin: 55px auto 0px auto;
             background: transparent;
         }
 
@@ -434,7 +432,7 @@
             /** Position scroll content */
             &:nth-child(2){
                 position: absolute;
-                bottom: 8%;
+                bottom: 13vh;
                 z-index: 2;
                 right: 28%;
                 padding: 5px;
@@ -442,6 +440,14 @@
                 background: #fff;
             }
         }
+
+        @media screen and (max-width: 768px) {
+            .nav-slider{
+                right: 30% !important;
+            }
+        }
+
+        
     }
 
     .head-section{
@@ -533,6 +539,10 @@
             &:last-child{
                 margin: 0;
             }
+
+            img{
+                width: 23px;
+            }
         }
 
         @media screen and (max-width: 768px) {
@@ -543,7 +553,7 @@
                 margin-right: 70px;
 
                 img{
-                    width: 37px;
+                    width: 34px;
                 }
                 
             }
@@ -667,6 +677,7 @@
 
             img{
                 width: 24px;
+                height: 24px;
             }
         }
 
@@ -678,6 +689,7 @@
 
                 img{
                     width: 38px;
+                    height: 38px;
                 }
             }
         }
@@ -818,7 +830,7 @@
             font-style: normal;
             font-weight: 300;
             font-size: 16px;
-            line-height: 15px;
+            line-height: 18px;
             text-transform: capitalize;
             max-width: 140px;
         }
@@ -958,7 +970,7 @@
         .main-subtabs_skills{
 
                 max-width: 1200px;
-                margin: 95px auto 0px auto;
+                margin:0px auto 0px auto;
 
                 .v-tab{
                     position: relative;
@@ -974,6 +986,7 @@
                     color: rgba(16, 78, 251, 0.6) !important;
                     opacity: 0.5;
                     margin-right: 6%;
+                    letter-spacing: 0;
 
                     &:last-child{
                         margin: 0;
@@ -1003,11 +1016,25 @@
 
                     
                 }
+
+                @media screen and (max-width: 768px) {
+                    .v-tab{
+                        margin: 0 2%;
+                        min-width: auto;
+                        white-space: nowrap;
+
+
+                        &:last-child{
+                            margin: 0 2%;
+                            padding-right: 150px;
+                        }
+
+                    }
+                }
+
+                
         }
         .mc-subtabs_skills{
-            display: flex;
-            justify-content: center;
-            align-items: center;
             width: 100%;
             margin: 66px auto 0 auto;
 
@@ -1016,10 +1043,6 @@
                 width: 1200px;
                 margin: 0 auto;
 
-                .row{
-                    justify-content: center;
-                    display: flex !important;
-                }
 
                 .item-skill{
                     margin: 0;
@@ -1027,6 +1050,10 @@
                     align-items: center;
                     justify-content: center;
                     flex-flow: column;
+
+                    img{
+                        max-width: 100%;
+                    }
                 }
 
                 >div{
@@ -1269,11 +1296,12 @@
                         {
                             breakpoint: 786,
                             settings: {
-                                slidesToShow: 1,
+                                slidesToShow: 2,
                                 slidesToScroll: 1,
                                 variableWidth: false,
-                                infinite: false,
-                                centerMode: true
+                                vertical: true,
+                                verticalSwiping: true,
+                                infinite: true
                             }
                         }
                     ]
