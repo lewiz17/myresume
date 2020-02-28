@@ -65,6 +65,29 @@
                                         <img src="@/assets/imgs/resume13/icon-linkedin.svg" alt="">
                                     </a>
                                 </v-col>
+                                <v-col class="hold-hireme only-mob">
+                                    <div class="rateSection">
+                                        <div class="hold_rate_price">
+                                            <span class="price">
+                                                ${{Math.ceil(freelancer.agent.hourly_rate)}}
+                                            </span>
+                                            <span class="text_price">
+                                                Hourly rate
+                                            </span>
+                                        </div>
+                                        <div class="hold_rate_hours">
+                                            <span class="hours">
+                                                {{Math.ceil(freelancer.user_data.available_hours_per_week)}} hours
+                                            </span>
+                                            <span class="text_hours">
+                                                Weekly Availability
+                                            </span>  
+                                        </div>                                                  
+                                    </div>
+                                    <div class="hireSection">
+                                        <a href="#" class="btn-outline" @click.prevent="dialogHireme = true">Hire Me</a>
+                                    </div>
+                                </v-col>
                             </v-row>
                         </v-container>
                       
@@ -89,7 +112,7 @@
                     </div>                    
                     <div class="hold-contents">
                         <v-tabs-items v-model="activeTab">
-                            <v-tab-item class="portfolio-section" value="tab-0">
+                            <v-tab-item class="portfolio-section" value="tab-0" >
                                <div class="hold-slider content-wrap">
                                     <slick ref="slick" :options="slickOptions">
                                         <div class="slide-item">
@@ -105,6 +128,12 @@
                                         <div class="slide-item">
                                             <img src="@/assets/imgs/resume13/slide.png" alt=""/>
                                         </div>
+                                        <div class="slide-item">
+                                            <img src="@/assets/imgs/resume13/slide.png" alt=""/>
+                                        </div>
+                                        <div class="slide-item">
+                                            <img src="@/assets/imgs/resume13/slide.png" alt=""/>
+                                        </div>
                                         
                                     </slick>
                                     <div class="nav-slider">
@@ -114,7 +143,7 @@
                                     </div>
                                 </div>
                             </v-tab-item>
-                            <v-tab-item class="work-section" value="tab-1" >
+                            <v-tab-item class="work-section" value="tab-1" v-if="worksHistory.length>0">
                                 <v-container>
                                     <v-row class="contentSection">
                                         <v-col lg="6" md="12" sm="12" v-for="(work, index) in worksHistory" :key="index+'W'">
@@ -135,7 +164,7 @@
                                     </v-row>
                                 </v-container>
                             </v-tab-item>
-                            <v-tab-item class="education-section" value="tab-2" >
+                            <v-tab-item class="education-section" value="tab-2" v-if="educationsHistory.length>0">
                                 <v-container>
                                     <v-row class="contentSection">
                                         <v-col lg="6" md="12" sm="12" v-for="(education, index) in educationsHistory" :key="index+'E'">
@@ -156,14 +185,13 @@
                                     </v-row>
                                 </v-container>
                             </v-tab-item>
-                            <v-tab-item class="skills-section" value="tab-3" >
+                            <v-tab-item class="skills-section" value="tab-3" v-if="skillsItems.length>0">
                                 <v-row class="skills-wrap">
                                     <v-col lg="12" md="12" sm="12">
                                         <v-tabs
                                             class="main-subtabs_skills"
                                             v-model="activeTabSkill"
                                             hide-slider
-                                            centered
                                             :center-active="true"
                                             :show-arrows="true"
                                         >
@@ -432,9 +460,10 @@
             /** Position scroll content */
             &:nth-child(2){
                 position: absolute;
-                bottom: 13vh;
                 z-index: 2;
-                right: 28%;
+                bottom: -4vh;
+                z-index: 2;
+                right: 26vw;
                 padding: 5px;
                 border-radius: 100px;
                 background: #fff;
@@ -806,7 +835,6 @@
             flex-flow: row;
             align-items: flex-start;
             justify-content: center;
-            min-height: 145px;
             margin-bottom: 125px;
         }
 
@@ -1248,6 +1276,186 @@
 
     }
 
+
+    /** Only mobile version */
+    @media only screen and (max-width: 480px) {
+        /* Helper class **/
+        .only-mob{
+            display: block !important; 
+        }
+
+        .container.hold_theme13 .showOnlyOnmd{
+            border: 0;
+        }
+
+        .head-section{
+            padding: 0 10px;
+            min-height: 153px;
+        }
+        .imageCol{
+            .profile-img{
+            width: 81px;
+            height: 81px;
+            }
+        }
+        .profileCol{
+            min-width: 135px;
+            margin-left: 16px;
+        }
+
+
+
+
+        .actionsSection{
+
+            margin-left: 1%;
+
+            a{
+                margin-right: 20px;
+                img{
+                    width: 27px;
+                }
+            }
+        }
+
+        .hold-hireme{
+            display: none !important;
+
+            &.only-mob{
+                display: block !important;
+            }
+        }
+        .social-hold{
+            min-height: 75px;
+
+            a{
+                margin-right: 43px;
+                img{
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+        }
+
+
+
+        .main-tabs_theme13{
+            .v-tab{
+                font-size: 14px;
+                min-width: 70px;
+                align-items: flex-end;
+
+                &.v-tab--active{
+                    font-size: 36px;
+                    align-items: center;
+
+                    &::after{
+                        height: 0;
+                    }
+                }
+            }
+        }
+
+        .hold-tabs{
+            padding-top: 60px;
+        }
+
+
+        .rateSection{
+
+            justify-content: space-around;
+            margin: 40px auto;
+
+
+            .hold_rate_price{
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+
+                span{
+                    margin: 0;
+                }
+            }
+            .hold_rate_hours{
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+
+                span{
+                    margin: 0;
+                }
+            }
+
+        }
+        .hold-contents{
+            padding: 60px 5% 0px;
+
+            .v-tabs-items{
+                margin-top: 0;
+            }
+            
+            .hold-slider{
+                height: auto;
+
+                .nav-slider{
+                    position: relative;
+                    left: 0;
+                    margin: 5% auto;
+
+                    a{
+                        display: flex;
+                    }
+                }
+            }
+        }
+
+        .skills-wrap{
+            .main-subtabs_skills{
+                .v-tab{
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .contentSection{
+
+            flex-flow: column;
+
+            .col{
+                margin-bottom: 100px;
+                justify-content: space-between;
+                min-height: 194px;
+                overflow-y: hidden;
+            }
+
+            .hold-titles{
+                justify-content: flex-start;
+                width: 38%;
+
+            }
+
+            .years-work{
+                padding-top: 50%;
+            }
+            .title-company{
+                font-size: 20px;
+                line-height: 30px;
+            }
+            .list-tasks{
+                font-size: 16px;
+                line-height: 18px;
+                font-family: "Gotham Pro";
+            }
+        }
+
+
+
+    }
+
+    .only-mob{
+        display: none;
+    }
+
     
     
     
@@ -1303,6 +1511,17 @@
                                 verticalSwiping: true,
                                 infinite: true
                             }
+                        },
+                        {
+                            breakpoint: 540,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 3,
+                                variableWidth: false,
+                                vertical: true,
+                                verticalSwiping: true,
+                                infinite: true
+                            }
                         }
                     ]
                 },
@@ -1314,7 +1533,16 @@
                     dots: true,
                     swipe: true,
                     speed: 500,
-                    appendDots: '.navDotsContents'
+                    appendDots: '.navDotsContents',
+                    responsive: [
+                        {
+                            breakpoint: 540,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 1,
+                            }
+                        }
+                    ]
                 },
                 formMessage: {
                     name: '',

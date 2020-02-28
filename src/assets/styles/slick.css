@@ -193,12 +193,13 @@
 }
 .hold-slider .slick-slide.slick-current .slide-item img{
     width: 100%;
-    max-height: 64vh;
+    max-height: 82.6vh;
 }
 .hold-slider .slick-slide.slick-current{
     margin-left: 0px;
     width: 48.45vw !important;
-    height: 64vh;
+    height: 82.6vh;
+    
 }
 /** Fixes on vertical mode **/
 
@@ -290,11 +291,11 @@
 
 @media screen and (max-width: 768px) {
     .mc-subtabs_skills .hold-skills .slick-slide{
-        width: 70px !important;
+        width: 70px;
         margin: 0 7.5vw;
     }
 
-    .mc-subtabs_skills .hold-skills > div[data-v-7d195484]:nth-child(2){
+    .mc-subtabs_skills .hold-skills > div:nth-child(2){
         margin-top: 0 !important;
     }
 
@@ -473,4 +474,36 @@
     border: none;
     border-radius: 0;
     box-shadow: none;
+}
+
+@media only screen and (max-width: 480px) {
+    /** Mobile vertical slider **/
+    .hold-slider .slick-list{
+        padding: 0 !important;
+    }
+    
+    .hold-slider .slick-slider.slick-vertical .slick-slide{
+        height: 42vh;
+        margin-bottom: 2vh;
+    }
+    .mc-subtabs_skills .hold-skills{
+        margin: 12vh auto !important;
+    }
+    .mc-subtabs_skills .hold-skills .slick-slide{
+        min-height: 170px;
+        width: auto ;
+    }
+    .mc-subtabs_skills .hold-skills > div:nth-child(2){
+        padding: 0 !important;
+        justify-content: center !important;
+    }
+
+    .mc-subtabs_skills .hold-skills .slick-slide .item-skill .v-progress-circular{
+        max-width: 86px;
+    }
+
+    .mc-subtabs_skills .hold-skills .slick-slide .item-skill .v-progress-circular .v-progress-circular__info{
+        font-size: 24px;
+    }
+
 }

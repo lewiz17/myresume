@@ -13732,4 +13732,18 @@ html {
   background: linear-gradient(127.8deg, #C210A0 12.14%, #C200C6 95.04%);
 }
 
+/** Tabs mobile */
+.main-tabs_theme13 .v-tabs-bar.v-tabs-bar--is-mobile{
+  height: 42px !important;
+}
+.main-tabs_theme13 .v-tabs-bar.v-tabs-bar--is-mobile .v-tab{
+  height: 42px;
+}
+
+.main-subtabs_skills .v-tabs-bar--is-mobile .v-slide-group__prev,
+.main-subtabs_skills .v-tabs-bar--is-mobile .v-slide-group__next{
+  display: none;
+}
+
+
 </style>
