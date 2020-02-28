@@ -1174,6 +1174,87 @@
             }
         }
 
+        /** Only dialogs fixes on mobile */
+        @media only screen and (max-width: 768px) {
+            .v-card{
+                padding-bottom: 50px;
+
+                .container{
+                    padding: 20px;
+                }
+                &.form-wrap{
+
+                    .v-btn{
+                        min-width: 180px;
+                        font-size: 18px;
+                        min-height: 50px;
+
+                        &.btn-send{
+                            font-size: 18px;
+                        }
+                    }
+
+                }
+                .v-card__actions{
+                    padding: 20px;
+                }
+                .hold-video{
+                    max-width: 80%;
+                }
+            }
+
+            .player{
+                .hold-spectre{
+                    max-width:80%;
+                    background: #f7f7f7;
+                    margin-bottom: 20px;
+
+                    img{
+                        max-width: 100%;
+                    }
+                }
+
+                i{
+                    color: $colorBlue;
+                }
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            .v-card{
+                .container{
+                    padding: 20px;
+                }
+                &.form-wrap{
+
+                    .v-btn{
+                        
+                        min-width: 100px;
+                        font-size: 14px;
+                        padding: 0 15px;
+
+                        &.btn-send{
+                            font-size: 14px;
+                        }
+                    }
+
+                }
+                .close-icon{
+                    font-size: 30px;
+                }
+            }
+
+            .player{
+
+                i{
+                    font-size: 50px;
+                }
+            }
+
+        }
+
+
+
     }
 
 
@@ -1513,10 +1594,10 @@
                             }
                         },
                         {
-                            breakpoint: 540,
+                            breakpoint: 480,
                             settings: {
                                 slidesToShow: 3,
-                                slidesToScroll: 3,
+                                slidesToScroll: 1,
                                 variableWidth: false,
                                 vertical: true,
                                 verticalSwiping: true,
@@ -1536,7 +1617,7 @@
                     appendDots: '.navDotsContents',
                     responsive: [
                         {
-                            breakpoint: 540,
+                            breakpoint: 480,
                             settings: {
                                 slidesToShow: 3,
                                 slidesToScroll: 1,

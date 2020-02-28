@@ -13516,6 +13516,125 @@ html {
 }
 
 
+
+
+/** FIXES on theme13 */
+.hold-tabs .v-slide-group__content{
+  justify-content: center;
+}
+.skills-wrap .v-slide-group__content::after{
+  content: "";
+  height: 1px;
+  background: rgba(16, 78, 251, 0.12);
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+}
+
+/** Custom progress bar circular */
+.item-skill .v-progress-circular__info{
+  font-family: "Actor";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 29px;
+  color: #104EFB;
+}
+
+.item-skill .v-progress-circular__underlay{
+  stroke: rgba(76, 113, 240, 0.02);
+}
+.item-skill .v-progress-circular__overlay{
+  stroke-linecap: round;
+}
+
+/* Form theme13 **/
+.form-wrap .sky-style .v-text-field{
+  padding: 0;
+  margin-bottom: 0px;
+  margin-top: 0;
+}
+.form-wrap .sky-style .v-text-field.v-text-field--enclosed{
+  margin-top: 0px;
+}
+.form-wrap .sky-style .v-text-field .v-label{
+  display: none;       
+}
+
+
+.form-wrap .sky-style .v-text-field > .v-input__control > .v-input__slot{
+  background: rgba(16, 78, 251, 0.06) !important;
+  
+}
+
+.form-wrap .sky-style .v-input input{
+  min-height: 138px;
+  max-height: 100%;
+  padding: 25px 35px;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 72px;
+  line-height: 85px;
+  color: #104EFB !important;
+
+  
+}
+
+.form-wrap .sky-style .v-text-field > .v-input__control > .v-input__slot:before{
+  border-color: #e5e5e5 !important;
+}
+
+.form-wrap .sky-style .v-text-field--filled > .v-input__control > .v-input__slot{
+  background: rgba(16, 78, 251, 0.06) !important;
+}
+
+.form-wrap .sky-style .v-textarea textarea{
+  padding:35px;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 30px;
+  color: #104EFB !important;
+}
+
+.form-wrap .sky-style .v-messages{
+  font-size: 30px;
+}
+
+.hold-tabs .v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev{
+  display: none;
+}
+
+
+/** Theme 27 */
+.hold-menu .theme--light.v-tabs > .v-tabs-bar,.hold-menu .theme--light.v-tabs-items{
+  background: transparent;
+}
+
+.hold-menu .v-slide-group__content{
+  justify-content: center;
+  display: flex;
+
+}
+.hold-items .item-skill{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hold-items .item-skill .v-progress-linear{
+  max-width: 600px;
+  margin: 0px 70px 0px 110px;  
+  border-radius: 100px;
+  box-shadow: 2px 5px 30px rgba(192, 18, 159, 0.37);
+}
+
+.hold-items .item-skill .v-progress-linear .v-progress-linear__determinate{
+  background: linear-gradient(127.8deg, #C210A0 12.14%, #C200C6 95.04%);
+}
+
+
 @media screen and (max-width: 769px) {
   .main-tabs_theme3 .v-slide-group__content{
     justify-content: center;  
@@ -13597,12 +13716,32 @@ html {
     margin: 0px auto;
   }
 
+  .form-wrap .sky-style .v-input input{
+    min-height: auto;
+    max-height: 100%;
+    padding: 20px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 30px;
+  }
+  .form-wrap .sky-style .v-textarea textarea{
+    padding: 20px;
+    margin-top: 0;
+  }
+  .form-wrap .sky-style .v-messages{
+    font-size: 15px;
+  }
+
 }
+
+
+
 
 @media only screen 
   and (min-device-width: 320px) 
   and (max-device-width: 480px)
   and (-webkit-min-device-pixel-ratio: 2) {
+
   .main-tabs_theme21>.v-tabs-bar{
     min-height: 150px;
   }
@@ -13615,122 +13754,24 @@ html {
     display: none !important;
   }
 }
+@media only screen and (max-width: 480px) {
+  .form-wrap .sky-style .v-input input{
+    padding: 10px;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 20px;
+  }
+  .form-wrap .sky-style .v-textarea textarea{
+    font-size: 20px;
+    line-height: 20px;
+    padding: 10px;
+  }
 
-
-
-/** FIXES on theme13 */
-.hold-tabs .v-slide-group__content{
-  justify-content: center;
-}
-.skills-wrap .v-slide-group__content::after{
-  content: "";
-  height: 1px;
-  background: rgba(16, 78, 251, 0.12);
-  width: 100%;
-  position: absolute;
-  bottom: 0px;
-}
-
-/** Custom progress bar circular */
-.item-skill .v-progress-circular__info{
-  font-family: "Actor";
-  font-style: normal;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 29px;
-  color: #104EFB;
+  .form-wrap .sky-style .v-textarea.v-text-field--filled > .v-input__control > .v-input__slot{
+    max-height: 200px;
+  }
 }
 
-.item-skill .v-progress-circular__underlay{
-  stroke: rgba(76, 113, 240, 0.02);
-}
-.item-skill .v-progress-circular__overlay{
-  stroke-linecap: round;
-}
-
-/* Form theme13 **/
-.form-wrap .sky-style .v-text-field{
-  padding: 0;
-  margin-bottom: 0px;
-  margin-top: 0;
-}
-.form-wrap .sky-style .v-text-field.v-text-field--enclosed{
-  margin-top: 0px;
-}
-.form-wrap .sky-style .v-text-field .v-label{
-  display: none;       
-}
-
-
-.form-wrap .sky-style .v-text-field > .v-input__control > .v-input__slot{
-  background: rgba(16, 78, 251, 0.06) !important;
-  
-}
-
-.form-wrap .sky-style .v-input input{
-  min-height: 138px;
-  max-height: 100%;
-  padding: 25px 35px;
-  font-family: "Raleway";
-  font-style: normal;
-  font-weight: 300;
-  font-size: 72px;
-  line-height: 85px;
-  color: #104EFB !important;
-}
-
-.form-wrap .sky-style .v-text-field > .v-input__control > .v-input__slot:before{
-  border-color: #e5e5e5 !important;
-}
-
-.form-wrap .sky-style .v-text-field--filled > .v-input__control > .v-input__slot{
-  background: rgba(16, 78, 251, 0.06) !important;
-}
-
-.form-wrap .sky-style .v-textarea textarea{
-  padding:35px;
-  font-family: "Raleway";
-  font-style: normal;
-  font-weight: 300;
-  font-size: 24px;
-  line-height: 30px;
-  color: #104EFB !important;
-}
-
-.form-wrap .sky-style .v-messages{
-  font-size: 30px;
-}
-
-.hold-tabs .v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev{
-  display: none;
-}
-
-
-/** Theme 27 */
-.hold-menu .theme--light.v-tabs > .v-tabs-bar,.hold-menu .theme--light.v-tabs-items{
-  background: transparent;
-}
-
-.hold-menu .v-slide-group__content{
-  justify-content: center;
-  display: flex;
-
-}
-.hold-items .item-skill{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.hold-items .item-skill .v-progress-linear{
-  max-width: 600px;
-  margin: 0px 70px 0px 110px;  
-  border-radius: 100px;
-  box-shadow: 2px 5px 30px rgba(192, 18, 159, 0.37);
-}
-
-.hold-items .item-skill .v-progress-linear .v-progress-linear__determinate{
-  background: linear-gradient(127.8deg, #C210A0 12.14%, #C200C6 95.04%);
-}
 
 /** Tabs mobile */
 .main-tabs_theme13 .v-tabs-bar.v-tabs-bar--is-mobile{
