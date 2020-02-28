@@ -13411,9 +13411,14 @@ html {
 }
 
 /** Payment options section */
-.hold-payment .pay-method.v-input--radio-group--row .v-input--radio-group__input{
-  flex-wrap: nowrap;
+.hold-payment .pay-method .v-input__control{
+  flex-grow: 1;
 }
+.hold-payment .pay-method.v-input--radio-group--row .v-input--radio-group__input{
+  flex-flow: row;
+  justify-content: space-around;
+}
+
 .hold-payment .pay-method .v-radio i{
   font-size: 41px;
   color: #D8D8D8;
@@ -13675,9 +13680,6 @@ html {
     justify-content: center;
   }
 
-  .hold-payment .pay-method.v-input--radio-group--row .v-input--radio-group__input{
-    flex-wrap: wrap;
-  }
   .hold-payment .pay-method .v-radio i{
     font-size: 26px;
   }

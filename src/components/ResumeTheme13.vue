@@ -1121,6 +1121,10 @@
             &.form-wrap{
                 padding: 0;
 
+                .container{
+                    padding: 20px;
+                }
+
                 .form-actions{
                     justify-content: center;
                     margin-top: 10px;
@@ -1223,7 +1227,7 @@
         @media only screen and (max-width: 480px) {
             .v-card{
                 .container{
-                    padding: 20px;
+                    padding: 0 20px;
                 }
                 &.form-wrap{
 
@@ -1320,7 +1324,7 @@
     .payment-wrap{
 
         .container{
-            padding: 0px 70px !important;
+            padding: 0px;
         }
 
         h3{
@@ -1337,10 +1341,13 @@
             min-height: 160px;
 
             .pay-method{
+                width: 100%;
 
                 .item-pay{
                     display: flex;
-                    margin-left: 15%;
+                    align-items: center;
+
+    
                 }
 
                 .v-radio{
@@ -1528,6 +1535,28 @@
                 font-family: "Gotham Pro";
             }
         }
+        .payment-wrap{
+            h3{
+                font-size: 18px;
+            }
+            .hold-payment{
+
+                .pay-method{
+                    width: 100%;
+
+                    .item-pay{
+                        align-items: center;
+
+                        img{
+                            max-width: 100px;
+                        }
+        
+                    }
+                }
+            }
+        }
+
+        
 
 
 
