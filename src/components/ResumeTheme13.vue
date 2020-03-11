@@ -634,13 +634,13 @@
             font-weight: bold;
             text-transform: uppercase;
             font-family: "Gotham Pro";
-            font-size: 18px;
+            font-size: 12px;
             letter-spacing: 0px;
         }
 
         .text_price,.text_hours{
-            font-size: 18px;
-            line-height: 24px;
+            font-size: 9px;
+            line-height: 10px;
             text-transform: lowercase;
             font-family: "Raleway";
             font-style: normal;
@@ -741,8 +741,8 @@
             font-family:"Raleway", sans-serif;
             font-style: normal;
             font-weight: 300;
-            font-size: 24px;
-            line-height: 28px;
+            font-size: 16px;
+            line-height: 16px;
             letter-spacing: 0px;
             padding: 0px;
             min-width: 333px;
@@ -784,8 +784,8 @@
             &.v-tab--active{
 
                 font-weight: 300;
-                font-size: 72px;
-                line-height: 85px;
+                font-size: 40px;
+                line-height: 40px;
 
                 &::after{
                     content: "";
@@ -944,13 +944,13 @@
     }
 
     .btn-outline{
-        min-width: 193px;
+        min-width: 150px;
         text-align: center;
-        min-height: 75px;
-        border: 2px solid $colorBlue;
+        min-height: 60px;
+        border: 2px solid #104EFB;
         font-family: "Raleway";
-        font-size: 24px;
-        line-height: 28px;
+        font-size: 16px;
+        line-height: 16px;
         text-transform: uppercase;
         color: $colorBlue;
         text-decoration: none;
