@@ -312,11 +312,8 @@
 .wraps-theme19 .hold-carousel{
     display: flex;
     flex-flow: column;
-    padding: 6% 0 4% 0;
+    margin: 6% 0 4% 0;
     overflow: hidden;
-}
-.wraps-theme19 .hold-carousel .slick-list{
-    overflow: visible;
 }
 .wraps-theme19 .hold-carousel .slick-slide{
     margin: 0px 28px;
@@ -442,7 +439,7 @@
     background-color: transparent;
     border-radius: 0;
     width: 100% !important;
-
+    padding: 0px 20px;
 }
 
 .wraps-theme19 .hold-carousel.wrap-skills .slide-item .item-skill{
@@ -459,7 +456,7 @@
 
 .wraps-theme19 .hold-carousel.wrap-skills .slide-item .item-skill .skill-pic{
     background: #fff;
-    width: 83px;
+    min-width: 83px;
     height: 83px;
     border: 5px solid #1793D2;
     margin-right: 2%;
@@ -506,4 +503,24 @@
         font-size: 24px;
     }
 
+}
+@media screen and (max-width: 769px) {
+    .wraps-theme19 .hold-carousel .slick-slide .slide-item{
+        margin: 16px 0px;
+    }
+
+    .wraps-theme19 .hold-carousel .nav-slider{
+        margin: 20px auto 0px auto;
+        min-width: 523px;
+        height: 137px;
+    }
+
+    .wraps-theme19 .hold-carousel .nav-slider .slick-arrow{
+        font-size: 24px;
+    }
+    .wraps-theme19 .hold-carousel .slick-slide:first-child{
+        margin-left: 28px;
+    }
+
+    
 }

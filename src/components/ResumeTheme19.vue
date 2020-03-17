@@ -3,28 +3,22 @@
         <div class="hold-theme19">
             <v-container>
                 <v-row class="headSection">
-                    <v-col lg="2" class="cover-profile">
+                    <v-col lg="2" sm="3" class="cover-profile">
                         <div class="profile">
                             <img :src="freelancer.user_data.profile_picture" alt=""> 
                         </div>
                  
                     </v-col>
-                    <v-col lg="3" class="hold-profile">
+                    <v-col lg="3" sm="4" class="hold-profile">
                         <span class="head-name">{{freelancer.user_data.first_name}}</span>
                         <span class="head-profile">{{nameFakeProfile}}</span>
                         <a href="" class="tap-tochat">tap to chat</a>
                         
                     </v-col>
-                    <v-col lg="4" class="hold-social">
-                        <div class="info-hire">
-                            <div class="rate">
-                                <span>rate $ usd</span>
-                                <span class="valueThis">$ {{Math.ceil(freelancer.agent.hourly_rate)}} hourle</span>
-                            </div>
-                            <div class="hours">
-                                <span>availability hours</span>
-                                <span class="valueThis">{{Math.ceil(freelancer.user_data.available_hours_per_week)}} hours</span>
-                            </div>
+                    <v-col sm="5" class="hold-ontab">
+                        <div class="actions-wrap">
+                            <a href="#"><img src="@/assets/imgs/resume19/icon-videocamera.svg" alt=""></a>
+                            <a href="#"><img src="@/assets/imgs/resume19/icon-microphone.svg" alt=""></a>
                         </div>
                         <div class="social-wrap">
                             <a href="#">
@@ -44,7 +38,36 @@
                             </a>
                         </div>
                     </v-col>
-                    <v-col lg="3" class="hold-hireme">
+                    <v-col lg="4" sm="12" class="hold-social">
+                        <div class="info-hire">
+                            <div class="rate">
+                                <span>rate $ usd</span>
+                                <span class="valueThis">$ {{Math.ceil(freelancer.agent.hourly_rate)}} hourle</span>
+                            </div>
+                            <div class="hours">
+                                <span>availability hours</span>
+                                <span class="valueThis">{{Math.ceil(freelancer.user_data.available_hours_per_week)}} hours</span>
+                            </div>
+                        </div>
+                        <div class="social-wrap d-sm-none d-md-flex">
+                            <a href="#">
+                                <img src="@/assets/imgs/resume19/icon-instagram.svg" alt="">
+                            </a>
+                            <a href="#">
+                                <img src="@/assets/imgs/resume19/icon-linkedin.svg" alt="">
+                            </a>
+                            <a href="#">
+                                <img src="@/assets/imgs/resume19/icon-facebook.svg" alt="">
+                            </a>
+                            <a href="#">
+                                <img src="@/assets/imgs/resume19/icon-behance.svg" alt="">
+                            </a>
+                             <a href="#">
+                                <img src="@/assets/imgs/resume19/icon-dribble.svg" alt="">
+                            </a>
+                        </div>
+                    </v-col>
+                    <v-col lg="3" sm="12" class="hold-hireme">
                         <div class="hireme">
                             <a href="" class="btn-hire">Hire me</a>
                         </div>
@@ -56,7 +79,7 @@
                     <v-col class="hold-menu">
 
                         <div class="optiontabs-wrap">
-                            <div class="actions-wrap">
+                            <div class="actions-wrap d-sm-none d-md-flex">
                                 <a href="#"><img src="@/assets/imgs/resume19/icon-videocamera.svg" alt=""></a>
                                 <a href="#"><img src="@/assets/imgs/resume19/icon-microphone.svg" alt=""></a>
                             </div>
@@ -64,6 +87,7 @@
                                 class="main-tabs_theme19"
                                 v-model="activeTab"
                                 height="106"
+                                :center-active="true"
                                 hide-slider
                             >
 
@@ -83,23 +107,21 @@
                             <v-tabs-items v-model="activeTab">
                                 <v-tab-item class="portfolio-section" value="tab-0">
                                     <div class="hold-carousel">
-                                        <slick ref="slick" :options="slickOptions">
+                                        <slick ref="slick" :options="slickPortfolio">
                                             <div class="slide-item" v-for="(item, index) in 6" :key="index+'P'">
                                                 <img src="@/assets/imgs/resume19/slide.svg" alt=""/>
                                             </div>
                                         </slick>
-                                        <div class="wrap-sliderNav nav-slider" ></div>
-                    
+                                        <div class="wrapNav-portfolio nav-slider"></div>
                                     </div>
                                     
                                 </v-tab-item>
                                 <v-tab-item class="work-section" value="tab-1">
                                     <div class="hold-carousel wrap-texts">
-                                        <slick ref="slick" :options="slickOptions">
+                                        <slick ref="slick" :options="slickWork">
                                             <div class="slide-item" v-for="(work, index) in worksHistory" :key="index+'W'">
                                                 <div class="hold-titles">
-                                                    <span class="title-work">{{work.job_title}}</span>
-                                                                                                            
+                                                    <span class="title-work">{{work.job_title}}</span>                                                                        
                                                     <span class="years-work">
                                                         {{getFullYear(work.date_from)}}
                                                         <span v-if="work.is_currently_working">- Present</span>
@@ -112,13 +134,12 @@
                                                 </div>
                                             </div>
                                         </slick>
-                                        <div class="wrap-sliderNav nav-slider" v-show="worksHistory.length>0"></div>
-        
+                                        <div class="wrapNav-work nav-slider" v-show="worksHistory.length>2"></div>
                                     </div>
                                 </v-tab-item>
                                 <v-tab-item class="education-section" value="tab-2">
                                     <div class="hold-carousel wrap-texts">
-                                        <slick ref="slick" :options="slickOptions">
+                                        <slick ref="slick" :options="slickEducation">
                                             <div class="slide-item" v-for="(education, index) in educationsHistory" :key="index+'W'">
                                                 <div class="hold-titles">
                                                     <span class="title-work">{{education.school_title}}</span>
@@ -135,17 +156,13 @@
                                                 </div>
                                             </div>
                                         </slick>
-                                        <div class="wrap-sliderNav nav-slider" v-show="educationsHistory.length>2"></div>
-
+                                        <div class="wrapNav-education nav-slider" v-show="educationsHistory.length>2"></div>
                                     </div>
                                 </v-tab-item>
                                 <v-tab-item class="skills-section" value="tab-3">
                                     <div class="hold-carousel wrap-skills">
                                         <slick ref="slick" :options="slickSkills">
-                                            
-
-                                            <div class="slide-item" v-for="(slide, index) in 3" :key="index+'S'">
-
+                                            <div class="slide-item" v-for="(skill, index) in skills" :key="index+'S'">
                                                 <div class="item-skill" v-for="(el, index) in 4" :key="index+'iS'">
                                                     <span class="skill-pic">
                                                         <img :src="getIconSrc('php')" alt="">
@@ -157,9 +174,8 @@
                                                     ></v-progress-linear>
                                                 </div>
                                             </div>
-       
                                         </slick>
-                                        <div class="wrap-skillsNav nav-slider" v-show="skills.length>0"></div>
+                                        <div class="wrapNav-skills nav-slider" v-show="skills.length>0"></div>
                                     </div>
                                     
                                 </v-tab-item>
@@ -204,11 +220,18 @@
             padding: 2% 2% 0px 2%;
             display: flex;
             justify-content: center; 
+
+            @media screen and (max-width: 769px) {
+                padding-top: 35px;
+            }
             
         }
 
         .mainSection{
             padding: 0px 59px;  
+            @media screen and (max-width: 769px) {
+                padding: 64px 15px !important;
+            }
         }
 
         .optiontabs-wrap{
@@ -218,7 +241,35 @@
             margin-top: 15px;
         }
 
+        @media screen and (max-width: 769px) {
+            background-image: url('../assets/imgs/resume19/bg-theme_tablet.svg');
+        }
 
+
+    }
+
+    .hold-ontab{
+        display: none !important;
+        @media screen and (max-width: 769px) {
+            display: block !important;
+
+            .social-wrap{
+                margin-top: 10%;
+
+                a{
+                    margin: 0px 3%;
+
+                    &:first-child{
+                        margin-left: 0;
+                    }
+
+                    img{
+                        width: 41px;
+                        height: 41px;
+                    }
+                }
+            }
+        }
     }
 
     .cover-profile{
@@ -241,6 +292,16 @@
             width: 226px;
             max-height: 226px;
             border-radius: 100%;
+        }
+
+        @media screen and (max-width: 769px) {
+            width: 147px;
+            height: 147px;
+
+            img{
+                width: 136px;
+                height: 136px;
+            }
         }
     }
     .hold-profile{
@@ -297,8 +358,28 @@
             margin-top: 25px;
         }
 
-    }
+        @media screen and (max-width: 769px) {
+            
 
+            .head-name{
+                font-size: 24px;
+                line-height: 24px;
+            }
+            .head-profile{
+                font-size: 14px;
+                line-height: 14px;
+            }
+            .tap-tochat{
+                border: 3px solid #fff;
+                width: 152px;
+                font-size: 11px;
+                line-height: 11px;
+                height: 48px;
+            }
+        }
+
+    }
+    
     .hold-social{
         display: flex;
         justify-content: center;
@@ -351,6 +432,16 @@
                 
 
             }
+
+
+        }
+
+        @media screen and (max-width: 769px) {
+            margin-top: 70px;
+
+            .info-hire{
+                justify-content: space-around;
+            }
         }
     }
 
@@ -391,6 +482,16 @@
                 opacity: .8;
             }
         }
+
+        @media screen and (max-width: 769px) {
+            margin-top: 65px;
+
+            .btn-hire{
+                width: 343px;
+                height: 108px;
+                border: 5px solid #FFFFFF;
+            }
+        }
     }
 
     .main-tabs_theme19{
@@ -400,6 +501,17 @@
         box-shadow: 0px 4px 30px rgba(44, 37, 66, 0.08);
         border-radius: 80px;
         border: 8px solid #FFFFFF;
+
+        @media screen and (max-width: 769px) {
+            min-width: 860px;
+            border: 5px solid #fff;
+            padding: 0 0 0 40px;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+
     }
 
     .v-tab{
@@ -446,6 +558,19 @@
                 opacity: 0 !important;
             }
         }
+
+        @media screen and (max-width: 769px) {
+            margin: 0px 28px;
+
+            &:first-child{
+                margin-left: 0px;
+            }
+
+            &:nth-child(3){
+                padding-right: 100px;
+            }
+        }
+        
 
     }
 
@@ -631,6 +756,21 @@
             }
             
         }
+
+        @media screen and (max-width: 769px) {
+
+            justify-content: flex-start;
+
+            a{
+                width: 45px;
+                height: 45px;
+                border: 3px solid #fff;
+
+                img{
+                    width: 26px;
+                }
+            }
+        }
     }
 
     .colo1{
@@ -671,15 +811,14 @@
                     ],
                     message: null
                 },
-                slickOptions: {
+                slickPortfolio: {
                     slidesToShow: 3,
                     slidesToScroll: 1,
-                    variableWidth: true,
                     arrows: true,
                     dots: false,
                     nextArrow: '<a href="" class="slick-arrow slick-next">next</a>',
                     prevArrow: '<a href="" class="slick-arrow slick-prev">prev</a>',
-                    appendArrows: '.wrap-sliderNav',
+                    appendArrows: '.wrapNav-portfolio',
                     swipe: true,
                     speed: 500,
                     responsive: [
@@ -694,16 +833,72 @@
                         }
                     ]
                 },
-                slickSkills: {
-                    slidesToShow: 1,
+                slickWork: {
+                    slidesToShow: 3,
                     slidesToScroll: 1,
                     arrows: true,
                     dots: false,
                     nextArrow: '<a href="" class="slick-arrow slick-next">next</a>',
                     prevArrow: '<a href="" class="slick-arrow slick-prev">prev</a>',
-                    appendArrows:'.wrap-skillsNav',
+                    appendArrows: '.wrapNav-work',
                     swipe: true,
-                    speed: 500
+                    speed: 500,
+                    responsive: [
+                        {
+                            breakpoint: 786,
+                            settings: {
+                                vertical: true,
+                                slidesToShow: 2,
+                                slidesToScroll: 1,
+                                verticalSwiping: true
+                            }
+                        }
+                    ]
+                },
+                slickEducation: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    arrows: true,
+                    dots: false,
+                    nextArrow: '<a href="" class="slick-arrow slick-next">next</a>',
+                    prevArrow: '<a href="" class="slick-arrow slick-prev">prev</a>',
+                    appendArrows: '.wrapNav-Education',
+                    swipe: true,
+                    speed: 500,
+                    responsive: [
+                        {
+                            breakpoint: 786,
+                            settings: {
+                                vertical: true,
+                                slidesToShow: 2,
+                                slidesToScroll: 1,
+                                verticalSwiping: true
+                            }
+                        }
+                    ]
+                },
+                
+                slickSkills: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    arrows: true,
+                    dots: false,
+                    nextArrow: '<a href="" class="slick-arrow slick-next">next</a>',
+                    prevArrow: '<a href="" class="slick-arrow slick-prev">prev</a>',
+                    appendArrows: '.wrapNav-skills',
+                    swipe: true,
+                    speed: 500,
+                    responsive: [
+                        {
+                            breakpoint: 786,
+                            settings: {
+                                vertical: true,
+                                slidesToShow: 1,
+                                slidesToScroll: 1,
+                                verticalSwiping: true
+                            }
+                        }
+                    ]
                 },
                 formHasErrors: false,
                 formSent: false,

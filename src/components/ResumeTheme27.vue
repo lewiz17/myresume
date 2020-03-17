@@ -1,25 +1,22 @@
 <template>
     <div class="theme-wrapper">
         <div class="hold-theme27">
-            <v-container>
-                <v-row class="headSection">
-                    <v-col lg="2" class="cover-profile">
+            <v-container fluid>
+                <v-row class="headSection" no-gutters>
+                    <v-col lg="2" sm="3" class="cover-profile">
                         <div class="profile">
                             <img :src="freelancer.user_data.profile_picture" alt=""> 
                         </div>
                     </v-col>
-                    <v-col lg="2" class="hold-profile">
+                    <v-col lg="2" sm="5" class="hold-profile">
                         <div class="head-name">{{freelancer.user_data.first_name}}</div>
                         <div class="head-profile">User interface designer</div>
-                        <div class="actions-wrap">
+                        <div class="actions-wrap only-desk only-mob">
                             <a href=""><img src="@/assets/imgs/resume27/icon-mail.svg" alt=""></a> 
                             <a href=""><img src="@/assets/imgs/resume27/icon-videoplayer.svg" alt=""></a>
                             <a href=""><img src="@/assets/imgs/resume27/icon-headphone.svg" alt=""></a>
                         </div>
-                    </v-col>
-                    <v-col lg="5" class="hold-social">
-                        <span>Links to my profiles:</span>
-                        <div class="social-wrap">
+                        <div class="social-wrap only-tab">
                             <a href="">
                                 <img src="@/assets/imgs/resume27/icon-instagram.svg" alt="">
                             </a>
@@ -32,6 +29,28 @@
                             <a href="">
                                 <img src="@/assets/imgs/resume27/icon-behance.svg" alt="">
                             </a>
+                        </div>
+                    </v-col>
+                    <v-col lg="5" class="hold-social">
+                        <span>Links to my profiles:</span>
+                        <div class="social-wrap only-desk only-mob">
+                            <a href="">
+                                <img src="@/assets/imgs/resume27/icon-instagram.svg" alt="">
+                            </a>
+                            <a href="">
+                                <img src="@/assets/imgs/resume27/icon-linkedin.svg" alt="">
+                            </a>
+                            <a href="">
+                                <img src="@/assets/imgs/resume27/icon-facebook.svg" alt="">
+                            </a>
+                            <a href="">
+                                <img src="@/assets/imgs/resume27/icon-behance.svg" alt="">
+                            </a>
+                        </div>
+                        <div class="actions-wrap only-tab">
+                            <a href=""><img src="@/assets/imgs/resume27/icon-mail.svg" alt=""></a> 
+                            <a href=""><img src="@/assets/imgs/resume27/icon-videoplayer.svg" alt=""></a>
+                            <a href=""><img src="@/assets/imgs/resume27/icon-headphone.svg" alt=""></a>
                         </div>
                     </v-col>
                     <v-col lg="3" class="hold-hireme">
@@ -52,11 +71,12 @@
                     </v-col>
                 </v-row>
 
-                <v-row class="mainSection">
+                <v-row class="mainSection" no-gutters>
                     <v-col class="hold-menu">
                         <v-tabs
                             class="main-tabs_theme27"
                             v-model="activeTab"
+                            :center-active="true"
                             height="85"
                             hide-slider
                         >
@@ -77,24 +97,26 @@
                                     <div class="hold-items">
                                         <v-container>
                                             <v-row>
-                                                <v-col class="item" lg="4">
+                                                <v-col class="item" lg="4" md="12" cols="12">
                                                     <img src="@/assets/imgs/resume27/item2.svg" alt="">
                                                 </v-col>
-                                                <v-col class="item" lg="4">
+                                                <v-col class="item" lg="4" md="12" cols="12">
                                                     <img src="@/assets/imgs/resume27/item2.svg" alt="">
                                                 </v-col>
-                                                <v-col class="item" lg="4">
+                                                <v-col class="item" lg="4" md="12" cols="12">
                                                     <img src="@/assets/imgs/resume27/item2.svg" alt="">
                                                 </v-col>
-                                                <v-col class="item" lg="4">
+                                                <v-col class="item" lg="4" md="12" cols="12">
                                                     <img src="@/assets/imgs/resume27/item2.svg" alt="">
                                                 </v-col>
-                                                <v-col class="item" lg="4">
+
+                                                <v-col class="item" lg="4" md="12" cols="12">
                                                     <img src="@/assets/imgs/resume27/item2.svg" alt="">
                                                 </v-col>
-                                                <v-col class="item" lg="4">
+                                                <v-col class="item" lg="4" md="12" cols="12">
                                                     <img src="@/assets/imgs/resume27/item2.svg" alt="">
                                                 </v-col>
+                                                
                                             </v-row>
                                         </v-container>                                     
                                     </div>
@@ -103,7 +125,7 @@
                                     <div class="hold-items">
                                         <v-container>
                                             <v-row>
-                                                <v-col class="item work-item" v-for="(work, index) in worksHistory" :key="index+'W'" lg="6">
+                                                <v-col class="item work-item" v-for="(work, index) in worksHistory" :key="index+'W'" lg="6" md="12" cols="12">
                                                     <div class="hold-titles">
                                                         <span class="title-work">{{work.job_title}}</span>
                                                                                                                
@@ -128,7 +150,7 @@
                                     <div class="hold-items">
                                         <v-container>
                                             <v-row>
-                                                <v-col class="item edu-item" v-for="(education, index) in educationsHistory" :key="index+'W'" lg="6">
+                                                <v-col class="item edu-item" v-for="(education, index) in educationsHistory" :key="index+'W'" lg="6" md="12" cols="12">
                                                     <div class="hold-titles">
                                                         <span class="title-refer">University</span>
                                                         <span class="title-work">{{education.school_title}}</span>
@@ -225,6 +247,34 @@
         display: flex;
         justify-content: center;
     }
+
+    .only-tab{
+        display: none !important;
+        @media screen and (max-width: 769px) {
+            display: block !important;
+        }
+        @media screen and (max-width: 480px) {
+            display: none !important;
+        }
+    }
+    .only-desk{
+        @media screen and (min-width: 770px) {
+            display: block !important;
+        }
+        @media screen and (max-width: 769px) {
+            display: none !important;
+        }
+
+    }
+    .only-mob{
+        display: block !important;
+        @media screen and (max-width: 769px) {
+            display: none !important;
+        }
+        @media screen and (max-width: 480px) {
+            display: block !important;
+        }
+    }
     .hold-theme27{
         background-image: url('../assets/imgs/resume27/bg-theme.svg');
         background-repeat: no-repeat;
@@ -247,12 +297,50 @@
                 padding: 0;
             }
         }
+
+        @media screen and (max-width: 769px) {
+            width: 100%;
+            background-size: cover;
+            background: url('../assets/imgs/resume27/bg-theme-tab.svg'),
+            linear-gradient(100.02deg, #1D0553 -1.87%, #3C065D 65.2%);
+
+            background-repeat: no-repeat;
+
+
+            .headSection{
+                padding: 7% 3% 0;
+            }
+
+        }
+
+        @media screen and (max-width: 480px) {
+
+            .headSection{
+                justify-content: space-between;
+            }
+        }
+
+        
+
+
+    }
+
+    .mainSection{
+        @media screen and (max-width: 769px) {
+            padding: 115px 15px !important; 
+        }
+        @media screen and (max-width: 480px) {
+            padding: 55px 0px !important; 
+        }
     }
 
     .cover-profile{
         display: flex;
         justify-content: center;
         align-items: center;
+        @media screen and (max-width: 480px) {
+            max-width: 130px;
+        }
     }   
 
     .profile{
@@ -268,6 +356,25 @@
             width: 201px;
             height: 201px;
             border-radius: 100%;
+        }
+
+        @media screen and (max-width: 769px) {
+            width: 169px;
+            height: 169px;
+
+            img{
+                width: 156px;
+                height: 156px;
+            }
+        }
+        @media screen and (max-width: 480px) {
+            width: 125px;
+            height: 125px;
+
+            img{
+                width: 115.8px;
+                height: 115.8px;
+            }
         }
     }
     .hold-profile{
@@ -293,6 +400,47 @@
             color: #FFFFFF;
         }
 
+        @media screen and (max-width: 769px) {
+            padding: 0 0 0 2% !important;
+
+            .social-wrap{
+                margin-top: 20px;
+
+                a{
+                    margin-right: 25px;
+
+                    &:last-child{
+                        margin: 0;
+                    }
+                    img{
+                        max-width: 44px;
+                    }
+                }
+            }
+            .head-name{
+                font-size: 36px;
+            }
+
+            .head-profile{
+                font-size: 18px;
+            }
+        }
+        @media screen and (max-width: 480px) {
+            padding: 0 0 0 5% !important;
+
+            .head-name{
+                font-size: 24px;
+                line-height: 25px;
+            }
+
+            .head-profile{
+                font-size: 14px;
+                line-height: 25px;
+            }
+        }
+
+
+
     }
 
     .hold-social{
@@ -314,6 +462,39 @@
         .social-wrap{
             a{
                 margin: 0px 13px;
+            }
+        }
+
+        @media screen and (max-width: 769px) {
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding-top: 2% !important;
+            flex-flow: wrap;
+
+            span{
+                display: none;
+            }   
+
+            
+            
+        }
+        @media screen and (max-width: 480px) {
+            min-width: 100%;
+            margin-top: 30px;
+
+            .social-wrap{
+                margin: 0px auto;
+
+                a{
+                    width: 36px;
+                    display: inline-block;
+                    height: 36px;
+                    margin: 0px 10px;
+
+                    img{
+                        max-width: 100%;
+                    }
+                }
             }
         }
     }
@@ -382,10 +563,87 @@
                 opacity: .8;
             }
         }
+
+        @media screen and (max-width: 769px) {
+            flex-flow: row;
+            justify-content: space-between;
+            margin-top: 60px;
+
+            .info-hire{
+                min-width: 376px;
+                justify-content: space-between;
+                align-items: center;
+
+                .hours{
+                    border: 0;
+                    position: relative;
+
+                    &::before{
+                        content: "";
+                        background: rgba(255, 255, 255, 0.38);
+                        height: 41px;
+                        width: 1px;
+                        position: absolute;
+                        left: -60px;
+                        top: 20px;
+                    }
+                }
+                span{
+                    margin: 0;
+                }
+            }
+
+            .btn-hire{
+                min-width: 233px;
+                min-height: 70px;
+                margin-top: 0;
+            }
+        }
+        @media screen and (max-width: 480px) {
+            flex-flow: column;
+            margin-top: 50px;
+
+            .info-hire{
+                min-width: 100%;
+                justify-content: space-around;
+
+                span{
+                    font-size: 14px;
+                    line-height: 17px;
+
+                    &.valueThis{
+                        font-size: 18px;
+                        line-height: 22px;
+                        padding-top: 8%;
+                    }
+                }
+
+                .hours{
+                    &::before{
+                        left: -50px;
+                        top: 0px;
+                    }
+                }
+            }
+            .hireme{
+                margin-top: 40px;
+            }
+
+            .btn-hire{
+                min-width: 190px;
+                min-height: 58px;
+                font-size: 14px;
+                line-height: 17px;
+            }
+        }
     }
 
     .main-tabs_theme27{
         margin-bottom: 30px;
+
+        @media screen and (max-width: 480px) {
+            padding: 0px 20px;
+        }
     }
 
     .v-tab{
@@ -420,7 +678,23 @@
             }
         }
 
+        @media screen and (max-width: 769px) {
+            padding-right: 60px;
+        }
+        @media screen and (max-width: 480px) {
+            padding: 0;
+            margin: 0 30px 0 0;
+            font-size: 24px;
+            line-height: 29px;
+
+            img{
+                max-width: 64px;
+            }
+        }
+
     }
+
+    
 
     .hold-items{
         display: flex;
@@ -586,8 +860,92 @@
         .title-refer{
             color: #FFFFFF;
             display: block;
+        }
+
+        @media screen and (max-width: 769px) {
+
+            .container{
+                padding-top: 84px;
+            }
+            .item{
+                margin-bottom: 68px;
+
+                img{
+                    width: 100%;
+                }
+
+                &.work-item{
+                    min-height: 330px;
+                }
+
+                &.edu-item{
+                    min-height: 330px;
+                }
+            }
+            .hold-titles{
+                min-height: auto;
+            }
+            .item-skill{
+                width: 600px;
+                flex-wrap: wrap;
+                margin: 0px auto;
+                justify-content: space-between;
+
+                .v-progress-linear{
+                    order: 3;
+                    margin: 3% 0 0 0;
+                }
+                span{
+                    font-size: 48px;
+
+                    &.percent{
+                        font-size: 48px;
+                    }
+                }
+            }
+
         } 
 
+        @media screen and (max-width: 480px) {
+            padding: 0px 20px;
+
+            .row{
+                .col{
+                    margin-bottom: 39px;
+                }
+            }
+
+            .container{
+                padding-top: 50px;
+            }
+            .item{
+                margin-bottom: 30px;
+                min-height: 250px;
+
+                img{
+                    max-width: 100%;
+                }
+            }
+            .item-skill{
+                width: 100%;
+
+                span{
+                    font-size: 24px;
+                    line-height: 24px;
+                    &.percent{
+                        font-size: 24px;
+                        line-height: 24px;
+                    }
+                }
+
+                .v-progress-linear{
+                    min-width: 336px;
+                    height: 12px !important;
+                }
+            }
+        }
+
+        
         
     }
 
@@ -615,6 +973,31 @@
             }
             
         }
+        @media screen and (max-width: 769px) {
+            margin: 0;
+
+            a{
+                width: 54px;
+                height: 54px;
+
+                img{
+                    width: 26px;
+                }
+            }
+        }
+        @media screen and (max-width: 480px) {
+            margin-top: 20px;
+
+            a{
+                width: 37px;
+                height: 37px;
+
+                img{
+                    width: 18px;
+                }
+            }
+        }
+
     }
 
     .colo1{

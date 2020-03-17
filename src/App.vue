@@ -13640,7 +13640,14 @@ html {
 }
 
 
+
+
 @media screen and (max-width: 769px) {
+  .main-tabs_theme27 .v-slide-group.v-item-group > .v-slide-group__next, .v-slide-group.v-item-group > .v-slide-group__prev{
+    display: none !important;
+  }
+
+
   .main-tabs_theme3 .v-slide-group__content{
     justify-content: center;  
   }
