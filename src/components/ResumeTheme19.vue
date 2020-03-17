@@ -821,6 +821,7 @@
                     appendArrows: '.wrapNav-portfolio',
                     swipe: true,
                     speed: 500,
+                    variableWidth: true,
                     responsive: [
                         {
                             breakpoint: 786,
@@ -828,6 +829,7 @@
                                 vertical: true,
                                 slidesToShow: 2,
                                 slidesToScroll: 1,
+                                variableWidth: false,
                                 verticalSwiping: true
                             }
                         }
@@ -843,6 +845,7 @@
                     appendArrows: '.wrapNav-work',
                     swipe: true,
                     speed: 500,
+                    variableWidth: true,
                     responsive: [
                         {
                             breakpoint: 786,
@@ -850,6 +853,7 @@
                                 vertical: true,
                                 slidesToShow: 2,
                                 slidesToScroll: 1,
+                                variableWidth: false,
                                 verticalSwiping: true
                             }
                         }
@@ -865,6 +869,7 @@
                     appendArrows: '.wrapNav-Education',
                     swipe: true,
                     speed: 500,
+                    variableWidth: true,
                     responsive: [
                         {
                             breakpoint: 786,
@@ -872,6 +877,7 @@
                                 vertical: true,
                                 slidesToShow: 2,
                                 slidesToScroll: 1,
+                                variableWidth: false,
                                 verticalSwiping: true
                             }
                         }
@@ -879,7 +885,7 @@
                 },
                 
                 slickSkills: {
-                    slidesToShow: 3,
+                    slidesToShow: 1,
                     slidesToScroll: 1,
                     arrows: true,
                     dots: false,
