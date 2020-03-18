@@ -472,7 +472,8 @@
 
         @media screen and (max-width: 768px) {
             .nav-slider{
-                right: 30% !important;
+                position: static !important;
+                right: auto;
             }
         }
 
@@ -494,6 +495,10 @@
         @media screen and (max-width: 768px) {
             min-height: 319px;
             padding: 0px 45px;
+
+            .col{
+                justify-content: center;
+            }
         }
     }
 
@@ -577,12 +582,14 @@
         @media screen and (max-width: 768px) {
 
             margin-left: 80px;
+            justify-content: flex-end;
 
             a{
                 margin-right: 70px;
 
                 img{
                     width: 34px;
+                    height: 34px;
                 }
                 
             }
@@ -669,6 +676,14 @@
                     margin-right: 5px;
                 }
             }
+
+            .price,.hours{
+                font-size: 24px;
+            }
+            .text_price,.text_hours{
+                font-size: 18px;
+            }
+
         }
 
         
@@ -699,6 +714,7 @@
 
         a{
             margin-right: 45px;
+            max-height: 24px;
 
             &:last-child{
                 margin: 0;
@@ -715,6 +731,7 @@
 
             a{
                 margin-right: 75px;
+                max-height: 38px;
 
                 img{
                     width: 38px;
@@ -847,7 +864,6 @@
             justify-content: space-between;
             align-items: flex-start;
             height: 100%;
-            padding-top: 15px;
         }
         .hold-text{
             width: 60%;
@@ -868,7 +884,7 @@
             font-style: normal;
             font-weight: 500;
             font-size: 30px;
-            line-height: 35px;
+            line-height: 28px;
         }
 
         .list-tasks{
@@ -946,7 +962,7 @@
     .btn-outline{
         min-width: 150px;
         text-align: center;
-        min-height: 60px;
+        min-height: 50px;
         border: 2px solid #104EFB;
         font-family: "Raleway";
         font-size: 16px;
@@ -1064,7 +1080,7 @@
         }
         .mc-subtabs_skills{
             width: 100%;
-            margin: 66px auto 0 auto;
+            margin: 106px auto 0 auto;
 
             .hold-skills{
 
@@ -1415,6 +1431,7 @@
         }
         .social-hold{
             min-height: 75px;
+               
 
             a{
                 margin-right: 43px;

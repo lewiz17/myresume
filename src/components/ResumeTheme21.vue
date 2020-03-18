@@ -165,8 +165,9 @@
                                         <v-tabs
                                             class="main-subtabs_skills"
                                             v-model="activeTabSkill"
-                                            centered="true"
+                                            :centered="true"
                                             hide-slider="true"
+                                            :center-active="true"
                                         >
                                             <v-tab
                                                 v-for="(skill,index) in skillsItems"
@@ -711,7 +712,7 @@
                 }
 
                 .btn-action{
-                    line-height: 77px;
+                    line-height: 80px;
                     font-size: 18px;
                 }
             }
@@ -954,7 +955,7 @@
         max-width: 97.2%;
 
         a{
-            width: 67px;
+            min-width: 67px;
             height: 67px;
             background: #F8F8F8;
             box-shadow: -6px -6px 16px #FFFFFF, 
@@ -980,7 +981,7 @@
     .interviewSection{
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
         flex-flow: column;
     }
 
@@ -1420,8 +1421,8 @@
                 font-family: "Gotham Pro";
                 font-style: normal;
                 font-weight: normal;
-                font-size: 24px;
-                line-height: 23px;
+                font-size: 14px;
+                line-height: 16px;
                 color: #5C5C5C;
                 text-transform: capitalize;
                 min-height: 30px;
@@ -1464,7 +1465,7 @@
             align-items: center;
 
             width: 100%;
-            margin: 66px auto 0 auto;
+            margin: 106px auto 0 auto;
 
             .item-skill{
                 width: 76px;

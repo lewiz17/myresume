@@ -13447,6 +13447,10 @@ html {
   align-items: center;
 }
 
+.hold-contents .skills-section .main-subtabs_skills .v-slide-group__content{
+  justify-content: center;
+}
+
 .main-subtabs_skills .v-slide-group__content .v-tabs-slider-wrapper{
   width: 170px !important;
 }

@@ -9,7 +9,7 @@
                                 <span class="profile-img" v-bind:style="{ backgroundImage: 'url(' + freelancer.user_data.profile_picture + ')' }" /> 
                                 <a href="#" class="chat-option" @click.prevent="dialogMessage = true"><v-icon>mdi-message-text</v-icon></a>
                             </v-col>
-                            <v-col lg="2" md="2" sm="5" cols="5" class="profileCol">
+                            <v-col lg="2" md="2" sm="4" cols="5" class="profileCol">
                                <div class="head-name">{{freelancer.user_data.first_name}}</div>
                                <div class="head-profile">{{freelancer.user_data.job_title}}</div>
                                <div class="social-wrap">
@@ -19,7 +19,7 @@
                                     <a href="" alt="Instagram" title="Instagram"><v-icon>mdi-instagram</v-icon></a>
                                </div>
                             </v-col>
-                            <v-col lg="5" md="5" sm="3" cols="3" class="interviewSection">
+                            <v-col lg="5" md="5" sm="5" cols="3" class="interviewSection">
                                 <span class="title-medium">View interviews</span>
                                 <div class="option-wrap">
                                     <a href="#" class="btn-default" @click.prevent="dialogAudio = true"><v-icon>mdi-microphone</v-icon>Audio &amp; Text</a>
@@ -36,7 +36,7 @@
                                             Hourly rate
                                         </span>
                                     </v-col>
-                                    <v-col lg="6" sm="7" cols="7">
+                                    <v-col lg="6" sm="5" cols="7">
                                         <span class="hours">
                                            {{Math.ceil(freelancer.user_data.available_hours_per_week)}} hrs
                                         </span>
@@ -429,14 +429,14 @@
 
             .imageCol{
                 .profile-img{
-                    max-width: 79px;
-                    max-height: 79px;
+                    max-width: 120px;
+                    max-height: 120px;
                 }
                 .chat-option{
                     max-width: 34px;
                     max-height: 34px;
                     border-width: 3px;
-                    left: 28%;
+                    left: 36%;
                     bottom: -15px;
 
                     i{
@@ -445,7 +445,7 @@
                 }
             }
             .profileCol{
-                margin-left: 5%;
+                margin-left: 3%;
 
                 .head-name{
                     font-size: 20px;
@@ -462,6 +462,7 @@
 
                         i{
                             font-size: 12px;
+                            line-height: 23px;
                         }
                     }
                 }
@@ -482,6 +483,9 @@
                 }
                 .option-wrap{
                     margin-top: 5px;
+                    width: 90%;
+                    justify-content: space-between;
+                    display: flex;
 
                     .btn-default{
                         min-width: 116px;
@@ -553,7 +557,7 @@
 
                     .col-12{
                         display: flex;
-                        justify-content: flex-end;
+                        justify-content: center;
                     }
                     
                 }
@@ -568,9 +572,26 @@
         }
 
         @media screen and (max-width: 375px) {
+
+            .imageCol{
+                .profile-img{
+                    max-width: 79px;
+                    max-height: 79px;
+                }
+                .chat-option{
+                    left: 30%;
+                }
+            }
             .profileCol{
                 max-width: 132px;
                 margin-left: 3%;
+            }
+
+            .interviewSection{
+                .option-wrap{
+                    width: auto;
+                    display: block;
+                }
             }
         }
 
