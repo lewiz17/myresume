@@ -89,6 +89,7 @@
                                 height="106"
                                 :center-active="true"
                                 hide-slider
+                                
                             >
 
                                 <v-tab

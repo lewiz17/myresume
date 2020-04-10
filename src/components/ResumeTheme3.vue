@@ -19,34 +19,40 @@
                                     <a href="" alt="Instagram" title="Instagram"><v-icon>mdi-instagram</v-icon></a>
                                </div>
                             </v-col>
-                            <v-col lg="5" md="5" sm="5" cols="3" class="interviewSection">
+                            <v-col lg="4" md="5" sm="5" cols="3" class="interviewSection">
                                 <span class="title-medium">View interviews</span>
                                 <div class="option-wrap">
                                     <a href="#" class="btn-default" @click.prevent="dialogAudio = true"><v-icon>mdi-microphone</v-icon>Audio &amp; Text</a>
                                     <a href="#" class="btn-default" @click.prevent="dialogVideo = true"><v-icon>mdi-play-circle</v-icon>Video</a>
                                 </div>
                             </v-col>
-                            <v-col lg="3" md="12" sm="12" class="rateSection">
+                            <v-col lg="4" md="12" sm="12" class="rateSection">
                                 <v-row class="rate-wrap">
-                                    <v-col lg="4" sm="5" cols="5">
-                                        <span class="price">
-                                            ${{Math.ceil(freelancer.agent.hourly_rate)}}
-                                        </span>
-                                        <span class="text_price">
-                                            Hourly rate
-                                        </span>
+                                    <v-col lg="5" sm="5" cols="5">
+                                        <div class="text_price">
+                                            <span class="hire_option" @click="toogleHireOption(i)" v-for="(item, i) in this.hireInfo" :key="i" :class="item.active?'active':'disabled'">
+                                                {{item.name}}
+                                            </span>
+                                        </div>
+                                        <div class="price" v-for="(item, i) in this.hireInfo" :key="i" v-show="item.active">
+                                            <span :class="item.active?'current_price':''">${{Math.ceil(item.rate)}}</span> 
+                                            <i>Rate $ USD</i>
+                                        </div>
                                     </v-col>
-                                    <v-col lg="6" sm="5" cols="7">
-                                        <span class="hours">
-                                           {{Math.ceil(freelancer.user_data.available_hours_per_week)}} hrs
-                                        </span>
-                                        <span class="text_hours">
-                                            Weekly Availability
-                                        </span>
+                                    <v-col lg="5" sm="5" cols="7">
+                                        <div class="text_hours">
+                                            <span class="hire_option" @click="toogleHireOption(i)" v-for="(item, i) in this.hireInfo" :key="i" :class="item.active?'active':'disabled'">
+                                                {{item.name}}
+                                            </span>
+                                        </div>
+                                        <div class="hours" v-for="(item, i) in this.hireInfo" :key="i" v-show="item.active">
+                                            <span :class="item.active?'current_hours':''">{{Math.ceil(item.available)}} hrs</span>
+                                            <i>Availability</i> 
+                                        </div>
                                     </v-col>
                                 </v-row>
                                 <v-row class="mt-5 hire-wrap">
-                                    <v-col lg="10" sm="12" cols="12">
+                                    <v-col lg="auto" sm="12" cols="12">
                                         <a href="#" class="btn-action" @click.prevent="dialogHireme = true">Hire Me</a>
                                     </v-col>    
                                 </v-row>                      
@@ -692,45 +698,116 @@
         display: flex;
         align-items: center;
         .rate-wrap{
+            padding-top: 10px;
 
             .col-5{
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                flex-flow: column;
+                flex-flow: row;
 
                 .price{
                     font-size: 30px;
                     font-family: 'Roboto-Bold';
                     color: #202124;
+                    min-width: 85px;
+                    text-align: center;
+
+                    span{
+                        color: #202124;
+                        font-size: 24px;
+                        font-family: 'Roboto-Bold';
+                    }
+
+                    i{
+                        font-weight: normal;
+                        color: #5F6368;
+                        font-size: 16px;
+                        display: block;
+                        font-style: normal;
+                        font-family: 'Roboto';
+                    }
                 }
                 .text_price{
                     font-size: 16px;
                     font-family: 'Roboto';
                     color: #5F6368;
+                    display: flex;
+                    flex-flow: column;
+                    text-transform: capitalize;
+                    min-width:70px;
+
+                    .hire_option{
+                        font-size: 16px;
+                        color: rgba(112, 112, 112, 0.56);
+                        font-family: 'Segoe UI';
+                        line-height:25px;
+                        cursor: pointer;
+                    }
+
+                    .active{
+                        color: rgb(112, 112, 112);
+                        font-weight: bold;
+                    }
                 }
             }
             .col-7{
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                flex-flow: column;
+                flex-flow: row;
 
                 .hours{
                     font-size: 30px;
                     font-family: 'Roboto-Bold';
                     color: #202124;
+                    text-align: center;
+                    min-width: 85px;
+
+                    span{
+                        color: #202124;
+                        font-size: 24px;
+                        font-family: 'Roboto-Bold';
+                    }
+
+                    i{
+                        font-weight: normal;
+                        color: #5F6368;
+                        font-size: 16px;
+                        font-style: normal;
+                        display: block;
+                        font-family: 'Roboto';
+                    }
                 }
                 .text_hours{
                     font-size: 16px;
                     font-family: 'Roboto';
                     color: #5F6368;
+                    display: flex;
+                    flex-flow: column;
+                    text-transform: capitalize;
+                    min-width:70px;
+
+                    .hire_option{
+                        font-size: 16px;
+                        color: rgba(112, 112, 112, 0.56);
+                        font-family: 'Segoe UI';
+                        line-height:25px;
+                    }
+
+                    .active{
+                        color: rgb(112, 112, 112);
+                        font-weight: bold;
+                    }
                 }
             }
         }
+        .hire-wrap{
+            margin-top: 10px;
+        }
 
         >.row{
-            justify-content: flex-end;
+            justify-content: center;
 
             .col-12{
                 align-items: center;
@@ -1441,6 +1518,26 @@
             return {
                 worksHistory: this.freelancer.works_history,
                 educationsHistory: this.freelancer.educations_history,
+                hireInfo: [
+                    {
+                        "name": 'monthly',
+                        "rate": 2500,
+                        "available": 200,
+                        "active": false
+                    },
+                    {
+                        "name": 'weekly',
+                        "rate": 600,
+                        "available": 50,
+                        "active": false
+                    },
+                    {
+                        "name": 'hourly',
+                        "rate": 15,
+                        "available": 10,
+                        "active": false
+                    }                   
+                ],
                 portfolio: true,
                 activeTab: null,
                 currentTab: 'portfolio',
@@ -1554,15 +1651,26 @@
             cancelForm() {
                 this.dialogMessage = false;
                 this.$refs.formMessages.reset();
+            },
+            toogleHireOption(ix) {
+              this.hireInfo.map((item,i) => i==ix?item.active = true: item.active = false);
             }
         },
-        beforeMount(){},
+        beforeMount(){
+            
+        },
         mounted() {
             
             if(this.freelancer.agent.resume_tabs.length > 0){
                 this.setTab(this.freelancer.agent.resume_tabs[0]);
             }
+
+            this.hireInfo[1].active=true;
             
+            
+        },
+        created(){
+            this.setTab('portfolio');
         }
     }
 </script>
